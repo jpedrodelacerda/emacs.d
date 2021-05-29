@@ -19,7 +19,7 @@
   ;; (smartparens-global-mode 1)
   ;; (smartparens-strict-mode 1)
   ;; (setq smartparens-global-mode t)
-  ;; (show-smartparens-global-mode t)
+  (show-smartparens-global-mode t)
   (require 'smartparens-config))
 
 (provide 'jpdl/smartparens)
