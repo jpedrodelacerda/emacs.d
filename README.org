@@ -1,0 +1,3 @@
+* emacs.d - My personal emacs config
+
+  Insipired by many awesome configs.
