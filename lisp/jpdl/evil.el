@@ -5,18 +5,25 @@
 ;;; Code:
 
 (use-package evil
+  :init
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1)
   (setq evil-emacs-state-mode nil)
   ;; Disable abbrev expansion when hit escape
   (define-key evil-normal-state-map (kbd "M-.") nil)
-  (setq evil-want-abbrev-expand-on-insert-exit nil) 
+  (setq evil-want-abbrev-expand-on-insert-exit nil)
   :bind
   ("C-s" . evil-write))
 
 (use-package evil-surround
   :config
   (global-evil-surround-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
 
 (use-package evil-org
   :after org
