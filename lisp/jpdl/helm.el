@@ -27,20 +27,15 @@
 (defun jpdl/helm-ff-other-window ()
   "Execute helm-find-file with 'other window' as default action."
   (interactive)
-  (jpdl/helm-ff-custom-default-action "Find file other window `C-c o'" 'helm-find-files-other-window)
-  )
+  (jpdl/helm-ff-custom-default-action "Find file other window `C-c o'" 'helm-find-files-other-window))
 
 (defun jpdl/helm-ff-custom-default-action (MSG ACTION)
   "Call 'helm-find-files' with custom default action.
 MSG: action identifier
 ACTION: function to be activated"
   (let
-      (
-       (helm-find-files-actions (append (list (cons MSG ACTION)) helm-find-files-actions))
-       )
-    (helm-find-files-1 "./")
-    )
-  )
+      ( (helm-find-files-actions (append (list (cons MSG ACTION)) helm-find-files-actions)) )
+    (helm-find-files-1 "./")))
 
 (provide 'jpdl/helm)
 ;;; helm.el ends here
