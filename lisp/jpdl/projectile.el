@@ -10,7 +10,8 @@
   (projectile-mode 1)
   (setq projectile-project-search-path '("~/"))
   (setq projectile-completion-system 'helm)
-  (which-key-add-key-based-replacements "C-c p 4" "other-window"
+  (which-key-add-key-based-replacements
+    "C-c p 4" "other-window"
     "C-c p 5" "other-frame"
     "C-c p s" "search"
     "C-c p x" "execute")
@@ -21,8 +22,10 @@
 
 (use-package helm-projectile
   :after (helm projectile)
-  :init (helm-projectile-on)
-  :bind ("C-x C-f" . helm-projectile-find-file))
+  :config (helm-projectile-on)
+  :bind
+  ("C-c C-f" . helm-projectile-find-other-file)
+  ("C-c C-d" . helm-projectile-find-file))
 
 (provide 'jpdl/projectile)
 ;;; projectile.el ends here
