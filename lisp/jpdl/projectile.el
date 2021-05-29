@@ -25,7 +25,8 @@
   :config (helm-projectile-on)
   :bind
   ("C-c C-f" . helm-projectile-find-other-file)
-  ("C-c C-d" . helm-projectile-find-file))
+  ("C-c C-d" . helm-projectile-find-file)
+  ("C-x C-d" . helm-projectile-find-file))
 
 (provide 'jpdl/projectile)
 ;;; projectile.el ends here
