@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: LATEX Underbrace
+# key: \lub
+# --
+\underbrace{$1}_{$2}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: LATEX Math Formula
+# key: lmf
+# --
+$$ $1 $$

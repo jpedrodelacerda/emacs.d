@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: React: Class Component
+# key: imprc
+# --
+import React, { Component } from "react";
+
+class $1 extends Component {
+$>render() {
+$>$>return(
+$>$>$>$0
+$>$>);
+$>};
+}
+
+export default $1;

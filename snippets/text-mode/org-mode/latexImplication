@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: LATEX Implication
+# key: \imp
+# --
+\Rightarrow

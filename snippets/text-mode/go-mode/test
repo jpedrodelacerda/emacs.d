@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: test
+# key: test
+# --
+// $1 ${2:...}
+func Test${1:name}(t *testing.T) {
+  $0
+}

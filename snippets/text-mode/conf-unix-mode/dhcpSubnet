@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: subnet
+# key: \sn
+# --
+subnet $1 netmask $2 {
+$>  option broadcast-address $3;
+$>  option routers $4;
+
+$>  host $5 {
+$>$>  	hardware ethernet $6;
+$>$>	fixed-address $7;
+$>  }
+}

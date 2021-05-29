@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: LATEX Proof
+# key: \pr
+# --
+\vdash

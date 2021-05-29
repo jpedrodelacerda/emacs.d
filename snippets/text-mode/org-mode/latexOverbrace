@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: LATEX Overbrace
+# key: \lob
+# --
+\overbrace{$1}^{$2}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: LATEX Math Source
+# key: lms
+# --
+\begin{math}
+$1
+\end{math}
