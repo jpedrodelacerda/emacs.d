@@ -8,7 +8,9 @@
 (use-package smartparens
   ;; :diminish smartparens-mode
   ;; :commands smartparens-global-mode
-  :bind ("C-SPC" . sp-forward-sexp)
+  :bind
+  ("C-SPC" . sp-forward-sexp)
+  ("C-M-0" . smartparens-strict-mode)
   ;; :commands (smartparens-mode show-smartparens-mode)
   :hook ((prog-mode . smartparens-strict-mode))
   :config
