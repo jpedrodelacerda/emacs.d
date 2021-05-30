@@ -53,7 +53,6 @@
 (require 'jpdl/treemacs)
 (require 'jpdl/projectile)
 (require 'jpdl/ux)
-(require 'jpdl/ivy)
 (require 'jpdl/prog)
 
 (provide 'init.el)

@@ -1,12 +1,23 @@
+;;; ivy.el --- Summary
+;;; Commentary:
+
+;;; Code:
 (use-package ivy
-  :init
+  :config
   (setq ivy-mode t)
   (setq ivy-count-format "(%d/%d) ") ; display (current/total) instead of just total
-  (setq ivy-format-funCtion 'ivy-format-function-line) ; highlight the entire line
+  (setq ivy-format-function 'ivy-format-function-line) ; highlight the entire line
   (setq ivy-use-selectable-prompt t))
 
+(use-package counsel
+  :init
+  (setq counsel-mode t))
+
+(use-package smex
+  :after counsel)
+
 (use-package ivy-posframe
-  :after ivy
+  :after (ivy ivy-rich)
   :diminish
   :config
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
@@ -17,6 +28,7 @@
 
 
 (use-package ivy-rich
+  :after (ivy counsel)
   :preface
   (defun ivy-rich-switch-buffer-icon (candidate)
     (with-current-buffer
@@ -54,10 +66,5 @@
   (ivy-rich-mode +1)
   (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
 
-(use-package counsel
-  :init  
-  (setq counsel-mode t))
-
-(use-package smex)
-
 (provide 'jpdl/ivy)
+;;; ivy.el ends here
