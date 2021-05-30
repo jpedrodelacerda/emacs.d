@@ -39,7 +39,15 @@
   :bind (:map lsp-ui-mode-map
               ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
               ([remap xref-find-references] . lsp-ui-peek-find-references)
+	      ("g d" . lsp-ui-peek-find-definitions)
+	      ("g r" . lsp-ui-peek-find-references)
+	      ("g i" . lsp-ui-peek-find-implementation)
+	      ("g b" . xref-pop-marker-stack)
               ("C-c u" . lsp-ui-imenu))
+  :chords (("gd" . lsp-ui-peek-find-definitions)
+	   ("gr" . lsp-ui-peek-find-references)
+	   ("gi" . lsp-ui-peek-find-implementation)
+	   ("gb" . xref-pop-marker-stack))
   :custom-face
   (lsp-ui-doc-background ((t (:background nil))))
   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
