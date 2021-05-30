@@ -13,6 +13,9 @@
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+(use-package use-package-chords
+  :config (key-chord-mode 1))
+
 (use-package auto-package-update
   :config
   (setq auto-package-update-delete-old-versions t)
