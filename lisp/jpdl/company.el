@@ -15,8 +15,10 @@
   ("C-'" . company-complete))
 
 ;;; Fuzzing
-(use-package orderless)
-(setq orderless-component-separator "[ &]")
+(use-package orderless
+  :after company
+  :config
+  (setq orderless-component-separator "[ &]"))
 
 (provide 'jpdl/company)
 ;;; company.el ends here
