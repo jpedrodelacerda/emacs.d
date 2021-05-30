@@ -5,8 +5,6 @@
 ;;; Code:
 
 (require 'jpdl/font)
-(require 'use-package-ensure)
-(setq use-package-always-ensure t)
 
 ;; Remove trailing whitespace before saving file
 (add-hook 'before-save-hook 'delete-trailing-whitespace)

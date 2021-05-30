@@ -28,6 +28,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(setq use-package-always-ensure t)
+
 ;; Booting
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -37,12 +39,13 @@
 (require 'jpdl/font)
 (require 'jpdl/evil)
 (require 'jpdl/user)
+(require 'jpdl/ivy)
+(require 'jpdl/helm)
 (require 'jpdl/org)
 (require 'jpdl/lsp)
 (require 'jpdl/tabs)
 (require 'jpdl/nav)
 (require 'jpdl/smartparens)
-(require 'jpdl/helm)
 (require 'jpdl/magit)
 (require 'jpdl/company)
 (require 'jpdl/lsp)
