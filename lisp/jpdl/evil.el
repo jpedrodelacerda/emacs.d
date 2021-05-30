@@ -36,5 +36,13 @@
 (use-package evil-nerd-commenter
   :bind ("M-;" . evilnc-comment-or-uncomment-lines))
 
+(use-package nlinum)
+
+(use-package nlinum-relative
+  :after (nlinum evil)
+  :config
+  (global-nlinum-relative-mode)
+  (nlinum-relative-setup-evil))
+
 (provide 'jpdl/evil)
 ;;; evil.el ends here

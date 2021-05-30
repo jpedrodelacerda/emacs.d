@@ -21,14 +21,9 @@
 
 ;; Undo function
 (use-package undo-tree
-  :init (global-undo-tree-mode)
+  :config (global-undo-tree-mode)
   :bind (
          ("C-/" . undo-redo)))
-
-(use-package nlinum-relative
-  :config
-  (global-nlinum-relative-mode)
-  (nlinum-relative-setup-evil))
 
 (use-package which-key
   :config (which-key-mode))
