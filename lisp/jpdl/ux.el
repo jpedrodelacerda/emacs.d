@@ -26,6 +26,9 @@
   (setq doom-modeline-icon (display-graphic-p))
   (setq doom-modeline-minor-modes (featurep 'minions)))
 
+(use-package solaire-mode
+  :config (solaire-global-mode +1))
+
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
