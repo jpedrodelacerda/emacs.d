@@ -22,6 +22,10 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
+(use-package subword
+  :config
+  (global-subword-mode))
+
 ;; Undo function
 (use-package undo-tree
   :config (global-undo-tree-mode)
