@@ -29,8 +29,7 @@
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-enable-xref t)
   (add-hook 'js-mode 'lsp)
-  (setq lsp-enable-file-watchers t)
-  (setq lsp-eldoc-render-all nil))
+  (setq lsp-enable-file-watchers t))
 
 (use-package lsp-ui
   :after lsp-mode
@@ -61,6 +60,13 @@
   (lsp-ui-sideline-show-code-actions t)
   :config
   (setq lsp-ui-doc-use-webkit t))
+
+(use-package lsp-treemacs
+  :config
+  (lsp-treemacs-sync-mode 1)
+  :bind
+  (:map lsp-mode-map
+        ("M-q" . lsp-treemacs-symbols)))
 
 (provide 'jpdl/lsp)
 ;;; lsp.el ends here
