@@ -1,6 +1,8 @@
-;;; Summary - lsp.el
-;;; Comentary: lsp and lsp-ui config
-;;;
+;;; lsp.el --- Summary
+
+;;; Commentary:
+;; lsp and lsp-ui config
+
 ;;; Code:
 
 ;; LSP completes me
