@@ -30,7 +30,6 @@
   (setq lsp-enable-snippet t)
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-enable-xref t)
-  (add-hook 'js-mode 'lsp)
   (setq lsp-enable-file-watchers t))
 
 (use-package lsp-ui
