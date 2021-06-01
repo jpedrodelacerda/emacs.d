@@ -9,10 +9,15 @@
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode)
-  (define-key company-active-map (kbd "TAB") 'company-yasnippet-or-completion)
   (setq company-transformers '(company-sort-by-occurrence))
-  :bind
-  ("C-'" . company-complete))
+  (setq company-backends (push '(:separate company-yasnippet company-capf) company-backends))
+  :bind (("C-'" . company-complete)
+	 :map prog-mode-map
+	 ("<tab>" . company-indent-or-complete-common)
+	 :map company-active-map
+	 ("RET" . company-complete-selection)
+	 ("<tab>" . company-complete-common-or-cycle)
+	 ("<backtab>" . (lambda () (interactive) (company-complete-common-or-cycle -1)))))
 
 ;;; Fuzzing
 (use-package orderless
