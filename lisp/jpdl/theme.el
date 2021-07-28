@@ -10,12 +10,13 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-  (load-theme 'doom-solarized-light)
+  (load-theme 'doom-gruvbox)
 
  ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
   (setq doom-themes-treemacs-theme "doom-colors")
-  (setq doom-themes-treemacs-variable-pitch-face nil)
+  (setq doom-themes-variable-pitch-font (font-spec :family "Fira Code" :size 36))
+  ;; (setq doom-themes-treemacs-enable-variable-pitch nil)
   (doom-themes-treemacs-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
