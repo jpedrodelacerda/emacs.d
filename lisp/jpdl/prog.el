@@ -149,6 +149,9 @@
             (rainbow-mode)
             (setq web-mode-markup-indent-offset 2)))
 
+(use-package elm-mode
+  :mode ("\\.elm"))
+
 ;; =emmet-mode=
 (use-package emmet-mode
   :mode ("\\.gohtml$"
