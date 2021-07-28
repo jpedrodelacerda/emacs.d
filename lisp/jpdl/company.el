@@ -10,7 +10,8 @@
   :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-transformers '(company-sort-by-occurrence))
-  (setq company-backends (push '(:separate company-capf company-yasnippet) company-backends))
+  (setq company-backends (push '(:separate company-yasnippet company-capf) company-backends))
+  (setq company-minimum-prefix-length 2)
   :bind (("C-'" . company-complete)
 	 :map prog-mode-map
 	 ("<tab>" . company-indent-or-complete-common)
