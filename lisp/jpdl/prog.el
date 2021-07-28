@@ -82,25 +82,13 @@
   :config
   (jpdl/append-to-path "~/.local/bin"))
 
-(use-package elpy
-  :config
-  (elpy-enable))
-
-(use-package company-anaconda
-  :after company
-  :config
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
-
-(use-package company-anaconda
-  :after company
-  :config
-  (add-to-list 'company-backends 'company-anaconda))
+(use-package python-black
+  :after python-mode
+  :hook (python-mode . python-black-on-save-mode))
 
 ;; TOML support.
 (use-package toml-mode
   :mode "\\.toml\\'")
-
 
 ;;  =rust-mode=
 (use-package rust-mode
