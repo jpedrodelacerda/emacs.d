@@ -30,24 +30,27 @@
   (setq lsp-enable-snippet t)
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-enable-xref t)
-  (setq lsp-enable-file-watchers t))
+  (setq lsp-enable-file-watchers t)
+  (setq lsp-elm-elm-language-server-path "elm-language-server"))
 
 (use-package lsp-ui
   :after lsp-mode
   :commands lsp-ui-mode
   :diminish
-  :bind (:map lsp-ui-mode-map
+  :bind (:map lsp-ui-mode-map (:map evil-normal-state-map
               ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
               ([remap xref-find-references] . lsp-ui-peek-find-references)
 	      ("g d" . lsp-ui-peek-find-definitions)
 	      ("g r" . lsp-ui-peek-find-references)
 	      ("g i" . lsp-ui-peek-find-implementation)
 	      ("g b" . xref-pop-marker-stack)
-              ("C-c u" . lsp-ui-imenu))
-  :chords (("gd" . lsp-ui-peek-find-definitions)
-	   ("gr" . lsp-ui-peek-find-references)
-	   ("gi" . lsp-ui-peek-find-implementation)
-	   ("gb" . xref-pop-marker-stack))
+              ("C-c u" . lsp-ui-imenu)))
+  ;; :chords (:map lsp-ui-mode-map (:map evil-normal-state-map
+  :chords (:map evil-normal-state-map
+		("gd" . lsp-ui-peek-find-definitions)
+		("gr" . lsp-ui-peek-find-references)
+		("gi" . lsp-ui-peek-find-implementation)
+		("gb" . xref-pop-marker-stack))
   :custom-face
   (lsp-ui-doc-background ((t (:background nil))))
   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
@@ -61,6 +64,9 @@
   (lsp-ui-sideline-show-code-actions t)
   :config
   (setq lsp-ui-doc-use-webkit t))
+
+(use-package helm-lsp
+  :bind ("C-x g" . helm-lsp-workspace-symbol))
 
 (use-package lsp-treemacs
   :config
