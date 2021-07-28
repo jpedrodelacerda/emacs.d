@@ -45,7 +45,6 @@
 	      ("g i" . lsp-ui-peek-find-implementation)
 	      ("g b" . xref-pop-marker-stack)
               ("C-c u" . lsp-ui-imenu)))
-  ;; :chords (:map lsp-ui-mode-map (:map evil-normal-state-map
   :chords (:map evil-normal-state-map
 		("gd" . lsp-ui-peek-find-definitions)
 		("gr" . lsp-ui-peek-find-references)
