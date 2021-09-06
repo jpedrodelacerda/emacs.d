@@ -152,5 +152,8 @@
 	 "\\.html$"
 	 "\\.php$"))
 
+;; (use-package fortran-mode
+;;   :mode "\\.f90$")
+
 (provide 'jpdl/prog)
 ;;; prog.el ends here
