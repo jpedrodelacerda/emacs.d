@@ -16,7 +16,7 @@
   (doom-themes-visual-bell-config)
   (setq doom-themes-treemacs-theme "doom-colors")
   (setq doom-themes-variable-pitch-font (font-spec :family "Fira Code" :size 36))
-  ;; (setq doom-themes-treemacs-enable-variable-pitch nil)
+  (setq doom-themes-treemacs-enable-variable-pitch nil)
   (doom-themes-treemacs-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
