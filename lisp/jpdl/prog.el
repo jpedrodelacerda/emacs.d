@@ -63,6 +63,11 @@
 (use-package js2-mode
   :mode "\\.js\\'")
 
+;; TypeScript
+(use-package typescript-mode
+  :mode ("\\.ts\\'"
+         "\\.tsx\\'"))
+
 ;; =markdown=
 (use-package markdown-mode
   :mode "\\.md\\'")
