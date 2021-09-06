@@ -16,6 +16,7 @@
          (c++-mode . lsp)
          (web-mode . lsp)
          (js-mode . lsp)
+         (typescript-mode . lsp)
          (rust-mode . lsp)
          (python-mode . lsp)
 	 (before-save-hook . lsp-format-buffer))
