@@ -9,7 +9,7 @@
   :bind
   ("C-SPC" . sp-forward-sexp)
   ("C-M-0" . smartparens-strict-mode)
-  :hook ((prog-mode . smartparens-strict-mode))
+  :hook ((prog-mode . smartparens-mode))
   :config
   (show-smartparens-global-mode t)
   (require 'smartparens-config))
