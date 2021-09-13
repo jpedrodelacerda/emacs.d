@@ -21,7 +21,8 @@
          (python-mode . lsp)
 	 (before-save-hook . lsp-format-buffer))
   :bind (:map lsp-mode-map
-	      (("C-c C-f" . lsp-format-buffer)))
+	      (("C-c C-f" . lsp-format-buffer)
+	       ("C-c a" . lsp-execute-code-action)))
   :config
   (setq
     lsp-signature-auto-activate t
@@ -32,6 +33,7 @@
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-enable-xref t)
   (setq lsp-enable-file-watchers t)
+  (setq lsp-rust-analyzer-server-display-inlay-hints t)
   (setq lsp-elm-elm-language-server-path "elm-language-server"))
 
 (use-package lsp-ui
