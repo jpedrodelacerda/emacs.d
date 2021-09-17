@@ -22,6 +22,7 @@
 	 (before-save-hook . lsp-format-buffer))
   :bind (:map lsp-mode-map
 	      (("C-c C-f" . lsp-format-buffer)
+	       ("C-c r" . lsp-rename)
 	       ("C-c a" . lsp-execute-code-action)))
   :config
   (setq
