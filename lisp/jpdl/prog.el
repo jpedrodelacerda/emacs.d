@@ -73,7 +73,7 @@
 
 (use-package tree-sitter
   :hook ((typescript-mode . tree-sitter-hl-mode)
-	 (typescript-tsx-mode . tree-sitter-hl-mode)))
+	     (typescript-tsx-mode . tree-sitter-hl-mode)))
 
 (use-package tree-sitter-langs
   :after tree-sitter
