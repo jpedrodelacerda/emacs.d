@@ -36,8 +36,8 @@
   :config (which-key-mode))
 
 ;; No tabs
-(setq tab-width 4)
-(setq indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
 
 ;; no scroll bars
 (set-window-scroll-bars (minibuffer-window) nil nil)
