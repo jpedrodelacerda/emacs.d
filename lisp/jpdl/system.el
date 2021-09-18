@@ -39,6 +39,9 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
+;; Disable lock files
+(setq create-lockfiles nil)
+
 ;; no scroll bars
 (set-window-scroll-bars (minibuffer-window) nil nil)
 
