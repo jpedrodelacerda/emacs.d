@@ -23,10 +23,14 @@
 (use-package helm-projectile
   :after (helm projectile)
   :config (helm-projectile-on)
-  :bind
-  ("C-c C-f" . helm-projectile-find-other-file)
-  ("C-c C-d" . helm-projectile-find-file)
-  ("C-x C-d" . helm-projectile-find-file))
+  :bind (("C-c C-f" . helm-projectile-find-other-file)
+         ("C-c C-d" . helm-projectile-find-file)
+         ("C-x C-d" . helm-projectile-find-file)
+         (:map evil-normal-state-map
+               ("SPC r g" . projectile-ripgrep)))
+  :chords (:map evil-normal-state-map
+                ("SPCrg" . projectile-ripgrep)))
+
 
 (provide 'jpdl/projectile)
 ;;; projectile.el ends here
