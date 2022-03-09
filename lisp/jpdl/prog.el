@@ -5,22 +5,12 @@
 ;;; Code:
 
 (require 'jpdl/utils)
+
 ;; Ansible
 (use-package ansible
   :after (yaml-mode)
   :mode ("\\.yml\\'"
          "\\.yaml\\'"))
-
-(use-package company-ansible
-  :after
-  (company)
-  :mode ("\\.yml\\'"
-         "\\.yaml\\'")
-  :config (add-to-list 'company-backends 'company-ansible))
-
-;; API Blueprint
-(use-package apib-mode
-  :mode "\\.apib\\'")
 
 ;; Dockerfiles
 (use-package dockerfile-mode
@@ -142,6 +132,8 @@
   :mode ("\\.yml\\'"
          "\\.yaml\\'"))
 
+;; sql-indent.el
+(use-package sql-indent)
 
 ;; =web-mode=
 (use-package web-mode
