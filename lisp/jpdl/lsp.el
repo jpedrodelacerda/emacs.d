@@ -20,10 +20,11 @@
          (rust-mode . lsp)
          (python-mode . lsp)
 	 (before-save-hook . lsp-format-buffer))
-  :bind (:map lsp-mode-map
-	      (("C-c C-f" . lsp-format-buffer)
-	       ("C-c r" . lsp-rename)
-	       ("C-c a" . lsp-execute-code-action)))
+  :bind-keymap (("C-a" . lsp-command-map))
+  :bind ((:map lsp-mode-map
+	           (("C-c C-f" . lsp-format-buffer)
+	            ("C-c r" . lsp-rename)
+	            ("C-c a" . lsp-execute-code-action))))
   :config
   (setq
     lsp-signature-auto-activate t
@@ -42,30 +43,31 @@
   :commands lsp-ui-mode
   :diminish
   :bind (:map lsp-ui-mode-map (:map evil-normal-state-map
-              ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-              ([remap xref-find-references] . lsp-ui-peek-find-references)
-	      ("g d" . lsp-ui-peek-find-definitions)
-	      ("g r" . lsp-ui-peek-find-references)
-	      ("g i" . lsp-ui-peek-find-implementation)
-	      ("g b" . xref-pop-marker-stack)
-              ("C-c u" . lsp-ui-imenu)))
+                                    ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+                                    ([remap xref-find-references] . lsp-ui-peek-find-references)
+	                                ("g d" . lsp-ui-peek-find-definitions)
+	                                ("g r" . lsp-ui-peek-find-references)
+	                                ("g i" . lsp-ui-peek-find-implementation)
+	                                ("g b" . xref-pop-marker-stack)
+                                    ("C-c u" . lsp-ui-imenu)))
   :chords (:map evil-normal-state-map
-		("gd" . lsp-ui-peek-find-definitions)
-		("gr" . lsp-ui-peek-find-references)
-		("gi" . lsp-ui-peek-find-implementation)
-		("gb" . xref-pop-marker-stack))
+		        ("gd" . lsp-ui-peek-find-definitions)
+		        ("gr" . lsp-ui-peek-find-references)
+		        ("gi" . lsp-ui-peek-find-implementation)
+		        ("gb" . xref-pop-marker-stack))
   :custom-face
   (lsp-ui-doc-background ((t (:background nil))))
   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
-  :custom
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-header t)
-  (lsp-ui-doc-include-signature t)
-  (lsp-ui-doc-position 'top)
-  (lsp-ui-doc-border (face-foreground 'default))
-  (lsp-ui-sideline-ignore-duplicate t)
-  (lsp-ui-sideline-show-code-actions t)
   :config
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-header t)
+  (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-doc-position 'top)
+  (setq lsp-ui-doc-border (face-foreground 'default))
+  (setq lsp-ui-doc-show-with-mouse t)
+  (setq lsp-ui-doc-show-with-cursor t)
+  (setq lsp-ui-sideline-ignore-duplicate t)
+  (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-doc-use-webkit t))
 
 (use-package helm-lsp
