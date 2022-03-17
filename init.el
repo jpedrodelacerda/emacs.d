@@ -42,6 +42,7 @@
 (require 'jpdl/ivy)
 (require 'jpdl/helm)
 (require 'jpdl/org)
+(require 'jpdl/agenda)
 (require 'jpdl/lsp)
 (require 'jpdl/tabs)
 (require 'jpdl/nav)
