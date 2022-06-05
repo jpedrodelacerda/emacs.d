@@ -15,5 +15,6 @@
 (add-hook 'org-shiftdown-final-hook 'windmove-down)
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 (setq org-support-shift-select 'always)
+(setq org-export-with-sub-superscripts nil)
 
 (provide 'jpdl/org)
