@@ -44,6 +44,7 @@
   :diminish
   :bind (:map lsp-ui-mode-map (:map evil-normal-state-map
                                     ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+                                    ("<f12>" . lsp-ui-peek-find-definitions)
                                     ([remap xref-find-references] . lsp-ui-peek-find-references)
 	                                ("g d" . lsp-ui-peek-find-definitions)
 	                                ("g r" . lsp-ui-peek-find-references)
@@ -71,7 +72,7 @@
   (setq lsp-ui-doc-use-webkit t))
 
 (use-package helm-lsp
-  :bind ("C-x g" . helm-lsp-workspace-symbol))
+  :bind ("M-b" . helm-lsp-workspace-symbol))
 
 (use-package lsp-treemacs
   :config
