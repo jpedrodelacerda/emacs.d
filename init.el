@@ -50,6 +50,7 @@
 (require 'jpdl/magit)
 (require 'jpdl/company)
 (require 'jpdl/lsp)
+(require 'jpdl/debug)
 (require 'jpdl/flycheck)
 (require 'jpdl/treemacs)
 (require 'jpdl/projectile)
