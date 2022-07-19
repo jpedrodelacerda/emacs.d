@@ -30,12 +30,7 @@
         ("C-c C-c d" . dap-hydra)
         ("M-d b" . dap-breakpoint-toggle)
         ("M-d n" . dap-next)
-        ("M-d h" . dap-hydra))
-  :chords
-  (:map dap-mode
-        ("bb" . dap-breakpoint-toggle)
-        ("nn" . dap-next)
-        ("dh" . dap-hydra)))
+        ("M-d h" . dap-hydra)))
 
 (provide 'jpdl/debug)
 ;;; debug.el ends here
