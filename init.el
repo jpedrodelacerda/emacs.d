@@ -45,6 +45,7 @@
 (require 'jpdl/agenda)
 (require 'jpdl/lsp)
 (require 'jpdl/tabs)
+(require 'jpdl/term)
 (require 'jpdl/nav)
 (require 'jpdl/smartparens)
 (require 'jpdl/magit)

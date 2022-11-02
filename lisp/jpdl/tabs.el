@@ -34,7 +34,9 @@
     Other buffer group by `centaur-tabs-get-group-name' with project name."
     (list
 	(cond
-	((or (string-equal "*" (substring (buffer-name) 0 1))
+     ((derived-mode-p 'vterm-mode)
+      "Term")
+	 ((or (string-equal "*" (substring (buffer-name) 0 1))
 	     (memq major-mode '(magit-process-mode
 				            magit-status-mode
 				            magit-diff-mode
@@ -43,27 +45,27 @@
 				            magit-blob-mode
 				            magit-blame-mode
 				            )))
-	 "Emacs")
-	((derived-mode-p 'prog-mode)
-	 "Editing")
-	((derived-mode-p 'dired-mode)
-	 "Dired")
-	((memq major-mode '(helpful-mode
-			            help-mode))
-	 "Help")
-	(((memq list) major-mode '(org-mode
-			                   org-agenda-clockreport-mode
-			                   org-src-mode
-			                   org-agenda-mode
-			                   org-beamer-mode
-			                   org-indent-mode
-			                   org-bullets-mode
-			                   org-cdlatex-mode
-			                   org-agenda-log-mode
-			                   diary-mode))
-	 "OrgMode")
-	(t
-	 (centaur-tabs-get-group-name (current-buffer))))))
+	  "Emacs")
+	 ((derived-mode-p 'prog-mode)
+	  "Editing")
+	 ((derived-mode-p 'dired-mode)
+	  "Dired")
+	 ((memq major-mode '(helpful-mode
+			             help-mode))
+	  "Help")
+	 (((memq list) major-mode '(org-mode
+			                    org-agenda-clockreport-mode
+			                    org-src-mode
+			                    org-agenda-mode
+			                    org-beamer-mode
+			                    org-indent-mode
+			                    org-bullets-mode
+			                    org-cdlatex-mode
+			                    org-agenda-log-mode
+			                    diary-mode))
+	  "OrgMode")
+	 (t
+	  (centaur-tabs-get-group-name (current-buffer))))))
   :bind
   ;; ("<C-S-tab>" . centaur-tabs-backward)
   ("C-<iso-lefttab>" . centaur-tabs-backward)
