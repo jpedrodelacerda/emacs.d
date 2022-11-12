@@ -19,6 +19,10 @@
 
 (global-set-key (kbd "M-e") 'toggle-window-split)
 
+(use-package ace-window
+  :bind
+  ("M-w" . 'ace-swap-window))
+
 (global-set-key (kbd "C-x 2") 'split-window-below-and-switch)
 (global-set-key (kbd "C-x 3") 'split-window-right-and-switch)
 
