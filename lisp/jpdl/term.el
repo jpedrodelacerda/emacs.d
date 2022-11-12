@@ -33,16 +33,15 @@
   (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
   (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
   :bind
-  ("C-M-<RET>" . multi-vterm-dedicated-term)
+  ("C-M-<return>" . multi-vterm-dedicated-toggle)
   ("M-t" . multi-vterm)
-  ;; ("M-p" . multi-vterm-project)
+  ("M-p" . multi-vterm-project)
   ("C-." . multi-vterm-prev)
   ("C-;" . multi-vterm-next))
 
 (use-package vterm-toggle
   :bind
   (:map vterm-mode-map
-        ("M-t" . vterm-toggle)
         ("M-p" . vterm-toggle))
   :config
   (setq vterm-toggle-fullscreen-p nil)
