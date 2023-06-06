@@ -1,3 +1,8 @@
+;;; org.el --- Summary
+
+;;; Commentary:
+
+;;; Code:
 (use-package org)
 
 (setq org-ellipsis " ...")
@@ -18,3 +23,4 @@
 (setq org-export-with-sub-superscripts nil)
 
 (provide 'jpdl/org)
+;;; org.el ends here

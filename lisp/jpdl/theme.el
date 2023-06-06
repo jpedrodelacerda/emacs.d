@@ -10,6 +10,7 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
+  ;; (load-theme 'doom-ayu-dark)
   (load-theme 'doom-solarized-light)
 
  ;; Enable flashing mode-line on errors
@@ -20,6 +21,10 @@
   (doom-themes-treemacs-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
+
+;; (use-package autothemer
+;;   :config
+;;   (load-theme 'catppuccin-macchiato))
 
 (provide 'jpdl/theme)
 ;;; theme.el ends here

@@ -48,7 +48,7 @@ other, future frames."
   :load-path "~/emacs.d/ligature.el"
   :config
   (ligature-set-ligatures 't '("www"))
-  ;; Enable ligatures in programming modes                                                           
+  ;; Enable ligatures in programming modes
   (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
                                      ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
                                      "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"

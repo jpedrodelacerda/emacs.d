@@ -6,20 +6,14 @@
 
 (require 'jpdl/utils)
 
-;; Ansible
-(use-package ansible
-  :after (yaml-mode)
-  :mode ("\\.yml\\'"
-         "\\.yaml\\'"))
-
 ;; Dockerfiles
 (use-package dockerfile-mode
   :mode "Dockerfile$")
 
 ;; Elixir
 (use-package elixir-mode
-  :mode ("\\.exs\\'"
-         "\\.ex\\'")
+  :mode ("\\.exs$"
+         "\\.ex$")
   )
 
 (use-package alchemist
@@ -43,15 +37,19 @@
 
 ;; Lua
 (use-package lua-mode
-  :mode "\\.lua\\'")
+  :mode "\\.lua$")
 
 ;; Jinja2
 (use-package jinja2-mode
-  :mode "\\.j2\\'")
+  :mode "\\.j2$")
 
 ;; JavaScript
 (use-package js2-mode
-  :mode "\\.js\\'")
+  :mode "\\.js$")
+
+;; Java
+(use-package lsp-java
+  :after (lsp))
 
 ;; TypeScript
 (use-package typescript-mode
@@ -73,14 +71,14 @@
 
 ;; =markdown=
 (use-package markdown-mode
-  :mode "\\.md\\'")
+  :mode "\\.md$")
 
 (use-package grip-mode
   :after markdown-mode)
 
 ;; Go
 (use-package go-mode
-  :mode "\\.go\\'"
+  :mode "\\.go$"
   :config
   ;;  Setting =$GOPATH=
   (setenv "GOPATH" (concat home "/go"))
@@ -96,11 +94,11 @@
 
 ;; TOML support.
 (use-package toml-mode
-  :mode "\\.toml\\'")
+  :mode "\\.toml$")
 
 ;;  =rust-mode=
 (use-package rust-mode
-  :mode "\\.rs\\'"
+  :mode "\\.rs$"
   :config
   (setq rust-format-on-save t))
 
@@ -129,8 +127,8 @@
 
 ;; =yaml-mode=
 (use-package yaml-mode
-  :mode ("\\.yml\\'"
-         "\\.yaml\\'"))
+  :mode ("\\.yml$'"
+         "\\.yaml$'"))
 
 ;; sql-indent.el
 (use-package sql-indent)
@@ -162,8 +160,8 @@
 	 "\\.html$"
 	 "\\.php$"))
 
-;; (use-package fortran-mode
-;;   :mode "\\.f90$")
+(use-package yuck-mode
+  :mode "\\.yuck$")
 
 (provide 'jpdl/prog)
 ;;; prog.el ends here

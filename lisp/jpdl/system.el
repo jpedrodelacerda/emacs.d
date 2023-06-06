@@ -6,6 +6,8 @@
 
 (require 'jpdl/font)
 
+(setq gc-cons-threshold 100000000)
+
 ;; Remove trailing whitespace before saving file
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -56,6 +58,9 @@
 (use-package minions
   :config
   (minions-mode 1))
+
+(use-package rg)
+(use-package ripgrep)
 
 (use-package editorconfig
   :config
