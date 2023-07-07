@@ -8,6 +8,7 @@
 (use-package helm
   :demand t
   :config
+  (use-package helm-rg)
   (helm-autoresize-mode 1)
   (setq helm-autoresize-min-height 25)
   (setq helm-autoresize-max-height 35)
