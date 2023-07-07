@@ -76,6 +76,7 @@
   :bind ("M-b" . helm-lsp-workspace-symbol))
 
 (use-package lsp-treemacs
+  :after (treemacs)
   :config
   (lsp-treemacs-sync-mode 1)
   :bind

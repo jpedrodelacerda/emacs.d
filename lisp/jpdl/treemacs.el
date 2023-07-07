@@ -10,6 +10,7 @@
   (use-package treemacs-evil)
   (use-package treemacs-magit)
   (use-package treemacs-tab-bar)
+  (use-package treemacs-all-the-icons)
   (use-package treemacs-projectile)
   (treemacs-git-commit-diff-mode 1)
   (setq-local imenu-create-index-function #'ggtags-build-imenu-index)
