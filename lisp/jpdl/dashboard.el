@@ -1,7 +1,6 @@
 (use-package dashboard
   :ensure t
   :init (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  :hook (dashboard-mode . (lambda () (nlinum-mode)))
   :config
   (setq dashboard-startup-banner (concat (concat "/home/" user-login-name) "/emacs.d/enso.png"))
   (setq dashboard-set-heading-icons t)
