@@ -8,6 +8,9 @@
 
 (setq gc-cons-threshold 100000000)
 
+;; No start-up mesage
+(setq inhibit-startup-message t)
+
 ;; Remove trailing whitespace before saving file
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -16,7 +19,7 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (use-package use-package-chords
-  :config (key-chord-mode 1))
+ :config (key-chord-mode 1))
 
 (use-package auto-package-update
   :config
@@ -29,10 +32,20 @@
   (global-subword-mode))
 
 ;; Undo function
-(use-package undo-tree
-  :config (global-undo-tree-mode)
-  :bind (
-         ("C-/" . undo-redo)))
+(use-package undo-fu
+  :config
+  (global-unset-key (kbd "C-z"))
+  :bind
+  ("C-z" . undo-fu-only-undo)
+  ("C-S-z" . undo-fu-only-redo)
+  ("C-/" . undo-fu-only-redo))
+
+(use-package undo-fu-session
+  :config
+  (setq undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
+  (undo-fu-session-global-mode))
+
+(use-package vundo)
 
 (use-package which-key
   :config (which-key-mode))
@@ -47,13 +60,12 @@
 ;; no scroll bars
 (set-window-scroll-bars (minibuffer-window) nil nil)
 
-;; No start-up mesage
-(setq inhibit-startup-message t)
-
 (use-package yasnippet
   :config
   (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
   (yas-global-mode 1))
+
+(use-package yasnippet-snippets)
 
 (use-package minions
   :config

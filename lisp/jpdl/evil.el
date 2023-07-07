@@ -12,6 +12,7 @@
   (setq evil-emacs-state-mode nil)
   ;; Disable abbrev expansion when hit escape
   (define-key evil-normal-state-map (kbd "M-.") nil)
+  (evil-set-undo-system 'undo-fu)
   (add-hook 'evil-insert-state-entry-hook #'jpdl/line-number-absolute)
   (add-hook 'evil-insert-state-exit-hook #'jpdl/line-number-relative)
   (setq evil-want-abbrev-expand-on-insert-exit nil)

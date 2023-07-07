@@ -12,6 +12,8 @@ ligature.el/
 custom.el
 url/
 forge-database.sqlite
+eln-cache/
+undo-fu-session/
 
 # Created by https://www.gitignore.io/api/vim,emacs
 # Edit at https://www.gitignore.io/?templates=vim,emacs
