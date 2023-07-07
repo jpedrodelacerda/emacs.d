@@ -45,7 +45,6 @@ other, future frames."
 
 ;; Enable the www ligature in every possible major mode
 (use-package ligature
-  :load-path "~/emacs.d/ligature.el"
   :config
   (ligature-set-ligatures 't '("www"))
   ;; Enable ligatures in programming modes
