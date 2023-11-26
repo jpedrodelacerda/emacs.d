@@ -11,7 +11,9 @@
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
   ;; (load-theme 'doom-ayu-dark)
-  (load-theme 'doom-solarized-light)
+   ;; (load-theme 'doom-solarized-light t)
+
+  ;; (load-theme 'doom-homage-black)
 
  ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -22,9 +24,22 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-;; (use-package autothemer
-;;   :config
-;;   (load-theme 'catppuccin-macchiato))
+(use-package auto-dark
+  :ensure t
+  :after doom-themes
+  :config
+  (setq auto-dark-dark-theme 'doom-ayu-dark)
+  (setq auto-dark-light-theme 'doom-solarized-light)
+  (auto-dark-mode t))
+
+;;(use-package modus-themes
+;;  :config
+;;  (load-theme 'modus-vivendi-tritanopia))
+
+;;(use-package catppuccin-theme
+;;  :config
+;;  (setq catppucin-flavor 'mocha)
+;;  (load-theme 'catppuccin :no-confirm))
 
 (provide 'jpdl/theme)
 ;;; theme.el ends here

@@ -39,6 +39,10 @@
 (use-package lua-mode
   :mode "\\.lua$")
 
+;; Nix
+(use-package nix-mode
+  :mode "\\.nix$")
+
 ;; Jinja2
 (use-package jinja2-mode
   :mode "\\.j2$")

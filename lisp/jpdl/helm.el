@@ -20,9 +20,13 @@
   (define-key helm-map (kbd "<tab>") #'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-z") #'helm-select-action)
   :bind (("C-x C-b" . helm-mini)
-	 ("C-x C-f" . helm-find-files)
-	 ("C-x 4 C-f" . jpdl/helm-ff-other-window)
-	 ("C-x 4 f" . jpdl/helm-ff-other-window)))
+	     ("C-x C-f" . helm-find-files)
+	     ("C-x 4 C-f" . jpdl/helm-ff-other-window)
+	     ("C-x 4 f" . jpdl/helm-ff-other-window)
+         (:map evil-normal-state-map
+               ("SPC s f" . helm-find-files)))
+  :chords (:map evil-normal-state-map
+                ("SPCsf" . helm-find-files)))
 
 
 (defun jpdl/helm-ff-other-window ()

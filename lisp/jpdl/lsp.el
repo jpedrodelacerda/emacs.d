@@ -27,8 +27,8 @@
 	            ("C-c a" . lsp-execute-code-action))))
   :config
   (setq
-    lsp-signature-auto-activate t
-    lsp-signature-doc-lines 1)
+   lsp-signature-auto-activate t
+   lsp-signature-doc-lines 1)
   (setq lsp-diagnostics-provider :auto)
   (setq lsp-enable-indentation t)
   (setq lsp-enable-snippet t)
@@ -36,6 +36,7 @@
   (setq lsp-enable-xref t)
   (setq lsp-enable-file-watchers t)
   (setq lsp-rust-analyzer-server-display-inlay-hints t)
+  (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"])
   (setq lsp-elm-elm-language-server-path "elm-language-server"))
 
 (use-package lsp-ui
@@ -72,8 +73,9 @@
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-doc-use-webkit t))
 
-(use-package helm-lsp
-  :bind ("M-b" . helm-lsp-workspace-symbol))
+(use-package lsp-ivy
+  :bind (("M-b" . lsp-ivy-workspace-symbol)
+         ("M-n" . lsp-ivy-global-workspace-symbol)))
 
 (use-package lsp-treemacs
   :after (treemacs)

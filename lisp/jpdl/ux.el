@@ -29,6 +29,13 @@
 (use-package solaire-mode
   :config (solaire-global-mode +1))
 
+(use-package dimmer
+  :ensure t
+  :config
+  (setq dimmer-fraction 0.1)
+  (setq dimmer-adjustment-mode :both)
+  :init (dimmer-mode t))
+
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 

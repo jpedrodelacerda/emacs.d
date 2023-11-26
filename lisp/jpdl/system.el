@@ -7,6 +7,7 @@
 (require 'jpdl/font)
 
 (setq gc-cons-threshold 100000000)
+(setq warning-minimum-level :emergency)
 
 ;; No start-up mesage
 (setq inhibit-startup-message t)
@@ -70,6 +71,15 @@
 (use-package minions
   :config
   (minions-mode 1))
+
+(use-package centered-cursor-mode
+  :diminish centered-cursor-mode
+  :commands (centered-cursor-mode
+             global-centered-cursor-mode)
+  ;; :hook (after-init-hook . centered-cursor-mode)
+  :bind (:map evil-normal-state-map
+              ("zz" . centered-cursor-mode)))
+  ;; :hook (prog-mode . centered-cursor-mode))
 
 (use-package rg)
 (use-package ripgrep)
