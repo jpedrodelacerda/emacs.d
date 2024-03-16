@@ -8,6 +8,7 @@
 
 (use-package treesit-auto
   :straight t
+  :defer t
   :custom
   (treesit-auto-install 'prompt)
   :config
