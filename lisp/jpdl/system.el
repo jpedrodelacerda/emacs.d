@@ -87,13 +87,12 @@
   :diminish centered-cursor-mode
   :commands (centered-cursor-mode
              global-centered-cursor-mode)
-  ;; :hook (after-init-hook . centered-cursor-mode)
   :bind (:map evil-normal-state-map
-              ("zz" . centered-cursor-mode)))
-  ;; :hook (prog-mode . centered-cursor-mode))
+              ("zz" . global-centered-cursor-mode)))
 
 (use-package rg
   :straight t)
+
 (use-package ripgrep
   :straight t)
 
