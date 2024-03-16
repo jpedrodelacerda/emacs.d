@@ -74,7 +74,6 @@
 		        ("gi" . lsp-ui-peek-find-implementation)
 		        ("gb" . xref-pop-marker-stack))
   :custom-face
-  (lsp-ui-doc-background ((t (:background nil))))
   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
   :config
   (setq lsp-ui-doc-enable t)
@@ -100,7 +99,7 @@
   (lsp-treemacs-sync-mode 1)
   :bind
   (:map lsp-mode-map
-        ("M-q" . lsp-treemacs-symbols)))
+        ("M-g" . lsp-treemacs-symbols)))
 
 (provide 'jpdl/lsp)
 ;;; lsp.el ends here
