@@ -3,8 +3,11 @@
 
 ;;; Code:
 
-(use-package vterm)
+(use-package vterm
+  :straight t)
+
 (use-package multi-vterm
+  :straight t
   :config
   (setq vterm-keymap-exceptions nil)
   (evil-define-key 'insert vterm-mode-map (kbd "C-e")      #'vterm--self-insert)
@@ -40,6 +43,7 @@
   ("C-;" . multi-vterm-next))
 
 (use-package vterm-toggle
+  :straight t
   :bind
   (:map vterm-mode-map
         ("M-p" . vterm-toggle))

@@ -24,7 +24,25 @@
 (eval-when-compile
   (require 'use-package))
 
-(setq use-package-always-ensure t)
+;; Bootstrap straight
+(setq straight-use-package-by-default t)
+(setq use-package-always-demand t)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
 
 ;; Booting
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -35,14 +53,17 @@
 (require 'jpdl/dashboard)
 (require 'jpdl/evil)
 (require 'jpdl/user)
+(require 'jpdl/projectile)
+(require 'jpdl/treemacs)
+(require 'jpdl/persp)
 (require 'jpdl/counsel)
 (require 'jpdl/ivy)
 (require 'jpdl/org)
 (require 'jpdl/obsidian)
-(require 'jpdl/agenda)
+;; (require 'jpdl/agenda)
 (require 'jpdl/lsp)
 (require 'jpdl/tabs)
-(require 'jpdl/term)
+;; (require 'jpdl/term)
 (require 'jpdl/nav)
 (require 'jpdl/smartparens)
 (require 'jpdl/magit)
@@ -50,8 +71,6 @@
 (require 'jpdl/lsp)
 (require 'jpdl/debug)
 (require 'jpdl/flycheck)
-(require 'jpdl/treemacs)
-(require 'jpdl/projectile)
 (require 'jpdl/ux)
 (require 'jpdl/prog)
 

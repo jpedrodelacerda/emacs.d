@@ -3,6 +3,7 @@
 
 ;;; Code:
 (use-package ivy
+  :straight t
   :config
   (setq ivy-mode t)
   (setq ivy-count-format "(%d/%d) ") ; display (current/total) instead of just total
@@ -11,6 +12,7 @@
 
 
 (use-package ivy-posframe
+  :straight t
   :after (ivy ivy-rich)
   :diminish
   :config
@@ -23,9 +25,11 @@
   (ivy-posframe-mode +1))
 
 (use-package ivy-hydra
+  :straight t
   :after (ivy))
 
 (use-package ivy-rich
+  :straight t
   :after (ivy counsel)
   :preface
   (defun ivy-rich-switch-buffer-icon (candidate)
@@ -112,6 +116,7 @@
   )
 
 (use-package all-the-icons-ivy-rich
+  :straight t
   :after (all-the-icons ivy ivy-rich)
   :init (all-the-icons-ivy-rich-mode 1)
   :config

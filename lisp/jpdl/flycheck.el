@@ -6,10 +6,12 @@
 
 ;; Checking for errors
 (use-package flycheck
+  :straight t
   :config
   (global-flycheck-mode))
 
 (use-package flycheck-color-mode-line
+  :straight t
   :after (flycheck)
   :hook (flycheck-mode-hook . flycheck-color-mode-line-mode))
 ;; (eval-after-load "flycheck"

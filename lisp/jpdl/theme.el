@@ -5,6 +5,7 @@
 ;;; Code:
 
 (use-package doom-themes
+  :straight t
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
@@ -24,13 +25,21 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package auto-dark
-  :ensure t
+(use-package circadian
+  :straight t
   :after doom-themes
   :config
-  (setq auto-dark-dark-theme 'doom-ayu-dark)
-  (setq auto-dark-light-theme 'doom-solarized-light)
-  (auto-dark-mode t))
+  (setq circadian-themes '(("8:00" . doom-solarized-light)
+                           ("18:00" . doom-solarized-dark)))
+  (circadian-setup))
+
+;; (use-package auto-dark
+;;   :straight t
+;;   :after doom-themes
+;;   :config
+;;   (setq auto-dark-dark-theme 'doom-ayu-dark)
+;;   (setq auto-dark-light-theme 'doom-solarized-light)
+;;   (auto-dark-mode t))
 
 ;;(use-package modus-themes
 ;;  :config

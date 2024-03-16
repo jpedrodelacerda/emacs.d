@@ -7,6 +7,7 @@
 (require 'jpdl/utils)
 
 (use-package windmove
+  :straight t
   :config
   (windmove-default-keybindings 'meta)
   :bind
@@ -14,12 +15,14 @@
   ("C-M-d"     . split-window-vertically-and-switch))
 
 (use-package windswap
+  :straight t
   :config
   (windswap-default-keybindings 'meta 'control))
 
 (global-set-key (kbd "M-e") 'toggle-window-split)
 
 (use-package ace-window
+  :straight t
   :bind
   ("M-w" . 'ace-swap-window))
 

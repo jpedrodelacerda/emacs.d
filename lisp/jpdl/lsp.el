@@ -7,19 +7,10 @@
 
 ;; LSP completes me
 (use-package lsp-mode
+  :straight t
   :commands (lsp)
-  :hook ((dart-mode . lsp)
-         (elm-mode . lsp)
-         (elixir-mode . lsp)
-         (go-mode . lsp)
-         (c-mode . lsp)
-         (c++-mode . lsp)
-         (web-mode . lsp)
-         (js-mode . lsp)
-         (typescript-mode . lsp)
-         (rust-mode . lsp)
-         (python-mode . lsp)
-	     (before-save-hook . lsp-format-buffer))
+  :after (posframe)
+  :hook ((before-save-hook . lsp-format-buffer))
   :bind-keymap (("C-a" . lsp-command-map))
   :bind ((:map lsp-mode-map
 	           (("C-c C-f" . lsp-format-buffer)
@@ -28,7 +19,9 @@
   :config
   (setq
    lsp-signature-auto-activate t
-   lsp-signature-doc-lines 1)
+   lsp-signature-doc-lines 1
+   lsp-completion-show-kind t
+   lsp-signature-function 'lsp-signature-posframe)
   (setq lsp-diagnostics-provider :auto)
   (setq lsp-enable-indentation t)
   (setq lsp-enable-snippet t)
@@ -37,9 +30,31 @@
   (setq lsp-enable-file-watchers t)
   (setq lsp-rust-analyzer-server-display-inlay-hints t)
   (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"])
-  (setq lsp-elm-elm-language-server-path "elm-language-server"))
+  (setq lsp-elm-elm-language-server-path "elm-language-server")
+  (with-eval-after-load 'lsp-mode
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection '("astro-ls" "--stdio"))
+                      :major-modes '(astro-ts-mode)
+                      :priority 0
+                      :server-id 'astro-ls)))
+  (with-eval-after-load 'lsp-mode
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection "nil")
+                      :major-modes '(nix-ts-mode nix-mode)
+                      :priority 0
+                      :server-id 'nil)))
+  (with-eval-after-load 'lsp-mode
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection "nu --lsp")
+                      :major-modes '(nushell-mode)
+                      :priority 0
+                      :server-id 'nu))))
+
+(use-package posframe
+  :straight t)
 
 (use-package lsp-ui
+  :straight t
   :after lsp-mode
   :commands lsp-ui-mode
   :diminish
@@ -74,10 +89,12 @@
   (setq lsp-ui-doc-use-webkit t))
 
 (use-package lsp-ivy
+  :straight t
   :bind (("M-b" . lsp-ivy-workspace-symbol)
          ("M-n" . lsp-ivy-global-workspace-symbol)))
 
 (use-package lsp-treemacs
+  :straight t
   :after (treemacs)
   :config
   (lsp-treemacs-sync-mode 1)

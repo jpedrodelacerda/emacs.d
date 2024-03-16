@@ -4,7 +4,8 @@
 ;;; Code:
 
 (use-package centaur-tabs
-  :demand
+  :straight t
+  :demand t
   :hook
   (dashboard-mode . centaur-tabs-local-mode)
   (term-mode . centaur-tabs-local-mode)

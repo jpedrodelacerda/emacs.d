@@ -2,6 +2,9 @@
 !.gitignore
 auto-save-list/
 elpa/*
+straight/*
+elgrep-data.el
+forge-database*
 configuration.el
 recentf*
 smex*
@@ -14,6 +17,8 @@ url/
 forge-database.sqlite
 eln-cache/
 undo-fu-session/
+persp-confs/
+games/
 
 # Created by https://www.gitignore.io/api/vim,emacs
 # Edit at https://www.gitignore.io/?templates=vim,emacs

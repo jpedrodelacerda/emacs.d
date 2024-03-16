@@ -9,10 +9,12 @@
 (setq org-src-tab-acts-natively t)
 
 (use-package org-bullets
+  :straight t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package ox-reveal
+  :straight t
   :pin melpa)
 
 (add-hook 'org-shiftup-final-hook 'windmove-up)

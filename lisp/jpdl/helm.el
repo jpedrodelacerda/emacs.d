@@ -6,6 +6,7 @@
 
 ;; Helm
 (use-package helm
+  :straight t
   :demand t
   :config
   (use-package helm-rg)

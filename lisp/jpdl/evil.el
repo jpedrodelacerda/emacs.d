@@ -5,6 +5,7 @@
 ;;; Code:
 
 (use-package evil
+  :straight t
   :init
   (setq evil-want-keybinding nil)
   :config
@@ -17,7 +18,8 @@
   (add-hook 'evil-insert-state-exit-hook #'jpdl/line-number-relative)
   (setq evil-want-abbrev-expand-on-insert-exit nil)
   :bind
-  ("C-s" . evil-write))
+  (("C-s" . evil-write)
+   ("C-p" . evil-jump-forward)))
 
 (defun jpdl/line-number-relative ()
   (setq display-line-numbers 'relative))
@@ -26,15 +28,18 @@
   (setq display-line-numbers t))
 
 (use-package evil-surround
+  :straight t
   :config
   (global-evil-surround-mode 1))
 
 (use-package evil-collection
+  :straight t
   :after evil
   :config
   (evil-collection-init))
 
 (use-package evil-org
+  :straight t
   :after org
   :config
   (add-hook 'org-mode-hook 'evil-org-mode)
@@ -44,6 +49,7 @@
 
 ;; Nerd commentaries
 (use-package evil-nerd-commenter
+  :straight t
   :bind ("M-;" . evilnc-comment-or-uncomment-lines))
 
 (provide 'jpdl/evil)

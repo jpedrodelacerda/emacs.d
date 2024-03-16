@@ -5,8 +5,7 @@
 ;;; Code:
 
 (use-package obsidian
-  :ensure t
-  :demand t
+  :straight t
   :config
   (obsidian-specify-path "~/personal-notes")
   (global-obsidian-mode t)

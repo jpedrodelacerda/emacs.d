@@ -6,10 +6,12 @@
 
 ;; Themes
 ;; all the icons available
-(use-package all-the-icons)
+(use-package all-the-icons
+  :straight t)
 
 ;; Doom-modeline
 (use-package doom-modeline
+  :straight t
   :hook (after-init . doom-modeline-mode)
   :custom-face
   (doom-modeline-evil-emacs-state ((t (:inherit bold :foreground "dark magenta"))))
@@ -27,17 +29,33 @@
   (setq doom-modeline-minor-modes (featurep 'minions)))
 
 (use-package solaire-mode
+  :straight t
   :config (solaire-global-mode +1))
 
 (use-package dimmer
-  :ensure t
+  :straight t
   :config
-  (setq dimmer-fraction 0.1)
-  (setq dimmer-adjustment-mode :both)
-  :init (dimmer-mode t))
+  (setq dimmer-fraction           0.1
+        dimmer-adjustment-mode    :both)
+  (dimmer-mode t))
 
 (use-package rainbow-delimiters
+  :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package hl-todo
+  :straight t
+  :after (org-mode)
+  :hook ((prog-mode . hl-todo-mode) (org-mode . hl-todo-mode))
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        `(("TODO"        warning bold)
+          ("FIXME"       error bold)
+          ("HACK"        font-lock-constant-face bold)
+          ("REVIEW"      font-lock-keyword-face bold)
+          ("NOTE"        success bold)
+          ("DEPRECATED"  font-lock-doc-face bold))))
 
 (provide 'jpdl/ux)
 ;;; ux.el ends here

@@ -5,6 +5,7 @@
 
 ;;; Code:
 (use-package dap-mode
+  :straight t
   :config
   (setq dap-auto-configure-features '(sessions locals breakpoints expressions repl controls tooltip))
   (dap-ui-mode 1)

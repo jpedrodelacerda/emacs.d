@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: begin src
+# key: <bs
+# --
+#+BEGIN_SRC $1
+$0
+#+END_SRC

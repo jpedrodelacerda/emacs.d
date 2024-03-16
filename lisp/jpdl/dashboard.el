@@ -1,5 +1,5 @@
 (use-package dashboard
-  :ensure t
+  :straight t
   :init (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :config
   (setq dashboard-startup-banner (concat (concat "/home/" user-login-name) "/emacs.d/enso.png"))

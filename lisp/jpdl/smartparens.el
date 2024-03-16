@@ -6,12 +6,12 @@
 
 ;; tokens beutifier and completer
 (use-package smartparens
+  :straight t
   :bind
   ("C-SPC" . sp-forward-sexp)
   ("C-M-0" . smartparens-strict-mode)
-  :hook ((after-init . smartparens-global-strict-mode) (prog-mode . smartparens-mode))
+  :hook ((prog-mode . smartparens-mode))
   :config
-  (setq)
   (show-smartparens-global-mode t)
   (require 'smartparens-config))
 

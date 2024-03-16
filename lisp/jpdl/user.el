@@ -2,7 +2,7 @@
 
 ;;; Commentary:
 
-;;; Code:
+;;; code:
 
 (setq home (concat "/home/" (eval user-login-name)))
 

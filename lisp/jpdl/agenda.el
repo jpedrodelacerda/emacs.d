@@ -1,5 +1,5 @@
 (use-package org-agenda
-  :ensure nil
+  :straight t
   :after org
   :bind (("C-c c" . org-capture)
          ("C-c o" . org-agenda)
