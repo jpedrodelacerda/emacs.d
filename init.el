@@ -43,6 +43,14 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(use-package general
+  :straight t
+  :config
+  (general-evil-setup)
+  (general-create-definer jpdl/spc-leader
+    :states '(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "C-SPC"))
 
 ;; Booting
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -60,12 +68,10 @@
 (require 'jpdl/ivy)
 (require 'jpdl/org)
 (require 'jpdl/obsidian)
-;; (require 'jpdl/agenda)
 (require 'jpdl/lsp)
 (require 'jpdl/tabs)
-;; (require 'jpdl/term)
 (require 'jpdl/nav)
-(require 'jpdl/smartparens)
+(require 'jpdl/pairs)
 (require 'jpdl/magit)
 (require 'jpdl/company)
 (require 'jpdl/lsp)

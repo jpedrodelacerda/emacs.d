@@ -12,6 +12,7 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
+  (global-treesit-auto-mode)
   (let ((astro-recipe (make-treesit-auto-recipe
                        :lang 'astro
                        :ts-mode 'astro-ts-mode
@@ -26,14 +27,46 @@
                     :revision "main"
                     :source-dir "src")))
     (add-to-list 'treesit-auto-recipe-list nu-recipe))
-  ;; (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
+  (let ((typst-recipe (make-treesit-auto-recipe
+                    :lang 'typst
+                    :ts-mode 'typst-ts-mode
+                    :url "https://github.com/uben0/tree-sitter-typst"
+                    :revision "main"
+                    :source-dir "src")))
+    (add-to-list 'treesit-auto-recipe-list typst-recipe)))
 
-(use-package hs-mode
-  :straight (:type built-in)
-  :defer t
-  :hook (prog-mode . hs-minor-mode)
-  :bind ("M-<tab>" . hs-toggle-hiding))
+(use-package typst-ts-mode
+  :straight (:host sourcehut :repo "meow_king/typst-ts-mode")
+  :mode ("\\.typ\\'" . typst-ts-mode)
+  :general
+  (jpdl/spc-leader
+    "t c" 'typst-ts-compile)
+  :custom
+  (typst-ts-mode-watch-options "--open")
+  :config
+  (add-to-list 'lsp-language-id-configuration '(typst-ts-mode . "typst"))
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-stdio-connection "typst-lsp")
+    :major-modes '(typst-ts-mode)
+    :server-id 'typst-lsp)))
+
+(use-package websocket
+    :straight t)
+
+(use-package typst-preview
+  :straight (:host github :repo "havarddj/typst-preview.el")
+  :general
+  (jpdl/spc-leader
+    "t p" 'typst-preview-mode
+    "t j" 'typst-preview-send-position
+    "t r" 'typst-preview-restart)
+  :config
+  (setq typst-preview-browser "default"))
+
+(use-package mermaid-mode
+  :straight t
+  :mode "\\.mmd\\'")
 
 ;; Dockerfiles
 (use-package dockerfile-mode
@@ -73,10 +106,19 @@
   :mode "\\.lua\\'")
 
 ;; Nix
+(use-package nix-mode
+  :straight t
+  :hook (nix-mode . lsp)
+  :mode "\\.nix\\'")
+
 (use-package nix-ts-mode
   :straight t
   :hook (nix-ts-mode . lsp)
   :mode "\\.nix\\'")
+
+(use-package nix-update
+  :straight t
+  :general ("C-. u" 'nix-update-fetch))
 
 ;; Jinja2
 (use-package jinja2-mode
@@ -98,7 +140,7 @@
   (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
   :hook ((typescript-ts-mode . lsp)
          (typescript-tsx-mode . lsp))
-  :mode (("\\.ts\\'" . typescript-mode)
+  :mode (("\\.ts\\'" . typescript-ts-mode)
          ("\\.tsx\\'" . typescript-tsx-mode))
   :config
   (setq typescript-indent-level 4))
@@ -107,8 +149,17 @@
 ;; Astro
 (use-package astro-ts-mode
   :straight t
+  :after (treesit-auto)
   :hook (astro-ts-mode . lsp)
-  :mode "\\.astro\\'")
+  :mode "\\.astro\\'"
+  :config
+  (let ((astro-recipe (make-treesit-auto-recipe)
+                      :lang 'astro
+                      :ts-mode 'astro-ts-mode
+                      :url "https://github.com/virchau13/tree-sitter-astro"
+                      :revision "master"
+                      :source-dir "src")))
+  (add-to-list 'treesit-auto-recipe-list astro-recipe))
 
 
 ;; =markdown=
@@ -148,9 +199,14 @@
   :hook (python-mode . python-black-on-save-mode))
 
 ;; TOML support.
-(use-package toml-mode
-  :straight t
+;; (use-package toml-mode
+;;   :straight t
+;;   :mode "\\.toml\\'")
+
+(use-package toml-ts-mode
+  :straight (:type built-in)
   :mode "\\.toml\\'")
+
 
 ;;  =rust-mode=
 (use-package rust-mode

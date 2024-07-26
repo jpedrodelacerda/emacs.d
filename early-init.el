@@ -22,6 +22,7 @@
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 (setq make-backup-files nil)
+(setenv "LSP_USE_PLISTS" "true")
 
 (provide 'early-init)
 ;;; early-init.el ends here

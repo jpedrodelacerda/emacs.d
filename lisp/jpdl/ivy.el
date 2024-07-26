@@ -8,8 +8,11 @@
   (setq ivy-mode t)
   (setq ivy-count-format "(%d/%d) ") ; display (current/total) instead of just total
   (setq ivy-format-function 'ivy-format-function-line) ; highlight the entire line
-  (setq ivy-use-selectable-prompt t))
-
+  (setq ivy-use-selectable-prompt t)
+  :general
+  (:keymaps 'ivy-minibuffer-map
+        "C-p" 'ivy-previous-line
+        "C-y" 'ivy-done))
 
 (use-package ivy-posframe
   :straight t
@@ -27,6 +30,18 @@
 (use-package ivy-hydra
   :straight t
   :after (ivy))
+
+;; (use-package prescient
+;;   :straight t)
+
+;; (use-package ivy-prescient
+;;   :straight t
+;;   :after (ivy prescient counsel)
+;;   :custom
+;;   (ivy-prescient-enable-filtering t)
+;;   :config
+;;   (prescient-persist-mode t)
+;;   (ivy-prescient-mode t))
 
 (use-package ivy-rich
   :straight t
@@ -122,6 +137,11 @@
   :config
   (setq all-the-icons-ivy-rich-icon t)
   (setq all-the-icons-ivy-rich-color-icon t))
+
+(use-package swiper
+  :straight t
+  :general
+  ("C-c C-d" 'swiper))
 
 (provide 'jpdl/ivy)
 ;;; ivy.el ends here

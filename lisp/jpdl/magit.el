@@ -7,8 +7,10 @@
 ;; Magic handler for git
 (use-package magit
   :straight t
-  :bind
-  ("C-x g" . magit-status)
+  :general
+  ("C-x g" 'magit-status)
+  (jpdl/spc-leader
+    "g" 'magit-status)
   :config
   (use-package with-editor)
   (setq magit-push-always-verify nil)

@@ -10,6 +10,7 @@
   :straight t
   :config
   (setq vterm-keymap-exceptions nil)
+  (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=no")
   (evil-define-key 'insert vterm-mode-map (kbd "C-e")      #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-f")      #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-a")      #'vterm--self-insert)
@@ -35,18 +36,20 @@
   (evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
   (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
   (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
-  :bind
-  ("C-M-<return>" . multi-vterm-dedicated-toggle)
-  ("M-t" . multi-vterm)
-  ("M-p" . multi-vterm-project)
-  ("C-." . multi-vterm-prev)
-  ("C-;" . multi-vterm-next))
+  :general
+  ("C-M-<return>" 'multi-vterm-dedicated-toggle
+   "M-t" 'multi-vterm
+   "M-p" 'multi-vterm-project
+   "`" 'multi-vterm-project
+   "C-." 'multi-vterm-prev
+   "C-;" 'multi-vterm-next))
 
 (use-package vterm-toggle
   :straight t
-  :bind
-  (:map vterm-mode-map
-        ("M-p" . vterm-toggle))
+  :general
+  (:keymaps 'vterm-mode-map
+        "M-p" 'vterm-toggle
+        "`'" 'vterm-toggle)
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist

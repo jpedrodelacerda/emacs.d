@@ -10,9 +10,9 @@
   :straight t
   :config
   (windmove-default-keybindings 'meta)
-  :bind
-  ("C-M-r"     . split-window-horizontally-and-switch)
-  ("C-M-d"     . split-window-vertically-and-switch))
+  :general
+  ("C-M-r" 'split-window-horizontally-and-switch
+   "C-M-d" 'split-window-vertically-and-switch))
 
 (use-package windswap
   :straight t
@@ -23,8 +23,8 @@
 
 (use-package ace-window
   :straight t
-  :bind
-  ("M-w" . 'ace-swap-window))
+  :general
+  ("M-w" 'ace-swap-window))
 
 (global-set-key (kbd "C-x 2") 'split-window-below-and-switch)
 (global-set-key (kbd "C-x 3") 'split-window-right-and-switch)

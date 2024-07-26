@@ -5,25 +5,6 @@
 
 ;;; Code:
 
-;; (use-package treemacs
-;;   :straight t
-;;   :config
-;;   (use-package treemacs-evil)
-;;   (use-package treemacs-magit)
-;;   (use-package treemacs-tab-bar)
-;;   (use-package treemacs-all-the-icons)
-;;   (use-package treemacs-projectile)
-;;   (setq treemacs-git-commit-diff-mode 1)
-;;   (setq treemacs-display-current-project-exclusively t)
-;;   (setq treemacs-project-follow-mode t)
-;;   (setq-local imenu-create-index-function #'ggtags-build-imenu-index)
-;;   (setq treemacs-width 25)
-;;   (setq treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory))
-;;   (add-hook 'projectile-after-switch-project-hook 'treemacs-display-current-project-exclusively)
-;;   :bind ("M-v" . treemacs)
-;;         (:map treemacs-mode-map)
-;;         ("S-<up>" . treemacs-move-project-up)
-;;         ("S-<down>" . treemacs-move-project-down))
 (use-package treemacs
   :straight t
   :defer t
@@ -103,16 +84,8 @@
        (treemacs-git-mode 'simple)))
 
     (treemacs-hide-gitignored-files-mode nil))
-  :bind
-  (:map global-map
-        ("M-v" . treemacs)
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t t"   . treemacs)
-        ("C-x t d"   . treemacs-select-directory)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
+  :general
+  ("M-v" 'treemacs))
 
 (use-package treemacs-evil
   :straight t

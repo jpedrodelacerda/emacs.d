@@ -8,21 +8,19 @@
 ;; Company
 (use-package company
   :straight t
+  :hook (after-init . global-company-mode)
+  :general
+  ("C-`" 'company-complete)
+  (:keymaps 'company-active-map
+	        "DEL" 'company-abort
+            "C-y" 'company-complete-selection
+	        ;; "RET" . company-complete-selection
+	        "<tab>" 'company-complete-common-or-cycle
+            "<backtab>" '((lambda) (interactive) company-complete-common-or-cycle -1))
   :config
   (setq company-transformers '(company-sort-by-occurrence))
   (setq company-backends (push '(:separate company-capf company-yasnippet) company-backends))
-  (setq company-minimum-prefix-length 2)
-  :hook (after-init . global-company-mode)
-  :bind (("C-'" . company-complete)
-	 :map prog-mode-map
-	 ;; ("<tab>" . company-indent-or-complete-common)
-     ("C-SPC" . company-complete)
-	 :map company-active-map
-	 ("DEL" . company-abort)
-     ("C-y" . company-complete-selection)
-	 ;; ("RET" . company-complete-selection)
-	 ("<tab>" . company-complete-common-or-cycle)
-     ("<backtab>" . (lambda () (interactive) (company-complete-common-or-cycle -1)))))
+  (setq company-minimum-prefix-length 2))
 
 ;;; Fuzzing
 (use-package orderless

@@ -19,6 +19,14 @@
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+(setq use-dialog-box nil)
+(setopt use-short-answers t)
+(define-key minibuffer-local-completion-map (kbd "SPC") 'self-insert-command)
+
+(use-package keychain-environment
+  :straight t
+  :config (keychain-refresh-environment))
+
 (use-package use-package-chords
   :straight t
   :config (key-chord-mode 1))
@@ -40,10 +48,10 @@
   :straight t
   :config
   (global-unset-key (kbd "C-z"))
-  :bind
-  ("C-z" . undo-fu-only-undo)
-  ("C-S-z" . undo-fu-only-redo)
-  ("C-/" . undo-fu-only-redo))
+  :general
+  ("C-z" 'undo-fu-only-undo)
+  ("C-S-z" 'undo-fu-only-redo)
+  ("C-/" 'undo-fu-only-redo))
 
 (use-package undo-fu-session
   :straight t
@@ -87,8 +95,8 @@
   :diminish centered-cursor-mode
   :commands (centered-cursor-mode
              global-centered-cursor-mode)
-  :bind (:map evil-normal-state-map
-              ("zz" . global-centered-cursor-mode)))
+  :general (:states '(normal)
+              "zz" 'global-centered-cursor-mode))
 
 (use-package rg
   :straight t)
@@ -106,39 +114,56 @@
   :config
   (direnv-mode))
 
+(use-package drag-stuff
+  :straight t
+  :general
+  ("M-S-<left>" . drag-stuff-left)
+  ("M-S-<right>" . drag-stuff-right)
+  ("M-S-<up>" . drag-stuff-up)
+  ("M-S-<down>" . drag-stuff-down)
+  :config
+  (drag-stuff-global-mode 1))
+
+(use-package origami
+  :straight t
+  :after (evil)
+  :general ("M-<tab>" 'origami-toggle-node)
+  :config
+  (global-origami-mode))
+
 (use-package harpoon
   :straight t
   :after (evil)
-  :bind (
-         ("C-c a" . harpoon-quick-menu-hydra)
-         ("C-c h <return>" . harpoon-add-file)
-         ("C-c h c" . harpoon-clear)
-         ("C-c h h" . harpoon-toggle-quick-menu)
-         ("C-c h f" . harpoon-toggle-file)
-         ("C-c h 1" . harpoon-go-to-1)
-         ("C-c h 2" . harpoon-go-to-2)
-         ("C-c h 3" . harpoon-go-to-3)
-         ("C-c h 4" . harpoon-go-to-4)
-         ("C-c h 5" . harpoon-go-to-5)
-         ("C-c h 6" . harpoon-go-to-6)
-         ("C-c h 7" . harpoon-go-to-7)
-         ("C-c h 8" . harpoon-go-to-8)
-         ("C-c h 9" . harpoon-go-to-9)
-         :map evil-normal-state-map
-         ("SPC a" . harpoon-quick-menu-hydra)
-         ("SPC h <return>" . harpoon-toggle-quick-menu)
-         ("SPC h h" . harpoon-add-file)
-         ("SPC h c" . harpoon-clear)
-         ("SPC h f" . harpoon-toggle-file)
-         ("SPC h 1" . harpoon-go-to-1)
-         ("SPC h 2" . harpoon-go-to-2)
-         ("SPC h 3" . harpoon-go-to-3)
-         ("SPC h 4" . harpoon-go-to-4)
-         ("SPC h 5" . harpoon-go-to-5)
-         ("SPC h 6" . harpoon-go-to-6)
-         ("SPC h 7" . harpoon-go-to-7)
-         ("SPC h 8" . harpoon-go-to-8)
-         ("SPC h 9" . harpoon-go-to-9)))
+  :general
+  ("C-c a" 'harpoon-quick-menu-hydra
+   "C-c h <return>" 'harpoon-add-file
+   "C-c h c" 'harpoon-clear
+   "C-c h h" 'harpoon-toggle-quick-menu
+   "C-c h f" 'harpoon-toggle-file
+   "C-c h 1" 'harpoon-go-to-1
+   "C-c h 2" 'harpoon-go-to-2
+   "C-c h 3" 'harpoon-go-to-3
+   "C-c h 4" 'harpoon-go-to-4
+   "C-c h 5" 'harpoon-go-to-5
+   "C-c h 6" 'harpoon-go-to-6
+   "C-c h 7" 'harpoon-go-to-7
+   "C-c h 8" 'harpoon-go-to-8
+   "C-c h 9" 'harpoon-go-to-9)
+  (jpdl/spc-leader
+    "h m" 'harpoon-quick-menu-hydra
+    "h <return>" 'harpoon-toggle-quick-menu
+    "h h" 'harpoon-add-file
+    "h c" 'harpoon-clear
+    "h f" 'harpoon-toggle-file
+    "h 1" 'harpoon-go-to-1
+    "h 2" 'harpoon-go-to-2
+    "h 3" 'harpoon-go-to-3
+    "h 4" 'harpoon-go-to-4
+    "h 5" 'harpoon-go-to-5
+    "h 6" 'harpoon-go-to-6
+    "h 7" 'harpoon-go-to-7
+    "h 8" 'harpoon-go-to-8
+    "h 9" 'harpoon-go-to-9))
 
 (provide 'jpdl/system)
 ;;; system.el ends here

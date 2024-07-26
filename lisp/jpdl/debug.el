@@ -23,15 +23,15 @@
   :hook (prog-mode)
   :init
   (unbind-key "M-d")
-  :bind
-  (:map dap-mode
-        ("<f5>" . dap-debug)
-        ("<f6>" . dap-hydra)
-        ("<f7>" . dap-debug-restart)
-        ("C-c C-c d" . dap-hydra)
-        ("M-d b" . dap-breakpoint-toggle)
-        ("M-d n" . dap-next)
-        ("M-d h" . dap-hydra)))
+  :general
+  (:keymaps 'dap-mode
+            "<f5>" 'dap-debug
+            "<f6>" 'dap-hydra
+            "<f7>" 'dap-debug-restart
+            "C-c C-c d" 'dap-hydra
+            "M-d b" 'dap-breakpoint-toggle
+            "M-d n" 'dap-next
+            "M-d h" 'dap-hydra))
 
 (provide 'jpdl/debug)
 ;;; debug.el ends here
