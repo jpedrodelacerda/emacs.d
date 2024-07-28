@@ -44,11 +44,13 @@
   (:keymaps 'lsp-mode-map
 	        "C-c C-f" 'lsp-format-buffer
 	        "C-c r" 'lsp-rename
-	        "C-c a" 'lsp-execute-code-action)
+	        "C-c a" 'lsp-execute-code-action
+            "C-c l" 'lsp-avy-lens)
   (jpdl/spc-leader
     "l f" 'lsp-format-buffer
     "l r" 'lsp-rename
-    "l a" 'lsp-execute-code-action)
+    "l a" 'lsp-execute-code-action
+    "l l" 'lsp-avy-lens)
   :config
   (setq lsp-signature-auto-activate t
         lsp-signature-doc-lines 1
@@ -60,7 +62,7 @@
         lsp-enable-on-type-formatting nil
         lsp-enable-xref t
         lsp-enable-file-watchers t
-        lsp-inlay-hints-enable t
+        lsp-inlay-hint-enable t
         lsp-javascript-display-parameter-type-hints t
         lsp-javascript-display-property-declaration-type-hints t
         lsp-javascript-display-return-type-hints t
