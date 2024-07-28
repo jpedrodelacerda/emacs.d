@@ -26,7 +26,7 @@
     (dolist (i custom-enabled-themes)
       (disable-theme i)))
 
-  (defadvice load-theme (before disable-themes-first activate)
+  (define-advice load-theme (:before (disable-themes-first) activate)
     (disable-all-themes))
   :config
   (setq darkman-themes '(:light doom-solarized-light :dark doom-solarized-dark))
