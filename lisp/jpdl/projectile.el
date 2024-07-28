@@ -24,6 +24,7 @@
   ("C-x C-v" 'projectile-find-file-in-known-projects
    "C-x 4 C-v" '(lambda () (interactive) (other-window-prefix) (projectile-find-file-in-known-projects))
    (jpdl/spc-leader
+     "p a" 'projectile-add-known-project
      "s v" 'projectile-find-file-in-known-projects
      "4 s v" '(lambda () (interactive) (other-window-prefix) (projectile-find-file-in-known-projects)))))
 

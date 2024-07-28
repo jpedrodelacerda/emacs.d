@@ -24,7 +24,8 @@
   :general
   ("C-x C-p" 'projectile-persp-switch-project)
   (jpdl/spc-leader
-    "s p" 'projectile-persp-switch-project))
+    "s p" 'projectile-persp-switch-project
+    "p s" 'projectile-persp-switch-project))
 
 (provide 'jpdl/persp)
 ;;; persp.el ends here
