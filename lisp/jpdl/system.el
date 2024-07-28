@@ -47,9 +47,7 @@
 (use-package undo-fu
   :straight t
   :config
-  (global-unset-key (kbd "C-z"))
   :general
-  ("C-z" 'undo-fu-only-undo)
   ("C-S-z" 'undo-fu-only-redo)
   ("C-/" 'undo-fu-only-redo))
 
