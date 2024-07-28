@@ -21,6 +21,7 @@
   (general-def :states '(normal motion insert) "M-." 'nil)
   (general-def :states '(normal motion insert) "C-o" 'nil)
   (general-def :states '(normal insert) "C-p" 'nil)
+  (setq evil-want-fine-undo t)
   (evil-set-undo-system 'undo-fu)
   (add-hook 'evil-insert-state-entry-hook #'jpdl/line-number-absolute)
   (add-hook 'evil-insert-state-exit-hook #'jpdl/line-number-relative)
@@ -49,7 +50,7 @@
 
 (use-package evil-org
   :straight t
-  :after org
+  :after (org evil)
   :hook ((org-mode . evil-org-mode)
          (evil-org-mode . evil-org-set-key-theme)
          (org-agenda-mode . evil-org-agenda-set-keys))
