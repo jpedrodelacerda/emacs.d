@@ -4,7 +4,9 @@
 ;;; Code:
 
 (use-package vterm
-  :straight t)
+  :straight t
+  :custom
+  (vterm-always-compile-module t))
 
 (use-package multi-vterm
   :straight t
@@ -37,10 +39,11 @@
   (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
   (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
   :general
+  (:keymaps 'global-map
+            [remap project-shell] 'multi-vterm-project)
   ("C-M-<return>" 'multi-vterm-dedicated-toggle
    "M-t" 'multi-vterm
    "M-p" 'multi-vterm-project
-   "`" 'multi-vterm-project
    "C-." 'multi-vterm-prev
    "C-;" 'multi-vterm-next))
 
@@ -48,8 +51,11 @@
   :straight t
   :general
   (:keymaps 'vterm-mode-map
-        "M-p" 'vterm-toggle
+            "M-p" 'vterm-toggle)
+  (:keymaps 'vterm-mode-map :states '(normal motion)
         "`'" 'vterm-toggle)
+  (jpdl/spc-leader
+   "`" 'multi-vterm-project)
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist

@@ -131,12 +131,25 @@
         lsp-ui-sideline-show-code-actions t
         lsp-ui-doc-use-webkit nil))
 
-(use-package lsp-ivy
+;; (use-package lsp-ivy
+;;   :straight t
+;;   :after (lsp ivy)
+;;   :general
+;;   (:keymaps 'lsp-mode-map
+;;             "M-b" 'lsp-ivy-workspace-symbol
+;;             "M-n" 'lsp-ivy-global-workspace-symbol))
+
+(use-package consult-lsp
   :straight t
+  :after (lsp consult)
   :general
   (:keymaps 'lsp-mode-map
-            "M-b" 'lsp-ivy-workspace-symbol
-            "M-n" 'lsp-ivy-global-workspace-symbol))
+            "M-b" 'consult-lsp-file-symbols
+            "M-n" 'consult-lsp-symbols)
+  (jpdl/spc-leader 'lsp-mode-map
+    "l d" 'consult-lsp-diagnostics
+    "l b" 'consult-lsp-file-symbols
+    "l n" 'consult-lsp-symbols))
 
 (use-package lsp-treemacs
   :straight t

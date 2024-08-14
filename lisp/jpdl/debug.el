@@ -24,11 +24,11 @@
   :init
   (unbind-key "M-d")
   :general
-  (:keymaps 'dap-mode
+  (:keymaps 'dap-mode-map
             "<f5>" 'dap-debug
             "<f6>" 'dap-hydra
             "<f7>" 'dap-debug-restart
-            "C-c C-c d" 'dap-hydra
+            "M-d d" 'dap-hydra
             "M-d b" 'dap-breakpoint-toggle
             "M-d n" 'dap-next
             "M-d h" 'dap-hydra))

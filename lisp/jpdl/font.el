@@ -39,9 +39,7 @@ other, future frames."
 
 (define-key global-map (kbd "C-)") 'reset-font-size)
 (define-key global-map (kbd "C-+") 'increase-font-size)
-(define-key global-map (kbd "C-=") 'increase-font-size)
 (define-key global-map (kbd "C-_") 'decrease-font-size)
-(define-key global-map (kbd "C--") 'decrease-font-size)
 
 ;; Enable the www ligature in every possible major mode
 (use-package ligature

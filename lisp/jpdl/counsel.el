@@ -4,8 +4,6 @@
 ;;; Code:
 (use-package counsel
   :straight t
-  :init
-  (setq counsel-mode t)
   :general
   ("M-x" 'counsel-M-x
    "C-x C-f" 'counsel-find-file
@@ -44,7 +42,8 @@
                 :action #'counsel--load-theme-action
                 :preselect (symbol-name curr-theme)
                 :update-fn #'counsel--update-theme-action
-                ))))
+                )))
+  (counsel-mode +1))
 
 (use-package smex
   :straight t

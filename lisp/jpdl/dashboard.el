@@ -4,6 +4,7 @@
 ;;; Code:
 (use-package dashboard
   :straight t
+  :hook (server-after-make-frame . dashboard-refresh-buffer)
   :init (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :config
   (setq dashboard-startup-banner (concat (concat "/home/" user-login-name) "/emacs.d/enso.png"))
@@ -11,8 +12,8 @@
   (setq dashboard-set-file-icons t)
   (setq dashboard-navigation-cycle t)
   (add-to-list 'dashboard-items '(agenda) t)
-  (setq dashboard-projects-backend 'projectile)
-  (setq dashboard-projects-switch-function 'projectile-persp-switch-project)
+  (setq dashboard-projects-backend 'project-el)
+  (setq dashboard-projects-switch-function 'project-switch-project)
   (setq show-week-agenda-p t)
   ;(setq recentf-exclude (org-agenda-files))
   (setq dashboard-items '(

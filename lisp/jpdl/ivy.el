@@ -5,7 +5,7 @@
 (use-package ivy
   :straight t
   :config
-  (setq ivy-mode t)
+  (ivy-mode)
   (setq ivy-count-format "(%d/%d) ") ; display (current/total) instead of just total
   (setq ivy-format-function 'ivy-format-function-line) ; highlight the entire line
   (setq ivy-use-selectable-prompt t)
@@ -21,7 +21,7 @@
   :config
   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))
   ;; ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
-  ;;       ivy-posframe-height-alist '((t . 20)))
+  ;;       ivy-posframe-height-alist '((t . 20))
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
   (setq ivy-posframe-height 20)
   (setq ivy-posframe-width nil)
@@ -141,7 +141,9 @@
 (use-package swiper
   :straight t
   :general
-  ("C-c C-d" 'swiper))
+  ("C-c C-d" 'swiper)
+  (jpdl/spc-leader
+    "s s" 'swiper))
 
 (provide 'jpdl/ivy)
 ;;; ivy.el ends here

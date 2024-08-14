@@ -45,11 +45,7 @@
 
 ;; Undo function
 (use-package undo-fu
-  :straight t
-  :config
-  :general
-  ("C-S-z" 'undo-fu-only-redo)
-  ("C-/" 'undo-fu-only-redo))
+  :straight t)
 
 (use-package undo-fu-session
   :straight t
@@ -74,13 +70,13 @@
 ;; no scroll bars
 (set-window-scroll-bars (minibuffer-window) nil nil)
 
-(use-package yasnippet
-  :straight t
-  :config
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
-  (yas-global-mode 1))
+;; (use-package yasnippet
+;;   :straight t
+;;   :config
+;;   (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
+;;   (yas-global-mode 1))
 
-(use-package yasnippet-snippets)
+;; (use-package yasnippet-snippets)
 
 (use-package minions
   :straight t
@@ -115,10 +111,10 @@
 (use-package drag-stuff
   :straight t
   :general
-  ("M-S-<left>" . drag-stuff-left)
-  ("M-S-<right>" . drag-stuff-right)
-  ("M-S-<up>" . drag-stuff-up)
-  ("M-S-<down>" . drag-stuff-down)
+  ("M-S-<left>" 'drag-stuff-left
+   "M-S-<right>" 'drag-stuff-right
+   "M-S-<up>" 'drag-stuff-up
+   "M-S-<down>" 'drag-stuff-down)
   :config
   (drag-stuff-global-mode 1))
 

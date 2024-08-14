@@ -18,7 +18,10 @@ forge-database.sqlite
 eln-cache/
 undo-fu-session/
 persp-confs/
+persp-save
 games/
+amx-items
+history
 
 org-roam.db
 bookmarks

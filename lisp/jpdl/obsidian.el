@@ -12,7 +12,7 @@
   :custom
   ;; This directory will be used for `obsidian-capture' if set.
   (obsidian-inbox-directory "Inbox")
-  :general (:keymaps ; obsidian-mode-map
+  :general (:keymaps 'obsidian-mode-map
             ;; Replace C-c C-o with Obsidian.el's implementation. It's ok to use another key binding.
             "C-c C-o f" 'obsidian-follow-link-at-point
             ;; Jump to backlinks

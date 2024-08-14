@@ -43,42 +43,39 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(use-package general
-  :straight t
-  :config
-  (general-evil-setup)
-  (general-create-definer jpdl/spc-leader
-    :states '(normal insert visual emacs)
-    :prefix "SPC"
-    :global-prefix "C-SPC"))
-
 ;; Booting
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+(require 'jpdl/general)
 (require 'jpdl/font)
 (require 'jpdl/system)
 (require 'jpdl/theme)
-(require 'jpdl/dashboard)
+;;(require 'jpdl/dashboard)
 (require 'jpdl/evil)
+(require 'jpdl/org)
 (require 'jpdl/user)
-(require 'jpdl/projectile)
+(require 'jpdl/project)
 (require 'jpdl/treemacs)
 (require 'jpdl/persp)
-(require 'jpdl/counsel)
-(require 'jpdl/ivy)
-(require 'jpdl/org)
-(require 'jpdl/obsidian)
+(require 'jpdl/vertico)
+(require 'jpdl/orderless)
+(require 'jpdl/marginalia)
+(require 'jpdl/consult)
+(require 'jpdl/embark)
+(require 'jpdl/term)
 (require 'jpdl/lsp)
 (require 'jpdl/tabs)
 (require 'jpdl/nav)
 (require 'jpdl/pairs)
 (require 'jpdl/magit)
-(require 'jpdl/company)
+(require 'jpdl/corfu)
+(require 'jpdl/tempel)
 (require 'jpdl/lsp)
 (require 'jpdl/debug)
 (require 'jpdl/flycheck)
 (require 'jpdl/ux)
 (require 'jpdl/prog)
+;; (require 'jpdl/calibre)
 
 (provide 'init.el)
 ;;; init.el ends here
