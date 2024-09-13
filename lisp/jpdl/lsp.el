@@ -104,7 +104,6 @@
             "<f9>" 'lsp-ui-imenu
             [remap xref-find-references] 'lsp-ui-peek-find-references
             "C-1" 'lsp-ui-doc-toggle
-            "`" 'lsp-ui-doc-toggle
             "C-c u" 'lsp-ui-imenu)
   (jpdl/spc-leader
     "g d" 'lsp-ui-peek-find-definitions
@@ -120,24 +119,16 @@
   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
   (lsp-ui-sideline-code-action ((t (:inherit warning))))
   :config
-  (setq lsp-ui-doc-enable t
+  (setq lsp-ui-doc-enable nil
         lsp-ui-doc-header t
         lsp-ui-doc-include-signature t
         lsp-ui-doc-position 'at-point
         lsp-ui-doc-border (face-foreground 'default)
-        lsp-ui-doc-show-with-mouse t
+        lsp-ui-doc-show-with-mouse nil
         lsp-ui-doc-show-with-cursor nil
         lsp-ui-sideline-ignore-duplicate t
         lsp-ui-sideline-show-code-actions t
         lsp-ui-doc-use-webkit nil))
-
-;; (use-package lsp-ivy
-;;   :straight t
-;;   :after (lsp ivy)
-;;   :general
-;;   (:keymaps 'lsp-mode-map
-;;             "M-b" 'lsp-ivy-workspace-symbol
-;;             "M-n" 'lsp-ivy-global-workspace-symbol))
 
 (use-package consult-lsp
   :straight t

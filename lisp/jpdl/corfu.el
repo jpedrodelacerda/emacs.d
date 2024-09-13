@@ -18,7 +18,9 @@
             "<backspace>" 'corfu-quit
             "C-y" 'cofru-insert
             "C-n" 'corfu-next
+            "<tab>" 'corfu-next
             "C-p" 'corfu-previous
+            "<backtab>" 'corfu-previous
             "M-d" 'corfu-popupinfo-toggle
             "M-n" 'corfu-popupinfo-scroll-down
             "M-n" 'corfu-popupinfo-scroll-up

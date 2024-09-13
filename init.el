@@ -50,7 +50,7 @@
 (require 'jpdl/font)
 (require 'jpdl/system)
 (require 'jpdl/theme)
-;;(require 'jpdl/dashboard)
+(require 'jpdl/dashboard)
 (require 'jpdl/evil)
 (require 'jpdl/org)
 (require 'jpdl/user)

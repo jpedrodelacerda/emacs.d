@@ -274,5 +274,14 @@
   :straight t
   :mode "\\.yuck\\'")
 
+(use-package dart-mode
+  :straight t
+  :mode "\\.dart\\'")
+
+(use-package lsp-dart
+  :straight t
+  :after (lsp-mode dart-mode)
+  :hook (dart-mode . lsp))
+
 (provide 'jpdl/prog)
 ;;; prog.el ends here
