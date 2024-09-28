@@ -24,7 +24,7 @@
   (setq doom-modeline-modal-icon t)
   (setq doom-modeline-vcs-icon t)
   (setq find-file-visit-truename t)
-  ;; (setq doom-modeline-project-detection 'project)
+  (setq doom-modeline-project-detection 'project)
   (setq doom-modeline-persp-name t)
   (setq doom-modeline-persp-icon t)
   (setq doom-modeline-height 25)

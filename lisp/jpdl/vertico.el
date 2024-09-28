@@ -23,7 +23,7 @@
   (enable-recursive-minibuffers t)
   (read-extended-command-predicate #'command-completion-default-include-p)
   ;; :custom
-  ;; (vertico-multiform-commandS
+  ;; (vertico-multiform-commands
   ;;  '((consult-imenu buffer indexed)
   ;;    (consult-ripgrep buffer indexed)))
   ;; (vertico-multiform-categories
@@ -62,9 +62,6 @@
    '((execute-extended-command
       posframe
       (+vertico-transform-functions . +vertico-highlight-enabled-mode))
-     (consult-ripgrep reverse)
-     (consult-grep reverse)
-     (consult-git-grep reverse)
      (t posframe)))
   (setq vertico-multiform-categories
         '((file

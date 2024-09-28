@@ -3,6 +3,8 @@
 ;;; Commentary:
 
 ;;; Code:
+(defun jpdl/create-or-switch-perspective (dir)
+  (persp-switch (f-filename dir)))
 
 (use-package perspective
   :straight t
@@ -34,6 +36,7 @@
   (persp-state-default-file (concat user-emacs-directory "persp-save"))
   (persp-modestring-short nil)
   :config
+  (advice-add 'project-switch-project :before #'jpdl/create-or-switch-perspective)
   (persp-mode t))
 
 ;; (use-package workgroups

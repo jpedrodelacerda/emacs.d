@@ -247,28 +247,38 @@
  :hook (nushell-mode . lsp))
 
 ;; =yaml-mode=
-(use-package yaml-mode
- :straight t
- :mode ("\\.yml\\'"
-        "\\.yaml\\'"))
+(use-package yaml-ts-mode
+  :straight (:type built-in)
+  :mode ("\\.yml\\'"
+         "\\.yaml\\'"))
+
+(use-package yaml-pro
+  :straight t
+  :after (yaml-ts-mode)
+  :hook (yaml-ts-mode . yaml-pro-ts-mode)
+  :general
+  ("C-c C-f" 'yaml-pro-format-ts)
+  (jpdl/spc-leader
+    "f" 'yaml-pro-format-ts))
 
 ;; sql-indent.el
-(use-package sql-indent)
+(use-package sql-indent
+  :stright t)
 
 ;; =web-mode=
 (use-package web-mode
- :straight t
- :mode ("\\.eex\\'"
+  :straight t
+  :mode ("\\.eex\\'"
         "\\.gohtml\\'"
         "\\.html\\'"
         "\\.s?css\\'"
         "\\.php\\'")
- :hook (web-mode-hook . (lambda () (rainbow-mode) (setq web-mode-markup indent-offset 2))))
+  :hook (web-mode-hook . (lambda () (rainbow-mode) (setq web-mode-markup indent-offset 2))))
 
 (use-package elm-mode
- :straight t
- :mode ("\\.elm")
- :hook (elm-mode . lsp))
+  :straight t
+  :mode ("\\.elm")
+  :hook (elm-mode . lsp))
 
 (use-package yuck-mode
   :straight t
