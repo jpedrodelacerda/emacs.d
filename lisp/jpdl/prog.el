@@ -8,9 +8,9 @@
 
 (use-package treesit-auto
   :straight t
-  :defer t
   :custom
   (treesit-auto-install 'prompt)
+  (treesit-font-lock-level 4)
   :config
   (global-treesit-auto-mode)
   (let ((astro-recipe (make-treesit-auto-recipe
