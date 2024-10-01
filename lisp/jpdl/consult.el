@@ -68,6 +68,18 @@
     "s f" 'consult-project-extra-find
     "4 s f" 'consult-project-extra-find-other-window))
 
+(use-package consult-lsp
+  :straight t
+  :after (lsp consult)
+  :general
+  (:keymaps 'lsp-mode-map
+            "M-b" 'consult-lsp-file-symbols
+            "M-n" 'consult-lsp-symbols)
+  (jpdl/spc-leader 'lsp-mode-map
+    "l d" 'consult-lsp-diagnostics
+    "l b" 'consult-lsp-file-symbols
+    "l n" 'consult-lsp-symbols))
+
 (use-package consult-flycheck
   :straight t
   :after (consult flycheck)
