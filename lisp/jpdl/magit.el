@@ -12,7 +12,7 @@
             [remap project-vc-dir] 'magit-project-status)
   ("C-x g" 'magit-status)
   (jpdl/spc-leader
-    "g" 'magit-status)
+    "g g" 'magit-status)
   :hook
   ;; Start commit message in insert state.
   (with-editor-mode . evil-insert-state)

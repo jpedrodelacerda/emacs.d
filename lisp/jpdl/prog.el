@@ -44,12 +44,12 @@
   :custom
   (typst-ts-mode-watch-options "--open")
   :config
-  (add-to-list 'lsp-language-id-configuration '(typst-ts-mode . "typst"))
+  (add-to-list 'lsp-language-id-configuration '(typst-ts-mode . "tinymist"))
   (lsp-register-client
    (make-lsp-client
-    :new-connection (lsp-stdio-connection "typst-lsp")
+    :new-connection (lsp-stdio-connection "tinymist")
     :major-modes '(typst-ts-mode)
-    :server-id 'typst-lsp)))
+    :server-id 'tinymist)))
 
 (use-package websocket
     :straight t)
@@ -62,6 +62,7 @@
     "t j" 'typst-preview-send-position
     "t r" 'typst-preview-restart)
   :config
+  (setq typst-preview-executable "tinymist preview")
   (setq typst-preview-browser "default"))
 
 (use-package mermaid-mode
@@ -76,7 +77,7 @@
 ;; Elixir
 (use-package elixir-ts-mode
   :straight t
-  :hook (elixir-ts-mode . lsp)
+  :hook (elixir-ts-mode . eglot-ensure)
   :mode ("\\.exs\\'"
          "\\.ex\\'"))
 
@@ -102,18 +103,20 @@
 ;; Lua
 (use-package lua-mode
   :straight t
-  :hook (lua-mode . lsp)
+  :hook (lua-mode . eglot-ensure)
   :mode "\\.lua\\'")
 
 ;; Nix
 (use-package nix-mode
   :straight t
-  :hook (nix-mode . lsp)
-  :mode "\\.nix\\'")
+  :hook (nix-mode . eglot-ensure)
+  :mode "\\.nix\\'"
+  :config
+  (add-to-list 'eglot-server-programs '(nix-mode . ("nil"))))
 
 (use-package nix-ts-mode
   :straight t
-  :hook (nix-ts-mode . lsp)
+  :hook (nix-ts-mode . eglot-ensure)
   :mode "\\.nix\\'")
 
 (use-package nix-update
@@ -129,7 +132,7 @@
 (use-package js-ts-mode
   :straight (:type built-in)
   :defer t
-  :hook (js-ts-mode . lsp)
+  :hook (js-ts-mode . eglot-ensure)
   :mode ("\\.js\\'"
          "\\.mjs\\'"))
 
@@ -138,8 +141,8 @@
   :straight t
   :init
   (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
-  :hook ((typescript-ts-mode . lsp)
-         (typescript-tsx-mode . lsp))
+  :hook ((typescript-ts-mode . eglot-ensure)
+         (typescript-tsx-mode . eglot-ensure))
   :mode (("\\.ts\\'" . typescript-ts-mode)
          ("\\.tsx\\'" . typescript-tsx-mode))
   :config
@@ -150,7 +153,7 @@
 (use-package astro-ts-mode
   :straight t
   :after (treesit-auto)
-  :hook (astro-ts-mode . lsp)
+  :hook (astro-ts-mode . eglot-ensure)
   :mode "\\.astro\\'"
   :config
   (let ((astro-recipe (make-treesit-auto-recipe)
@@ -178,7 +181,7 @@
 (use-package go-mode
   :straight t
   :mode "\\.go\\'"
-  :hook (go-ts-mode . lsp)
+  :hook (go-ts-mode . eglot-ensure)
   :config
   ;;  Setting =\\GOPATH=
   (setenv "GOPATH" (concat home "/go"))
@@ -189,7 +192,7 @@
 (use-package python-mode
   :straight t
   :mode "\\.py\\'"
-  :hook (python-ts-mode . lsp)
+  :hook (python-ts-mode . eglot-ensure)
   :config
   (jpdl/append-to-path "~/.local/bin"))
 
@@ -213,7 +216,7 @@
   :straight t
   :mode "\\.rs\\'"
   :hook ((before-save-hook . rust-form)
-         (rust-ts-mode . lsp))
+         (rust-ts-mode . eglot-ensure))
   :init (setq rust-mode-treesitter-derive t)
   :config
   (setq rust-format-on-save t))
@@ -238,13 +241,13 @@
   :mode ("\\.tf\\'"
         "\\.tfvars\\'"
         "\\.tfstate\\'")
- :hook (terraform-mode . lsp)
+ :hook (terraform-mode . eglot-ensure)
  :config '(terraform-indent-level 4))
 
 (use-package nushell-mode
  :straight t
  :mode "\\.nu\\'"
- :hook (nushell-mode . lsp))
+ :hook (nushell-mode . eglot-ensure))
 
 ;; =yaml-mode=
 (use-package yaml-ts-mode
@@ -278,7 +281,7 @@
 (use-package elm-mode
   :straight t
   :mode ("\\.elm")
-  :hook (elm-mode . lsp))
+  :hook (elm-mode . eglot-ensure))
 
 (use-package yuck-mode
   :straight t
@@ -286,12 +289,31 @@
 
 (use-package dart-mode
   :straight t
-  :mode "\\.dart\\'")
+  :mode ("\\.dart\\'")
+  :hook
+  (dart-mode . eglot-ensure)
+  :config
+  (add-hook 'eglot-managed-mode-hook (lambda ()
+  (eglot-inlay-hints-mode -1)
+  (run-at-time 1 nil (lambda () (eglot-inlay-hints-mode 1))))))
 
-(use-package lsp-dart
+(use-package flutter
   :straight t
-  :after (lsp-mode dart-mode)
-  :hook (dart-mode . lsp))
+  :after dart-mode
+  :hook
+  (dart-mode . flutter-test-mode))
+
+;;(use-package lsp-dart
+;;  :straight t
+;;  :after (lsp-mode)
+;;  :hook (dart-mode . lsp-mode)
+;;  :config
+;;  (advice-add 'lsp-completion--looking-back-trigger-characterp :around
+;; (defun lsp-completion--looking-back-trigger-characterp@fix-dart-trigger-characters (orig-fn trigger-characters)
+;;   (funcall orig-fn
+;;            (if (and (derived-mode-p 'dart-mode) (not trigger-characters))
+;;                ["." "=" "(" "$"]
+;;                trigger-characters)))))
 
 (provide 'jpdl/prog)
 ;;; prog.el ends here

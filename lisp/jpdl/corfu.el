@@ -8,8 +8,9 @@
 (use-package corfu
   :straight t
   :hook
-  (lsp-completion-mode . jpdl/lsp-mode-setup-completion)
+  ;; (lsp-completion-mode . jpdl/lsp-mode-setup-completion)
   (minibuffer-setup . corfu-enable-always-in-minibuffer)
+  (corfu-mode . corfu-popupinfo-mode)
   (corfu--done . corfu-popupinfo-hide)
   :general
   ("C-`" 'completion-at-point)
@@ -22,15 +23,16 @@
             "C-p" 'corfu-previous
             "<backtab>" 'corfu-previous
             "M-d" 'corfu-popupinfo-toggle
-            "M-n" 'corfu-popupinfo-scroll-down
+            "M-p" 'corfu-popupinfo-scroll-down
             "M-n" 'corfu-popupinfo-scroll-up
             "M-l" 'corfu-show-location)
   :custom
   (tab-always-indent 'complete)
+  (text-mode-ispell-word-completion nil)
   (completion-cycle-threshold nil)
   (corfu-separator ?\s)
-  (corfu-quit-no-match 'separator)
-  (corfu-preview-current 'insert)
+  (corfu-quit-no-match t)
+  (corfu-preview-current nil)
   (corfu-auto t)
   (corfu-auto-prefix 2)
   (corfu-auto-delay 0.25)
@@ -38,27 +40,20 @@
   (corfu-max-width corfu-min-width)
   (corfu-count 14)
   (corfu-cycle t)
-  (lsp-completion-provider :none)
   :init
+  (defun jpdl/orderless-dispatch-flex-first (_pattern index _total)
+    (and (eq index 0) 'orderless-flex))
   (global-corfu-mode)
   :config
+  (corfu-history-mode 1)
+  (savehist-mode 1)
+  (add-to-list 'savehist-additional-variables 'corfu-history)
   (defun corfu-enable-always-in-minibuffer ()
     "Enable Corfu in the minibuffer if Vertico/Mct are not active."
     (unless (or (bound-and-true-p mct--active) ; Useful if I ever use MCT
                 (bound-and-true-p vertico--input))
       (setq-local corfu-auto nil)       ; Ensure auto completion is disabled
-      (corfu-mode 1)))
-  :init
-  (defun jpdl/orderless-dispatch-flex-first (_pattern index _total)
-    (and (eq index 0) 'orderless-flex))
-
-  (defun jpdl/lsp-mode-setup-completion ()
-    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-          '(orderless))
-    ;; Optionally configure the first word as flex filtered.
-    (add-hook 'orderless-style-dispatchers #'jpdl/orderless-dispatch-flex-first nil 'local)
-    ;; Optionally configure the cape-capf-buster.
-    (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))))
+      (corfu-mode 1))))
 
 (use-package cape
   :straight t
@@ -79,6 +74,17 @@
            "^" 'cape-tex
            "&" 'cape-sgml
            "r" 'cape-rfc1345))
+  :config
+  (defun jpdl/eglot-capf ()
+    (setq-local completion-at-point-functions
+                (list (cape-super-capf
+                       'eglot-completion-at-point
+                       :with 'yasnippet-capf)))
+  :hook (eglot-managed-mode . jpdl/eglot-capf))
+
+(use-package yasnippet-capf
+  :after (cape)
+    (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 
 (use-package kind-icon

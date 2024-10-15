@@ -6,7 +6,8 @@
 
 (require 'jpdl/font)
 
-(setq gc-cons-threshold 100000000)
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024))
 (setq warning-minimum-level :emergency)
 
 ;; No start-up mesage
@@ -70,13 +71,14 @@
 ;; no scroll bars
 (set-window-scroll-bars (minibuffer-window) nil nil)
 
-;; (use-package yasnippet
-;;   :straight t
-;;   :config
-;;   (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
-;;   (yas-global-mode 1))
+(use-package yasnippet
+  :straight t
+  :config
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
+  (yas-global-mode 1))
 
-;; (use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+  :straight t)
 
 (use-package minions
   :straight t
