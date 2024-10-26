@@ -39,10 +39,10 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-(use-package subword
-  :straight t
-  :config
-  (global-subword-mode))
+;; (use-package subword
+;;   :straight t
+;;   :config
+;;   (global-subword-mode))
 
 ;; Undo function
 (use-package undo-fu
