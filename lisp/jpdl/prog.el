@@ -283,6 +283,10 @@
   :mode ("\\.elm")
   :hook (elm-mode . eglot-ensure))
 
+(use-package gren-mode
+  :straight (:host github :repo "MaeBrooks/gren-mode")
+  :mode ("\\.gren\\'"))
+
 (use-package yuck-mode
   :straight t
   :mode "\\.yuck\\'")
