@@ -70,7 +70,6 @@
 
 (use-package consult-eglot
   :straight t
-  :after (eglot consult)
   :general
   (:keymaps 'eglot-mode-map
             "M-b" 'consult-eglot-symbols)
