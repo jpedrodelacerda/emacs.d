@@ -30,7 +30,7 @@
     "w <right>" 'persp-next)
   :hook
   (kill-emacs . persp-state-save)
-  (after-init . (lambda () (persp-state-load (concat user-emacs-directory "persp-save"))))
+  ;; (after-init . (lambda () (persp-state-load (concat user-emacs-directory "persp-save"))))
   :custom
   (persp-mode-prefix-key (kbd "C-c C-p"))
   (persp-state-default-file (concat user-emacs-directory "persp-save"))
