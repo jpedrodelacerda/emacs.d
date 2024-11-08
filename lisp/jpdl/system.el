@@ -1,4 +1,4 @@
-;;; system.el --- Summary
+;;;; system.el --- Summary
 
 ;;; Commentary:
 
@@ -123,7 +123,10 @@
 (use-package origami
   :straight t
   :after (evil)
-  :general ("M-<tab>" 'origami-toggle-node)
+  :general
+  ("M-<tab>" 'origami-toggle-node)
+  (:states '(normal)
+           "zq" 'origami-toggle-all-nodes)
   :config
   (global-origami-mode))
 

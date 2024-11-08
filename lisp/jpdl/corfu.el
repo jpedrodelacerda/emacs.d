@@ -58,7 +58,7 @@
 (use-package cape
   :straight t
   :general
-  (:prefix "M-k" :keymaps 'global-map :states '(normal insert visual)
+  (:prefix "M-S-k" :keymaps 'global-map :states '(normal insert visual)
            "p" 'completion-at-point
            "t" 'complete-tag
            "d" 'cape-dabbrev

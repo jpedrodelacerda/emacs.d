@@ -21,11 +21,17 @@
         sideline-order-right 'up                     ; or 'down
         ))
 
-(use-package sideline-flycheck
+(use-package sideline-flymake
   :straight t
-  :hook (flycheck-mode . sideline-flycheck-setup)
-  :config
-  (add-to-list sideline-backends-right 'sideline-flycheck))
+  :hook (flymake-mode . sideline-mode)
+  :init
+  (setq sideline-flymake-display-mode 'line)
+  (add-to-list sideline-backends-right 'sideline-flymake))
+;; (use-package sideline-flycheck
+;;   :straight t
+;;   :hook (flycheck-mode . sideline-flycheck-setup)
+;;   :config
+;;   (add-to-list sideline-backends-right 'sideline-flycheck))
 
 (use-package sideline-eglot
   :straight (:host github :repo "emacs-sideline/sideline-eglot")

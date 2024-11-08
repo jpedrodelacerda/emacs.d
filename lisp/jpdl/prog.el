@@ -112,7 +112,9 @@
   :hook (nix-mode . eglot-ensure)
   :mode "\\.nix\\'"
   :config
-  (add-to-list 'eglot-server-programs '(nix-mode . ("nil"))))
+  (add-to-list 'eglot-server-programs
+               '((nix-mode nix-ts-mode) . ("nil" :initializationOptions
+                                           (:formatting (:command ["alejandra"]))))))
 
 (use-package nix-ts-mode
   :straight t
@@ -121,7 +123,7 @@
 
 (use-package nix-update
   :straight t
-  :general ("C-. u" 'nix-update-fetch))
+  :general ("C-c C-n u" 'nix-update-fetch))
 
 ;; Jinja2
 (use-package jinja2-mode

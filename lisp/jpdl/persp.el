@@ -36,7 +36,8 @@
   (persp-state-default-file (concat user-emacs-directory "persp-save"))
   (persp-modestring-short nil)
   :config
-  (advice-add 'project-switch-project :before #'jpdl/create-or-switch-perspective)
+  ;; (advice-add 'project-switch-project :before #'jpdl/create-or-switch-perspective)
+  ;; Inspired by <https://github.com/bbatsov/persp-projectile>
   (persp-mode t))
 
 ;; (use-package workgroups

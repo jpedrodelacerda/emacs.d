@@ -12,7 +12,8 @@
   ("C-x C-n" 'consult-project-buffer
    "C-x C-b" 'consult-buffer
    "M-y" 'consult-yank-pop
-   "C-/" 'jpdl/consult-toggle-preview)
+   "C-/" 'jpdl/consult-toggle-preview
+   "C-x C-l" 'consult-flymake)
   (jpdl/spc-leader :keymaps '(outline-mode-map outline-minor-mode-map)
     "s h" 'consult-outline)
   (jpdl/spc-leader
@@ -20,7 +21,8 @@
     "s b" 'consult-buffer
     "4 s n" '(lambda () (interactive) (other-window-prefix) (consult-project-buffer))
     "4 s b" '(lambda () (interactive) (other-window-prefix) (consult-buffer))
-    "r g" 'consult-ripgrep)
+    "r g" 'consult-ripgrep
+    "s l" 'consult-flymake)
   :init
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format)
@@ -55,13 +57,14 @@
   (setq consult-narrow-key "<"
         consult-preview-key "M-.")
   (add-to-list 'vertico-multiform-commands '(consult-ripgrep buffer indexed))
-  (add-to-list 'vertico-multiform-commands  '(consult-grep buffer indexed))
-  (add-to-list 'vertico-multiform-commands   '(consult-git-grep buffer indexed)))
+  (add-to-list 'vertico-multiform-commands '(consult-grep buffer indexed))
+  (add-to-list 'vertico-multiform-commands '(consult-git-grep buffer indexed)))
 
 (use-package consult-project-extra
   :straight t
   :after (consult)
   :general
+  ([remap project-find-file] 'consult-project-extra-find)
   ("C-x C-f" 'consult-project-extra-find
    "C-x 4 C-f" 'consult-project-extra-find-other-window)
   (jpdl/spc-leader
@@ -74,7 +77,9 @@
   (:keymaps 'eglot-mode-map
             "M-b" 'consult-eglot-symbols)
   (jpdl/spc-leader 'eglot-mode-map
-    "l b" 'consult-eglot-symbols))
+    "l b" 'consult-eglot-symbols)
+  :config
+  (add-to-list 'vertico-multiform-commands '(consult-eglot-symbols buffer indexed)))
 
 ;; (use-package consult-lsp
 ;;   :straight t
@@ -88,14 +93,14 @@
 ;;     "l b" 'consult-lsp-file-symbols
 ;;     "l n" 'consult-lsp-symbols))
 
-(use-package consult-flycheck
-  :straight t
-  :after (consult flycheck)
-  :general
-  (jpdl/spc-leader
-    "s l" 'consult-flycheck)
-  :config
-  (add-to-list 'vertico-multiform-commands '(consult-flycheck buffer indexed)))
+;; (use-package consult-flycheck
+;;   :straight t
+;;   :after (consult flycheck)
+;;   :general
+;;   (jpdl/spc-leader
+;;     "s l" 'consult-flycheck)
+;;   :config
+;;   (add-to-list 'vertico-multiform-commands '(consult-flycheck buffer indexed)))
 
 (provide 'jpdl/consult)
 ;;; consult.el ends here

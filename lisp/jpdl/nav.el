@@ -11,8 +11,17 @@
   :config
   (windmove-default-keybindings 'meta)
   :general
-  ("C-M-r" 'split-window-horizontally-and-switch
-   "C-M-d" 'split-window-vertically-and-switch))
+  ("M-k" 'windmove-up
+   "M-j" 'windmove-down
+   "M-h" 'windmove-left
+   "M-l" 'windmove-right
+   "C-c <up>" 'windmove-up
+   "C-c <down>" 'windmove-down
+   "C-c <left>" 'windmove-left
+   "C-c <right>" 'windmove-right
+   "C-M-r" 'split-window-horizontally-and-switch
+   "C-M-d" 'split-window-vertically-and-switch
+   "S-M-l" 'downcase-word))
 
 (use-package windswap
   :straight t
