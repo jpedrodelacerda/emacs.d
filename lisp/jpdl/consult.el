@@ -19,10 +19,11 @@
   (jpdl/spc-leader
     "s n" 'consult-project-buffer
     "s b" 'consult-buffer
+    "s l" 'consult-line
     "4 s n" '(lambda () (interactive) (other-window-prefix) (consult-project-buffer))
     "4 s b" '(lambda () (interactive) (other-window-prefix) (consult-buffer))
     "r g" 'consult-ripgrep
-    "s l" 'consult-flymake)
+    "l d" 'consult-flymake)
   :init
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format)
@@ -46,7 +47,7 @@
               consult-toggle-preview-orig nil)
       (setq consult-toggle-preview-orig consult--preview-function
             consult--preview-function #'ignore)))
-  (push consult--source-perspective consult-buffer-sources)
+  ;; (push consult--source-perspective consult-buffer-sources)
   (consult-customize consult-theme :preview-key '(:debounce 0.2 any)
                      consult-ripgrep consult-git-grep consult-grep
                      consult--source-buffer :default nil

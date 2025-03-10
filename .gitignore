@@ -22,6 +22,7 @@ persp-save
 games/
 amx-items
 history
+tree-sitter/*
 
 org-roam.db
 bookmarks

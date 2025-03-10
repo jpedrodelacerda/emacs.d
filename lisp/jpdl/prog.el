@@ -202,7 +202,9 @@
   :mode "\\.py\\'"
   :hook (python-ts-mode . eglot-ensure)
   :config
-  (jpdl/append-to-path "~/.local/bin"))
+  (jpdl/append-to-path "~/.local/bin")
+  (add-to-list 'eglot-server-programs
+               '((python python-ts-mode) . ("ruff" "server"))))
 
 (use-package python-black
   :straight t
@@ -284,6 +286,10 @@
          "\\.php\\'")
   :hook (web-mode-hook . (lambda () (rainbow-mode) (setq web-mode-markup indent-offset 2))))
 
+(use-package rainbow-mode
+  :straight t
+  :hook (prog-mode . rainbow-mode))
+
 (use-package elm-mode
   :straight t
   :mode ("\\.elm")
@@ -311,19 +317,14 @@
   :straight t
   :after dart-mode
   :hook
-  (dart-mode . flutter-test-mode))
-
-;;(use-package lsp-dart
-;;  :straight t
-;;  :after (lsp-mode)
-;;  :hook (dart-mode . lsp-mode)
-;;  :config
-;;  (advice-add 'lsp-completion--looking-back-trigger-characterp :around
-;; (defun lsp-completion--looking-back-trigger-characterp@fix-dart-trigger-characters (orig-fn trigger-characters)
-;;   (funcall orig-fn
-;;            (if (and (derived-mode-p 'dart-mode) (not trigger-characters))
-;;                ["." "=" "(" "$"]
-;;                trigger-characters)))))
+  (dart-mode . flutter-test-mode)
+  :general
+  (:keymaps 'dart-mode-map
+            "C-M-x" 'flutter-run-or-hot-reload)
+  (jpdl/spc-leader :keymaps '(dart-mode-map)
+    "f r" 'flutter-run-or-hot-reload
+    "f t" 'flutter-test-all
+    "f p" 'flutter-test-at-point))
 
 (provide 'jpdl/prog)
 ;;; prog.el ends here

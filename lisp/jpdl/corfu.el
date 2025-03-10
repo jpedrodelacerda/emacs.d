@@ -73,13 +73,13 @@
            "_" 'cape-tex
            "^" 'cape-tex
            "&" 'cape-sgml
-           "r" 'cape-rfc1345))
+           "r" 'cape-rfc1345)
   :config
   (defun jpdl/eglot-capf ()
     (setq-local completion-at-point-functions
                 (list (cape-super-capf
                        'eglot-completion-at-point
-                       :with 'yasnippet-capf)))
+                       :with 'yasnippet-capf))))
   :hook (eglot-managed-mode . jpdl/eglot-capf))
 
 (use-package yasnippet-capf

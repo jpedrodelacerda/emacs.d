@@ -58,7 +58,9 @@
   :straight t
   :general
   (:keymaps 'eglot-mode-map
-            "M-h" 'jpdl/eldoc-box-toggle)
+            "M-1" 'jpdl/eldoc-box-toggle)
+  (jpdl/spc-leader
+    "d t" 'jpdl/eldoc-box-toggle)
   :preface
   (defun jpdl/eldoc-box-visible-p ()
     "Return whether the `eldoc-box' popup is visible."

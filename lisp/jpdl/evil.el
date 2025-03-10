@@ -14,7 +14,8 @@
 
   (defun jpdl/line-number-absolute ()
     (setq display-line-numbers t))
-  :hook ((evil-insert-state-entry . (lambda () (jpdl/line-number-absolute)))
+  :hook ((after-init . (lambda () (jpdl/line-number-relative)))
+         (evil-insert-state-entry . (lambda () (jpdl/line-number-absolute)))
          (evil-insert-state-exit . (lambda () (jpdl/line-number-relative))))
   :general
   (:keymaps 'global-map
@@ -52,7 +53,7 @@
 
 (use-package evil-collection
   :straight t
-  :after evil
+  :after (evil)
   :config
   (evil-collection-init))
 

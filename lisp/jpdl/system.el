@@ -6,12 +6,17 @@
 
 (require 'jpdl/font)
 
+(require 'iso-transl)
+
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024))
 (setq warning-minimum-level :emergency)
 
 ;; No start-up mesage
 (setq inhibit-startup-message t)
+
+(use-package exec-path-from-shell
+  :init (exec-path-from-shell-initialize))
 
 ;; Remove trailing whitespace before saving file
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -39,10 +44,10 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-;; (use-package subword
-;;   :straight t
-;;   :config
-;;   (global-subword-mode))
+(use-package subword
+  :straight t
+  :config
+  (global-subword-mode))
 
 ;; Undo function
 (use-package undo-fu

@@ -53,7 +53,7 @@
   (:keymaps 'vterm-mode-map
             "M-p" 'vterm-toggle)
   (:keymaps 'vterm-mode-map :states '(normal motion)
-        "`'" 'vterm-toggle)
+        "`" 'vterm-toggle)
   (jpdl/spc-leader
    "`" 'multi-vterm-project)
   :config
