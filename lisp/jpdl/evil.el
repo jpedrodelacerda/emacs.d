@@ -34,8 +34,8 @@
   (setq evil-emacs-state-mode nil)
   ;; Disable abbrev expansion when hit escape
   (general-def :states '(normal motion insert) "M-." 'nil)
-  ;(general-def :states '(normal motion insert) "C-o" 'nil)
-  ;(general-def :states '(normal insert) "C-p" 'nil)
+                                        ;(general-def :states '(normal motion insert) "C-o" 'nil)
+                                        ;(general-def :states '(normal insert) "C-p" 'nil)
   (setq evil-want-fine-undo t)
   (evil-set-undo-system 'undo-fu)
   (setq evil-want-abbrev-expand-on-insert-exit nil))

@@ -4,12 +4,13 @@
 
 ;;; Code:
 
+(require 'use-package)
 ;; Checking for errors
-(use-package flycheck
-  :straight t
-  :config
-  (setq flycheck-emacs-lisp-load-path 'inherit)
-  (global-flycheck-mode))
+;; (use-package flycheck
+;;   :straight t
+;;   :config
+;;   (setq flycheck-emacs-lisp-load-path 'inherit)
+;;   (global-flycheck-mode))
 
 (use-package sideline
   :straight t

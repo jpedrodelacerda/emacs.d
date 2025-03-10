@@ -14,7 +14,8 @@
   (jpdl/spc-leader
     "h k" 'describe-key
     "h v" 'describe-variable
-    "h m" 'describe-keymap))
+    "h m" 'describe-keymap)
+  (general-auto-unbind-keys t))
 
 (provide 'jpdl/general)
 ;;; general.el ends here

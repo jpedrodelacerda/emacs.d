@@ -5,23 +5,23 @@
 
 ;;; Code:
 (use-package eglot
-  :straight t
+  :straight (:type built-in)
   :general
   (:keymaps 'eglot-mode-map
-            "C-c C-f" 'eglot-format
+            "C-c f" 'eglot-format-buffer
             "C-c r" 'eglot-rename
             "C-c a" 'eglot-code-actions
             "C-c q" 'eglot-code-action-quickfix
             "C-c o" 'eglot-code-action-organize-imports)
   (jpdl/spc-leader :keymaps 'eglot-mode-map
-    "l f" 'eglot-format
+    "l f" 'eglot-format-buffer
     "l r" 'eglot-rename
     "l a" 'eglot-code-actions
     "l q" 'eglot-code-action-quickfix
     "l o" 'eglot-code-action-organize-imports)
   :config
   (setq eglot-autoshutdown t
-        eglot-confirm-server-initiated-edits t)
+        eglot-confirm-server-initiated-edits nil)
   ;; Corfu: set Orderless + Eglot
   ;; (add-to-list 'completion-category-overrides '(eglot (styles orderless))))
   ;; (setq completion-category-overrides '((eglot (styles orderless))

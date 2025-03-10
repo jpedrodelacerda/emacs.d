@@ -12,6 +12,7 @@
   (treesit-auto-install 'prompt)
   (treesit-font-lock-level 4)
   :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode)
   (let ((astro-recipe (make-treesit-auto-recipe
                        :lang 'astro
@@ -28,12 +29,18 @@
                     :source-dir "src")))
     (add-to-list 'treesit-auto-recipe-list nu-recipe))
   (let ((typst-recipe (make-treesit-auto-recipe
-                    :lang 'typst
-                    :ts-mode 'typst-ts-mode
-                    :url "https://github.com/uben0/tree-sitter-typst"
-                    :revision "main"
-                    :source-dir "src")))
+                       :lang 'typst
+                       :ts-mode 'typst-ts-mode
+                       :url "https://github.com/uben0/tree-sitter-typst"
+                       :revision "main"
+                       :source-dir "src")))
     (add-to-list 'treesit-auto-recipe-list typst-recipe)))
+
+(use-package combobulate
+  :straight (:host github :repo "mickeynp/combobulate")
+  :hook (prog-mode . combobulate-mode)
+  :custom
+  (setq combobulate-key-prefix "C-c o"))
 
 (use-package typst-ts-mode
   :straight (:host sourcehut :repo "meow_king/typst-ts-mode")
@@ -52,7 +59,7 @@
     :server-id 'tinymist)))
 
 (use-package websocket
-    :straight t)
+  :straight t)
 
 (use-package typst-preview
   :straight (:host github :repo "havarddj/typst-preview.el")
@@ -149,7 +156,7 @@
          ("\\.tsx\\'" . typescript-tsx-mode))
   :config
   (setq typescript-indent-level 4))
-  ;; (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-tsx-mode)))
+;; (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-tsx-mode)))
 
 ;; Astro
 (use-package astro-ts-mode
@@ -165,7 +172,6 @@
                       :revision "master"
                       :source-dir "src")))
   (add-to-list 'treesit-auto-recipe-list astro-recipe))
-
 
 ;; =markdown=
 (use-package markdown-mode
@@ -212,20 +218,16 @@
   :straight (:type built-in)
   :mode "\\.toml\\'")
 
-
 ;;  =rust-mode=
 (use-package rust-mode
   :straight t
   :mode "\\.rs\\'"
-  :hook ((before-save-hook . rust-form)
-         (rust-ts-mode . eglot-ensure))
-  :init (setq rust-mode-treesitter-derive t)
-  :config
-  (setq rust-format-on-save t))
+  :hook (rust-ts-mode . eglot-ensure)
+  :init (setq rust-mode-treesitter-derive t))
 
 (use-package cargo
   :straight t
-  :hook (rust-mode . cargo-minor-mode))
+  :hook (rust-ts-mode . cargo-minor-mode))
 
 (use-package flycheck-rust
   :straight t
@@ -241,19 +243,20 @@
 (use-package terraform-mode
   :straight t
   :mode ("\\.tf\\'"
-        "\\.tfvars\\'"
-        "\\.tfstate\\'")
- :hook (terraform-mode . eglot-ensure)
- :config '(terraform-indent-level 4))
+         "\\.tfvars\\'"
+         "\\.tfstate\\'")
+  :hook (terraform-mode . eglot-ensure)
+  :config '(terraform-indent-level 4))
 
 (use-package nushell-mode
- :straight t
- :mode "\\.nu\\'"
- :hook (nushell-mode . eglot-ensure))
+  :straight t
+  :mode "\\.nu\\'"
+  :hook (nushell-mode . eglot-ensure))
 
 ;; =yaml-mode=
 (use-package yaml-ts-mode
   :straight (:type built-in)
+  :hook (yaml-ts-mode . eglot-ensure)
   :mode ("\\.yml\\'"
          "\\.yaml\\'"))
 
@@ -262,22 +265,23 @@
   :after (yaml-ts-mode)
   :hook (yaml-ts-mode . yaml-pro-ts-mode)
   :general
-  ("C-c C-f" 'yaml-pro-format-ts)
-  (jpdl/spc-leader
-    "f" 'yaml-pro-format-ts))
+  (:keymaps 'yaml-pro-ts-mode-map
+            "C-c C-f" 'yaml-pro-format-ts)
+  (jpdl/spc-leader :keymaps 'yaml-pro-ts-mode-map
+    "f f" 'yaml-pro-format-ts))
 
 ;; sql-indent.el
 (use-package sql-indent
-  :stright t)
+  :straight t)
 
 ;; =web-mode=
 (use-package web-mode
   :straight t
   :mode ("\\.eex\\'"
-        "\\.gohtml\\'"
-        "\\.html\\'"
-        "\\.s?css\\'"
-        "\\.php\\'")
+         "\\.gohtml\\'"
+         "\\.html\\'"
+         "\\.s?css\\'"
+         "\\.php\\'")
   :hook (web-mode-hook . (lambda () (rainbow-mode) (setq web-mode-markup indent-offset 2))))
 
 (use-package elm-mode
@@ -300,8 +304,8 @@
   (dart-mode . eglot-ensure)
   :config
   (add-hook 'eglot-managed-mode-hook (lambda ()
-  (eglot-inlay-hints-mode -1)
-  (run-at-time 1 nil (lambda () (eglot-inlay-hints-mode 1))))))
+                                       (eglot-inlay-hints-mode -1)
+                                       (run-at-time 1 nil (lambda () (eglot-inlay-hints-mode 1))))))
 
 (use-package flutter
   :straight t

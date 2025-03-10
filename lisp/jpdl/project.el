@@ -34,12 +34,15 @@
 
 (use-package project
   :straight (:type built-in)
+  :hook (kill-emacs . project-forget-zombie-projects)
   :general
   (jpdl/spc-leader
     "s p" 'project-switch-project
     "4 s p" '(lambda () (interactive) (other-window-prefix) (project-switch-project))
     "p s" 'project-switch-project
-    "4 p s" '(lambda () (interactive) (other-window-prefix) (project-switch-project))))
+    "4 p s" '(lambda () (interactive) (other-window-prefix) (project-switch-project)))
+  :config
+  (project-remember-projects-under (concat (getenv "HOME") "/projetos")))
 
 (provide 'jpdl/project)
 ;;; project.el ends here

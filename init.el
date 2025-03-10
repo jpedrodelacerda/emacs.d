@@ -70,7 +70,7 @@
 (require 'jpdl/magit)
 (require 'jpdl/corfu)
 (require 'jpdl/tempel)
-(require 'jpdl/lsp)
+(require 'jpdl/format)
 (require 'jpdl/debug)
 (require 'jpdl/flycheck)
 (require 'jpdl/ux)

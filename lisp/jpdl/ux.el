@@ -44,11 +44,11 @@
   :hook (prog-mode . display-line-numbers-mode))
 
 ;; (use-package dimmer
-  ;; :straight t
-  ;; :config
-  ;; (setq dimmer-fraction           0.1
-        ;; dimmer-adjustment-mode    :both)
-  ;; (dimmer-mode t))
+;; :straight t
+;; :config
+;; (setq dimmer-fraction           0.1
+;; dimmer-adjustment-mode    :both)
+;; (dimmer-mode t))
 
 (use-package rainbow-delimiters
   :straight t
@@ -72,6 +72,15 @@
   :straight t
   :general
   ("C-c i" 'highlight-indentation-mode))
+
+(use-package beacon
+  :straight t
+  :custom
+  (beacon-color "#666600")
+  (beacon-blink-duration 0.01)
+  :config
+  (beacon-mode 1))
+
 
 (provide 'jpdl/ux)
 ;;; ux.el ends here
