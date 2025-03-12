@@ -23,6 +23,8 @@ games/
 amx-items
 history
 tree-sitter/*
+emojis/
+emacs.d/
 
 org-roam.db
 bookmarks

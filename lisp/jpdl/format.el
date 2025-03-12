@@ -23,6 +23,8 @@
 Will return one of the following symbols:
 - apheleia
 - eglot
+- treesit
+- indent
 "
     (interactive)
     (or (when
@@ -50,12 +52,16 @@ Will return one of the following symbols:
 The heirarchy is as follows:
 - `apheleia-format-buffer'
 - `eglot-format-buffer'
+- `treesit-indent-region'
+- `indent-region'
 
 Additionally, any of these functions can be requested explicity, by providing
 FORMATTER as the optional argument. FORMATTER is expected to be one of the
 following symbols:
 - \\='apheleia
 - \\='eglot
+- \\='treesit
+- \\='indent
 
 It will also remove any trailing whitespace from the end of any line from
 the file.
@@ -67,28 +73,17 @@ the file.
         ((apheleia-fmt ()
            (apheleia-format-buffer (cdr (assoc major-mode apheleia-mode-alist))))
          (eglot-fmt ()
-           (eglot-format-buffer)))
-      ;; (eglot-fmt ()
-      ;;   (eglot-format (point-min) (point-max))))
+           (eglot-format-buffer))
+         (treesit-fmt ()
+           (treesit-indent-region (point-min) (point-max)))
+         (indent-fmt ()
+           (indent-region         (point-min) (point-max))))
       (pcase formatter
         ('apheleia (apheleia-fmt))
         ('eglot    (eglot-fmt))
+        ('treesit  (treesit-fmt))
+        ('indent   (indent-fmt))
         (delete-trailing-whitespace (point-min) (point-max))))))
-
-;; FIXME: seems to have strange behavior at times...
-;; (advice-add
-;;  #'apheleia-format-after-save
-;;  :around
-;;  (lambda (orig &rest args)
-;;    "Use my custom format-buffer command if applicable"
-;;    (let ((formatter (jpdl/get-formatter-backend)))
-;;      (cond
-;;       ((boundp 'jpdl/apheleia-preferred-backend)
-;;        (jpdl/format-buffer jpdl/apheleia-preferred-backend))
-;;       ((not (eq 'apheleia formatter))
-;;        (jpdl/format-buffer formatter))
-;;       (t (apply orig args)))))))
-
 
 (provide 'jpdl/format)
 ;;; format.el ends here

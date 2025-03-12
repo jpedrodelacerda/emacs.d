@@ -9,6 +9,13 @@
 (use-package all-the-icons
   :straight t)
 
+(use-package emojify
+  :straight t
+  :hook
+  (eww-mode . emojify-mode)
+  (org-mode . emojify-mode)
+  (markdown-mode . emojify-mode))
+
 ;; Doom-modeline
 (use-package doom-modeline
   :straight t
@@ -23,7 +30,7 @@
   (setq doom-modeline-position-column-line-format '("[%l:%c]"))
   (setq doom-modeline-modal-icon t)
   (setq doom-modeline-vcs-icon t)
-  (setq find-file-visit-truename t)
+  ;; (setq find-file-visit-truename t)
   (setq doom-modeline-project-detection 'project)
   (setq doom-modeline-persp-name t)
   (setq doom-modeline-persp-icon t)

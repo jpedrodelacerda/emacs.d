@@ -46,7 +46,7 @@
   :straight (:host sourcehut :repo "meow_king/typst-ts-mode")
   :mode ("\\.typ\\'" . typst-ts-mode)
   :general
-  (jpdl/spc-leader
+  (jpdl/spc-leader :keymaps '(typst-ts-mode-map)
     "t c" 'typst-ts-compile)
   :custom
   (typst-ts-mode-watch-options "--open")
@@ -64,7 +64,7 @@
 (use-package typst-preview
   :straight (:host github :repo "havarddj/typst-preview.el")
   :general
-  (jpdl/spc-leader
+  (jpdl/spc-leader :keymaps '(typst-ts-mode)
     "t p" 'typst-preview-mode
     "t j" 'typst-preview-send-position
     "t r" 'typst-preview-restart)
@@ -176,12 +176,29 @@
 ;; =markdown=
 (use-package markdown-mode
   :straight t
-  :mode ("\\.md\\'"
-         "\\.mdx\\'"))
+  :mode (("\\.md\\'" . markdown-mode)
+         ("\\.mdx\\'" . markdown-mode))
+  :custom
+  (markdown-command '("pandoc" "--from=markdown" "--to=html5")))
+
+(use-package markdown-toc
+  :straight (:host github :repo "jpedrodelacerda/markdown-toc")
+  :general
+  (:keymaps '(markdown-ts-mode-map markdown-mode-map)
+            "C-c m t" 'markdown-toc-generate-or-refresh-toc)
+  (jpdl/spc-leader :keymaps '(markdown-ts-mode-map markdown-mode-map)
+    "mt" 'markdown-toc-generate-or-refresh-toc))
 
 (use-package grip-mode
   :straight t
-  :after markdown-mode)
+  :custom
+  (gripq-command 'go-grip)
+  (grip-preview-use-webkit t)
+  :general
+  (:keymaps '(markdown-ts-mode-map markdown-mode-map)
+            "C-c m g" 'grip-mode)
+  (jpdl/spc-leader :keymaps '(markdown-ts-mode-map markdown-mode-map)
+    "mg" 'grip-mode))
 
 ;; Go
 ;; (use-package go-ts-mode
@@ -270,7 +287,7 @@
   (:keymaps 'yaml-pro-ts-mode-map
             "C-c C-f" 'yaml-pro-format-ts)
   (jpdl/spc-leader :keymaps 'yaml-pro-ts-mode-map
-    "f f" 'yaml-pro-format-ts))
+    "ff" 'yaml-pro-format-ts))
 
 ;; sql-indent.el
 (use-package sql-indent

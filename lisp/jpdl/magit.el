@@ -7,7 +7,6 @@
 ;; Magic handler for git
 (use-package magit
   :straight t
-  :demand t
   :general
   (:keymaps 'global-map
             [remap project-vc-dir] 'magit-project-status)
@@ -26,7 +25,6 @@
 
 (use-package forge
   :straight t
-  :demand t
   :after magit)
 
 (use-package git-gutter

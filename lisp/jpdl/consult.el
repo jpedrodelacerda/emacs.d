@@ -82,26 +82,61 @@
   :config
   (add-to-list 'vertico-multiform-commands '(consult-eglot-symbols buffer indexed)))
 
-;; (use-package consult-lsp
-;;   :straight t
-;;   :after (lsp consult)
-;;   :general
-;;   (:keymaps 'lsp-mode-map
-;;             "M-b" 'consult-lsp-file-symbols
-;;             "M-n" 'consult-lsp-symbols)
-;;   (jpdl/spc-leader 'lsp-mode-map
-;;     "l d" 'consult-lsp-diagnostics
-;;     "l b" 'consult-lsp-file-symbols
-;;     "l n" 'consult-lsp-symbols))
+(use-package consult-gh
+  :straight (consult-gh :type git :host github :repo "armindarvish/consult-gh")
+  :after consult
+  :custom
+  (consult-gh-default-clone-directory "~/projetos")
+  (consult-gh-show-preview t)
+  (consult-gh-preview-key "C-o")
+  (consult-gh-repo-action #'consult-gh--repo-browse-files-action)
+  (consult-gh-issue-action #'consult-gh--issue-view-action)
+  (consult-gh-pr-action #'consult-gh--pr-view-action)
+  (consult-gh-code-action #'consult-gh--code-view-action)
+  (consult-gh-file-action #'consult-gh--files-view-action)
+  (consult-gh-notifications-action #'consult-gh--notifications-action)
+  (consult-gh-dashboard-action #'consult-gh--dashboard-action)
+  (consult-gh-large-file-warning-threshold 2500000)
+  (consult-gh-prioritize-local-folder 'suggest)
+  :config
+  (require 'consult-gh-transient)
+  (require 'consult-gh-embark)
+  (require 'consult-gh-forge)
 
-;; (use-package consult-flycheck
-;;   :straight t
-;;   :after (consult flycheck)
-;;   :general
-;;   (jpdl/spc-leader
-;;     "s l" 'consult-flycheck)
-;;   :config
-;;   (add-to-list 'vertico-multiform-commands '(consult-flycheck buffer indexed)))
+  ;; (setq consult-gh-default-clone-directory "~/projetos"
+  ;;       consult-gh-show-preview t
+  ;;       consult-gh-preview-key "C-o"
+  ;;       consult-gh-repo-action #'consult-gh--repo-browse-files-action
+  ;;       consult-gh-issue-action #'consult-gh--issue-view-action
+  ;;       consult-gh-pr-action #'consult-gh--pr-view-action
+  ;;       consult-gh-code-action #'consult-gh--code-view-action
+  ;;       consult-gh-file-action #'consult-gh--files-view-action
+  ;;       consult-gh-notifications-action #'consult-gh--notifications-action
+  ;;       consult-gh-dashboard-action #'consult-gh--dashboard-action
+  ;;       consult-gh-large-file-warning-threshold 2500000
+  ;;       consult-gh-prioritize-local-folder 'suggest)
+  ;; Remember visited orgs and repos across sessions
+  (add-to-list 'savehist-additional-variables 'consult-gh--known-orgs-list)
+  (add-to-list 'savehist-additional-variables 'consult-gh--known-repos-list)
+  ;; Enable default keybindings (e.g. for commenting on issues, prs, ...)
+  (consult-gh-enable-default-keybindings))
+
+
+;; Install `consult-gh-embark' for embark actions
+(use-package consult-gh-embark
+  :straight nil
+  :after consult-gh
+  :config
+  (consult-gh-embark-mode +1))
+
+;; Install `consult-gh-forge' for forge actions
+(use-package consult-gh-forge
+  :straight nil
+  :after consult-gh
+  :config
+  (consult-gh-forge-mode +1)
+  (setq consult-gh-forge-timeout-seconds 20))
+
 
 (provide 'jpdl/consult)
 ;;; consult.el ends here
