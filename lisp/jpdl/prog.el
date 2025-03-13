@@ -148,15 +148,11 @@
 ;; TypeScript
 (use-package typescript-ts-mode
   :straight t
-  :init
-  (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
-  :hook ((typescript-ts-mode . eglot-ensure)
-         (typescript-tsx-mode . eglot-ensure))
-  :mode (("\\.ts\\'" . typescript-ts-mode)
-         ("\\.tsx\\'" . typescript-tsx-mode))
+  :hook (typescript-ts-mode . eglot-ensure)
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.tsx\\'" . typescript-mode))
   :config
   (setq typescript-indent-level 4))
-;; (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-tsx-mode)))
 
 ;; Astro
 (use-package astro-ts-mode
