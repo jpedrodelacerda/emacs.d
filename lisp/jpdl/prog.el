@@ -36,12 +36,6 @@
                        :source-dir "src")))
     (add-to-list 'treesit-auto-recipe-list typst-recipe)))
 
-(use-package combobulate
-  :straight (:host github :repo "mickeynp/combobulate")
-  :hook (prog-mode . combobulate-mode)
-  :custom
-  (setq combobulate-key-prefix "C-c o"))
-
 (use-package typst-ts-mode
   :straight (:host sourcehut :repo "meow_king/typst-ts-mode")
   :mode ("\\.typ\\'" . typst-ts-mode)
@@ -147,12 +141,12 @@
 
 ;; TypeScript
 (use-package typescript-ts-mode
-  :straight t
-  :hook (typescript-ts-mode . eglot-ensure)
+  :straight (:type built-in)
+  :hook
+  (typescript-ts-mode . eglot-ensure)
+  (tsx-ts-mode . eglot-ensure)
   :mode (("\\.ts\\'" . typescript-mode)
-         ("\\.tsx\\'" . typescript-mode))
-  :config
-  (setq typescript-indent-level 4))
+         ("\\.tsx\\'" . tsx-ts-mode)))
 
 ;; Astro
 (use-package astro-ts-mode
