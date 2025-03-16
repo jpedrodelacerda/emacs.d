@@ -59,8 +59,15 @@
 
 (use-package rainbow-delimiters
   :straight t
-  :hook (prog-mode . rainbow-delimiters-mode))
+  :init
+  (defun jpdl/rainbow-delimiters-mode ()
+    (when (not (derived-mode-p 'tsx-ts-mode))
+      (rainbow-delimiters-mode)))
+  :hook
+  (prog-mode . jpdl/rainbow-delimiters-mode))
 
+(use-package prism
+  :straight t)
 (use-package hl-todo
   :straight t
   :after (org-mode)

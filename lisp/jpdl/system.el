@@ -79,11 +79,11 @@
 (use-package yasnippet
   :straight t
   :config
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets
   :straight t)
+
 
 (use-package minions
   :straight t
@@ -97,7 +97,7 @@
   :commands (centered-cursor-mode
              global-centered-cursor-mode)
   :general (:states '(normal)
-              "zz" 'global-centered-cursor-mode))
+                    "zz" 'global-centered-cursor-mode))
 
 (use-package rg
   :straight t)
@@ -118,9 +118,7 @@
 (use-package drag-stuff
   :straight t
   :general
-  ("M-S-<left>" 'drag-stuff-left
-   "M-S-<right>" 'drag-stuff-right
-   "M-S-<up>" 'drag-stuff-up
+  ("M-S-<up>" 'drag-stuff-up
    "M-S-<down>" 'drag-stuff-down)
   :config
   (drag-stuff-global-mode 1))

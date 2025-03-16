@@ -21,7 +21,8 @@
   (:keymaps 'global-map
             "C-s" 'evil-write
             "C--" 'evil-jump-backward
-            "C-=" 'evil-jump-forward)
+            "C-=" 'evil-jump-forward
+            "M-2" 'evilmi-jump-items)
   (:keymaps 'org-mode-map
             [remap evil-find-file-at-point] 'org-open-at-point)
   (jpdl/spc-leader
