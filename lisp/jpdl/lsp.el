@@ -6,6 +6,7 @@
 ;;; Code:
 (use-package eglot
   :straight (:type built-in)
+  :after cape
   :general
   (:keymaps 'eglot-mode-map
             "C-c f" 'eglot-format-buffer
@@ -27,6 +28,22 @@
   ;; (setq completion-category-overrides '((eglot (styles orderless))
   ;;                                       (eglot-capf (styles orderless))))
   ;; (setq completion-category-defaults nil)
+  (add-to-list
+   'eglot-server-programs
+   '((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
+     "typescript-language-server" "--stdio"
+     ;; I totally came up with these myself
+     :initializationOptions
+     (:preferences
+      (
+       :includeInlayEnumMemberValueHints t
+       :includeInlayFunctionLikeReturnTypeHints t
+       :includeInlayFunctionParameterTypeHints t
+       :includeInlayParameterNameHints "all" ; "none" | "literals" | "all"
+       :includeInlayParameterNameHintsWhenArgumentMatchesName t
+       :includeInlayPRopertyDeclarationTypeHints t
+       :includeInlayVariableTypeHints t
+       :includeInlayVariableTypeHintsWhenTypeMatchesName t))))
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
 (use-package eglot-booster
