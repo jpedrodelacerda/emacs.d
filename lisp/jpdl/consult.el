@@ -137,6 +137,30 @@
   (consult-gh-forge-mode +1)
   (setq consult-gh-forge-timeout-seconds 20))
 
+(use-package consult-org-roam
+  :straight t
+  :after org-roam
+  :hook (after-init . consult-org-roam-mode)
+  :custom
+  ;; Use `ripgrep' for searching with `consult-org-roam-search'
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  ;; Configure a custom narrow key for `consult-buffer'
+  (consult-org-roam-buffer-narrow-key ?r)
+  ;; Display org-roam buffers right after non-org-roam buffers
+  ;; in consult-buffer (and not down at the bottom)
+  (consult-org-roam-buffer-after-buffers t)
+  :general
+  ("C-c n e" 'consult-org-roam-file-find
+   "C-c n b" 'consult-org-roam-backlinks
+   "C-c n B" 'consult-org-roam-backlinks-recursive
+   "C-c n l" 'consult-org-roam-forward-links
+   "C-c n r" 'consult-org-roam-search)
+  (jpdl/spc-leader
+    "n e" 'consult-org-roam-file-find
+    "n b" 'consult-org-roam-backlinks
+    "n B" 'consult-org-roam-backlinks-recursive
+    "n l" 'consult-org-roam-forward-links
+    "n r" 'consult-org-roam-search))
 
 (provide 'jpdl/consult)
 ;;; consult.el ends here
