@@ -49,6 +49,8 @@
        (string-prefix-p " *Treemacs" name)
        (string-prefix-p "*which" name)
        (string-prefix-p " *which" name)
+       (string-prefix-p "<tree>" name)
+       (string-prefix-p "org-sidebar" name)
        (string-prefix-p "*eldoc" name)
        (string-prefix-p " *eldoc" name)
        (and (string-prefix-p "magit" name)

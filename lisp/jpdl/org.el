@@ -76,6 +76,15 @@
   :after (org)
   :hook (org-mode . toc-org-mode))
 
+(use-package org-sidebar
+  :straight t
+  :custom
+  (org-sidebar-tree-side 'right)
+  :general
+  (jpdl/spc-leader :keymaps '(org-mode-map)
+    "o s" 'org-sidebar-toggle
+    "o d" 'org-sidebar-tree-toggle))
+
 (use-package org-fragtog
   :straight t
   :after (org)

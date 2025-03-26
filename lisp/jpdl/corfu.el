@@ -12,6 +12,7 @@
   (minibuffer-setup . corfu-enable-always-in-minibuffer)
   (corfu-mode . corfu-popupinfo-mode)
   (corfu--done . corfu-popupinfo-hide)
+  (org-mode . (lambda () (setq-local corfu-auto nil)))
   :general
   ("C-`" 'completion-at-point)
   (:keymaps 'corfu-map
@@ -77,14 +78,14 @@
   :config
   (defun jpdl/eglot-capf ()
     (setq-local completion-at-point-functions
-                (list (cape-super-capf
+                (list (cape-capf-super
                        'eglot-completion-at-point
                        :with 'yasnippet-capf))))
   :hook (eglot-managed-mode . jpdl/eglot-capf))
 
 (use-package yasnippet-capf
   :after (cape)
-    (add-to-list 'completion-at-point-functions #'yasnippet-capf))
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 
 (use-package kind-icon
