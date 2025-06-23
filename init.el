@@ -69,7 +69,7 @@
 (require 'jpdl/pairs)
 (require 'jpdl/magit)
 (require 'jpdl/corfu)
-(require 'jpdl/tempel)
+;; (require 'jpdl/tempel)
 (require 'jpdl/format)
 (require 'jpdl/debug)
 (require 'jpdl/flycheck)
