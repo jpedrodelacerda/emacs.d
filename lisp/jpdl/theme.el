@@ -1,4 +1,4 @@
-;;; theme.el --- Summary
+;;; theme.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -11,7 +11,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
- ;; Enable flashing mode-line on errors
+  ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
   (setq doom-themes-treemacs-theme "doom-colors")
   (setq doom-themes-variable-pitch-font (font-spec :family "Fira Code" :size 36))

@@ -1,4 +1,4 @@
-;;; flycheck.el --- Summary:
+;;; flycheck.el --- Summary:  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

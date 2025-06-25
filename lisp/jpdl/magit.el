@@ -1,4 +1,4 @@
-;;; magit.el --- Summary
+;;; magit.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

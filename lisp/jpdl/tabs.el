@@ -1,4 +1,4 @@
-;;; tabs.el --- Summary
+;;; tabs.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

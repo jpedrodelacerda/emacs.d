@@ -1,4 +1,4 @@
-;;; corfu.el --- Summary:
+;;; corfu.el --- Summary:  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Corfu for completion and orderless for fuzzing

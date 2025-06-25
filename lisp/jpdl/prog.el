@@ -1,40 +1,10 @@
-;;; prog.el --- Summary
+;;; prog.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
 ;;; Code:
 
 (require 'jpdl/utils)
-
-(use-package treesit-auto
-  :straight t
-  :custom
-  (treesit-auto-install 'prompt)
-  (treesit-font-lock-level 4)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode)
-  (let ((astro-recipe (make-treesit-auto-recipe
-                       :lang 'astro
-                       :ts-mode 'astro-ts-mode
-                       :url "https://github.com/virchau13/tree-sitter-astro"
-                       :revision "master"
-                       :source-dir "src")))
-    (add-to-list 'treesit-auto-recipe-list astro-recipe))
-  (let ((nu-recipe (make-treesit-auto-recipe
-                    :lang 'nu
-                    :ts-mode 'nushell-mode
-                    :url "https://github.com/nushell/tree-sitter-nu"
-                    :revision "main"
-                    :source-dir "src")))
-    (add-to-list 'treesit-auto-recipe-list nu-recipe))
-  (let ((typst-recipe (make-treesit-auto-recipe
-                       :lang 'typst
-                       :ts-mode 'typst-ts-mode
-                       :url "https://github.com/uben0/tree-sitter-typst"
-                       :revision "main"
-                       :source-dir "src")))
-    (add-to-list 'treesit-auto-recipe-list typst-recipe)))
 
 (use-package typst-ts-mode
   :straight (:host sourcehut :repo "meow_king/typst-ts-mode")
@@ -151,17 +121,9 @@
 ;; Astro
 (use-package astro-ts-mode
   :straight t
-  :after (treesit-auto)
+  :after (treesit)
   :hook (astro-ts-mode . eglot-ensure)
-  :mode "\\.astro\\'"
-  :config
-  (let ((astro-recipe (make-treesit-auto-recipe)
-                      :lang 'astro
-                      :ts-mode 'astro-ts-mode
-                      :url "https://github.com/virchau13/tree-sitter-astro"
-                      :revision "master"
-                      :source-dir "src")))
-  (add-to-list 'treesit-auto-recipe-list astro-recipe))
+  :mode "\\.astro\\'")
 
 ;; =markdown=
 (use-package markdown-mode
@@ -304,7 +266,7 @@
 
 (use-package gren-mode
   :straight (:host github :repo "MaeBrooks/gren-mode")
-  :mode ("\\.gren\\'"))
+  :mode ("\\.gren\\'" . gren-ts-mode))
 
 (use-package yuck-mode
   :straight t

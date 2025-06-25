@@ -1,4 +1,4 @@
-;;; consult.el --- Summary
+;;; consult.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

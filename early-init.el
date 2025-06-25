@@ -1,4 +1,4 @@
-;;; early-init.el --- Summary
+;;; early-init.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

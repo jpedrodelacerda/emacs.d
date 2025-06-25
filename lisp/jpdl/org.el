@@ -1,4 +1,4 @@
-;;; org.el --- Summary
+;;; org.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

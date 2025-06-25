@@ -1,4 +1,4 @@
-;;; general.el - Summary:
+;;; general.el - Summary:  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

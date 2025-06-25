@@ -1,4 +1,4 @@
-;;; dashboard.el --- Summary
+;;; dashboard.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:
@@ -15,11 +15,11 @@
   (setq dashboard-projects-backend 'project-el)
   (setq dashboard-projects-switch-function 'project-switch-project)
   (setq show-week-agenda-p t)
-  ;(setq recentf-exclude (org-agenda-files))
+                                        ;(setq recentf-exclude (org-agenda-files))
   (setq dashboard-items '(
-                        (recents  . 5)
-                        (projects . 5)
-                        (bookmarks . 5)))
+                          (recents  . 5)
+                          (projects . 5)
+                          (bookmarks . 5)))
   (dashboard-setup-startup-hook))
 
 (provide 'jpdl/dashboard)

@@ -1,4 +1,4 @@
-;;; evil.el --- Summary
+;;; evil.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

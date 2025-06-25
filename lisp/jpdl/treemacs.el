@@ -1,4 +1,4 @@
-;;; treemacs.el --- Summary
+;;; treemacs.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; browse directories and projects

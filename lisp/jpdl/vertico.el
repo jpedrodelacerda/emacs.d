@@ -1,4 +1,4 @@
-;;; vertico.el --- Summary
+;;; vertico.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:
@@ -59,10 +59,10 @@
         cmd)))
 
   (setq vertico-multiform-commands
-   '((execute-extended-command
-      posframe
-      (+vertico-transform-functions . +vertico-highlight-enabled-mode))
-     (t posframe)))
+        '((execute-extended-command
+           posframe
+           (+vertico-transform-functions . +vertico-highlight-enabled-mode))
+          (t posframe)))
   (setq vertico-multiform-categories
         '((file
            ;; this is also defined in the wiki, uncomment if used

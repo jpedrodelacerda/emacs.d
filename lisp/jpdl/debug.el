@@ -1,4 +1,4 @@
-;;; debug.el --- Summary
+;;; debug.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; dap and dap-ui config
@@ -13,13 +13,13 @@
   (require 'dap-gdb-lldb)
   (setq dap-gdb-lldb-debug-program '("/usr/bin/lldb-vscode"))
   (dap-register-debug-template
-    "Rust::LLDB Run Configuration"
-    (list :type "lldb"
-          :request "launch"
-          :name "LLDB::Run"
-	      :gdbpath "rust-lldb"
-          :target nil
-          :cwd nil))
+   "Rust::LLDB Run Configuration"
+   (list :type "lldb"
+         :request "launch"
+         :name "LLDB::Run"
+	     :gdbpath "rust-lldb"
+         :target nil
+         :cwd nil))
   :hook (prog-mode)
   :init
   (unbind-key "M-d")

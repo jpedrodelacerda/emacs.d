@@ -1,4 +1,4 @@
-;;; marginalia.el --- Summary
+;;; marginalia.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

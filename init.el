@@ -1,4 +1,4 @@
-;;; package -- Summary:
+;;; package -- Summary:  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; I'm too lazy for this shit.
@@ -52,6 +52,7 @@
 (require 'jpdl/theme)
 (require 'jpdl/dashboard)
 (require 'jpdl/evil)
+(require 'jpdl/pairs)
 (require 'jpdl/org)
 (require 'jpdl/user)
 (require 'jpdl/project)
@@ -66,8 +67,8 @@
 (require 'jpdl/lsp)
 (require 'jpdl/tabs)
 (require 'jpdl/nav)
-(require 'jpdl/pairs)
 (require 'jpdl/magit)
+(require 'jpdl/treesit)
 (require 'jpdl/corfu)
 (require 'jpdl/tempel)
 (require 'jpdl/format)

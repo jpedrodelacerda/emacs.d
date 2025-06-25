@@ -1,4 +1,4 @@
-;;; tempel.el --- Summary
+;;; tempel.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

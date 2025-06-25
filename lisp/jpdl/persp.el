@@ -1,4 +1,4 @@
-;;; persp.el --- Summary
+;;; persp.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

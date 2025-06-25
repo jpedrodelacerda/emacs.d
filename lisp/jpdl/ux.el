@@ -1,4 +1,4 @@
-;;; ux.el --- Summary
+;;; ux.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

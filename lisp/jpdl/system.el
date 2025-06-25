@@ -1,4 +1,4 @@
-;;;; system.el --- Summary
+;;;; system.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -78,6 +78,8 @@
 
 (use-package yasnippet
   :straight t
+  :custom
+  (yas-snippet-dirs '("~/.emacs.d/snippets"))
   :config
   (yas-global-mode 1))
 

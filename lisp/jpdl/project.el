@@ -1,4 +1,4 @@
-;;; project.el --- Summary
+;;; project.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

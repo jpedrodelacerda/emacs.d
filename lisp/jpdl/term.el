@@ -1,4 +1,4 @@
-;;; term.el --- Summary
+;;; term.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:
@@ -53,9 +53,9 @@
   (:keymaps 'vterm-mode-map
             "M-p" 'vterm-toggle)
   (:keymaps 'vterm-mode-map :states '(normal motion)
-        "`" 'vterm-toggle)
+            "`" 'vterm-toggle)
   (jpdl/spc-leader
-   "`" 'multi-vterm-project)
+    "`" 'multi-vterm-project)
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
@@ -64,13 +64,13 @@
                      (with-current-buffer buffer
                        (or (equal major-mode 'vterm-mode)
                            (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                (display-buffer-reuse-window display-buffer-at-bottom)
-                ;;(display-buffer-reuse-window display-buffer-in-direction)
-                ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                ;;(direction . bottom)
-                ;;(dedicated . t) ;dedicated is supported in emacs27
-                (reusable-frames . visible)
-                (window-height . 0.3))))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;;(display-buffer-reuse-window display-buffer-in-direction)
+                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                 ;;(direction . bottom)
+                 ;;(dedicated . t) ;dedicated is supported in emacs27
+                 (reusable-frames . visible)
+                 (window-height . 0.3))))
 
 (provide 'jpdl/term)
 ;;; term.el ends here

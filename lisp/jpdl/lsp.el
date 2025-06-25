@@ -1,4 +1,4 @@
-;;; lsp.el --- Summary
+;;; lsp.el --- Summary  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; lsp and lsp-ui config
