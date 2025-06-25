@@ -54,7 +54,12 @@
   :after (org)
   :hook (org-mode . org-superstar-mode))
 
-(use-package ox-reveal
+;; (use-package ox-reveal
+;;   :straight t
+;;   :after (org)
+;;   :pin melpa)
+
+(use-package org-re-reveal
   :straight t
   :after (org)
   :pin melpa)
@@ -178,7 +183,8 @@
   (org-pomodoro-mode-line-break ((t (:inherit success))))
   :general
   (:keymaps 'org-mode-map
-            "C-c C-x m" 'org-pomodoro
+            "C-c C-x m" 'org-pomodoro)
+  (:keymaps 'org-mode-map :states '(normal visual emacs)
             "K" 'org-pomodoro))
 
 (use-package org-agenda
