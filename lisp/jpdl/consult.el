@@ -83,7 +83,7 @@
   (add-to-list 'vertico-multiform-commands '(consult-eglot-symbols buffer indexed)))
 
 (use-package consult-gh
-  :straight (consult-gh :type git :host github :repo "armindarvish/consult-gh")
+  :straight t
   :after consult
   :custom
   (consult-gh-default-clone-directory "~/projetos")
@@ -100,21 +100,6 @@
   (consult-gh-prioritize-local-folder 'suggest)
   :config
   (require 'consult-gh-transient)
-  (require 'consult-gh-embark)
-  (require 'consult-gh-forge)
-
-  ;; (setq consult-gh-default-clone-directory "~/projetos"
-  ;;       consult-gh-show-preview t
-  ;;       consult-gh-preview-key "C-o"
-  ;;       consult-gh-repo-action #'consult-gh--repo-browse-files-action
-  ;;       consult-gh-issue-action #'consult-gh--issue-view-action
-  ;;       consult-gh-pr-action #'consult-gh--pr-view-action
-  ;;       consult-gh-code-action #'consult-gh--code-view-action
-  ;;       consult-gh-file-action #'consult-gh--files-view-action
-  ;;       consult-gh-notifications-action #'consult-gh--notifications-action
-  ;;       consult-gh-dashboard-action #'consult-gh--dashboard-action
-  ;;       consult-gh-large-file-warning-threshold 2500000
-  ;;       consult-gh-prioritize-local-folder 'suggest)
   ;; Remember visited orgs and repos across sessions
   (add-to-list 'savehist-additional-variables 'consult-gh--known-orgs-list)
   (add-to-list 'savehist-additional-variables 'consult-gh--known-repos-list)
@@ -124,14 +109,14 @@
 
 ;; Install `consult-gh-embark' for embark actions
 (use-package consult-gh-embark
-  :straight nil
+  :straight t
   :after consult-gh
   :config
   (consult-gh-embark-mode +1))
 
 ;; Install `consult-gh-forge' for forge actions
 (use-package consult-gh-forge
-  :straight nil
+  :straight t
   :after consult-gh
   :config
   (consult-gh-forge-mode +1)
