@@ -5,10 +5,6 @@
 ;;; Code:
 
 ;; Themes
-;; all the icons available
-(use-package all-the-icons
-  :straight t)
-
 (use-package emojify
   :straight t
   :hook
