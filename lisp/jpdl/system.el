@@ -129,9 +129,19 @@
   :straight t
   :after (evil)
   :general
-  ("M-<tab>" 'origami-toggle-node)
+  ("M-<tab>" 'origami-toggle-node
+   "C-M-<tab>" 'origami-recursively-toggle-node
+   "C-M-<escape>" 'origami-reset)
+  (jpdl/spc-leader
+    "o t" 'origami-toggle-node
+    "o a" 'origami-toggle-all-nodes
+    "o r" 'origami-recursively-toggle-node
+    "o z" 'origami-reset)
   (:states '(normal)
-           "zq" 'origami-toggle-all-nodes)
+           "zq" 'origami-toggle-node
+           "za" 'origami-toggle-all-nodes
+           "zw" 'origami-recursively-toggle-node
+           "zx" 'origami-reset)
   :config
   (global-origami-mode))
 
