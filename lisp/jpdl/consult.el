@@ -14,12 +14,12 @@
    "M-y" 'consult-yank-pop
    "C-/" 'jpdl/consult-toggle-preview
    "C-x C-l" 'consult-flymake)
-  (jpdl/spc-leader :keymaps '(outline-mode-map outline-minor-mode-map)
-    "s h" 'consult-outline)
   (jpdl/spc-leader
+    "s h" 'consult-outline
     "s n" 'consult-project-buffer
     "s b" 'consult-buffer
     "s l" 'consult-line
+    "l l" 'consult-line
     "4 s n" '(lambda () (interactive) (other-window-prefix) (consult-project-buffer))
     "4 s b" '(lambda () (interactive) (other-window-prefix) (consult-buffer))
     "r g" 'consult-ripgrep
