@@ -6,6 +6,7 @@
 
 (use-package electric-pair
   :straight (:type built-in)
+  :no-require
   :hook (after-init . electric-pair-mode))
 
 (use-package puni
