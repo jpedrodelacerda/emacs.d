@@ -20,6 +20,47 @@
     "l a" 'eglot-code-actions
     "l q" 'eglot-code-action-quickfix
     "l o" 'eglot-code-action-organize-imports)
+  :custom
+  (eglot-server-programs '(
+                           ((python python-ts-mode) "ruff" "server")
+                           ((nix-mode nix-ts-mode) "nil" :initializationOptions
+                            (:formatting (:command ["alejandra"])))
+                           ((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
+                            "typescript-language-server" "--stdio" :initializationOptions
+                            (:preferences
+                             (:includeInlayEnumMemberValueHints t
+                                                                :includeInlayFunctionLikeReturnTypeHints
+                                                                t
+                                                                :includeInlayFunctionParameterTypeHints
+                                                                t
+                                                                :includeInlayParameterNameHints
+                                                                "all"
+                                                                :includeInlayParameterNameHintsWhenArgumentMatchesName
+                                                                t
+                                                                :includeInlayPRopertyDeclarationTypeHints
+                                                                t :includeInlayVariableTypeHints
+                                                                t
+                                                                :includeInlayVariableTypeHintsWhenTypeMatchesName
+                                                                t)))
+                           ((rust-ts-mode rust-mode) "rust-analyzer")
+                           ((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode)
+                            "clangd")
+                           (elm-mode "elm-language-server")
+                           ((go-mode go-dot-mod-mode go-dot-work-mode go-ts-mode go-mod-ts-mode
+                                     go-work-ts-mode)
+                            "gopls")
+                           ((dart-mode dart-ts-mode) "dart" "language-server" "--client-id"
+                            "emacs.eglot-dart")
+                           ((elixir-mode elixir-ts-mode heex-ts-mode) "elixir-ls")
+                           ((latex-mode plain-tex-mode context-mode texinfo-mode bibtex-mode
+                                        tex-mode) "texlab")
+                           (erlang-mode "erlang_ls" "--transport" "stdio")
+                           ((yaml-ts-mode yaml-mode) "yaml-language-server" "--stdio")
+                           ((nix-mode nix-ts-mode) "nil")
+                           ((nushell-mode nushell-ts-mode) "nu" "--lsp")
+                           ((lua-mode lua-ts-mode) "lua-lsp")
+                           ((terraform-mode) "tofu-ls" "serve"))
+                         ((dockerfile-mode dockerfile-ts-mode) "docker-langserver" "--stdio"))
   :config
   (setq eglot-autoshutdown t
         eglot-confirm-server-initiated-edits nil)
@@ -28,22 +69,24 @@
   ;; (setq completion-category-overrides '((eglot (styles orderless))
   ;;                                       (eglot-capf (styles orderless))))
   ;; (setq completion-category-defaults nil)
-  (add-to-list
-   'eglot-server-programs
-   '((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
-     "typescript-language-server" "--stdio"
-     ;; I totally came up with these myself
-     :initializationOptions
-     (:preferences
-      (
-       :includeInlayEnumMemberValueHints t
-       :includeInlayFunctionLikeReturnTypeHints t
-       :includeInlayFunctionParameterTypeHints t
-       :includeInlayParameterNameHints "all" ; "none" | "literals" | "all"
-       :includeInlayParameterNameHintsWhenArgumentMatchesName t
-       :includeInlayPRopertyDeclarationTypeHints t
-       :includeInlayVariableTypeHints t
-       :includeInlayVariableTypeHintsWhenTypeMatchesName t))))
+  ;; (add-to-list
+  ;;  'eglot-server-programs
+  ;;  '((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
+  ;;    "typescript-language-server" "--stdio"
+  ;;    ;; I totally came up with these myself
+  ;;    :initializationOptions
+  ;;    (:preferences
+  ;;     (
+  ;;      :includeInlayEnumMemberValueHints t
+  ;;      :includeInlayFunctionLikeReturnTypeHints t
+  ;;      :includeInlayFunctionParameterTypeHints t
+  ;;      :includeInlayParameterNameHints "all" ; "none" | "literals" | "all"
+  ;;      :includeInlayParameterNameHintsWhenArgumentMatchesName t
+  ;;      :includeInlayPRopertyDeclarationTypeHints t
+  ;;      :includeInlayVariableTypeHints t
+  ;;      :includeInlayVariableTypeHintsWhenTypeMatchesName t))))
+  ;; (add-to-list 'eglot-server-programs
+  ;;              '((terraform-mode) "tofu-ls serve"))
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
 (use-package eglot-booster
