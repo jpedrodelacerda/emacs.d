@@ -8,6 +8,8 @@
   :hook
   (rfn-eshadow-update-overlay . vertico-directory-tidy)
   :general
+  (jpdl/spc-leader
+    "s v" 'find-alternate-file)
   (:keymaps '(vertico-map vertico-multiform-map)
             "M-n" 'next-history-element
             "M-p" 'previous-history-element
