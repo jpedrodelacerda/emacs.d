@@ -126,7 +126,7 @@
   (drag-stuff-global-mode 1))
 
 (use-package origami
-  :straight t
+  :straight (origami :type git :host github :repo "elp-revive/origami.el")
   :after (evil)
   :general
   ("M-<tab>" 'origami-toggle-node

@@ -5,7 +5,7 @@
 (use-package dashboard
   :straight t
   :hook (server-after-make-frame . dashboard-refresh-buffer)
-  :init (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  :init (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   :config
   (setq dashboard-startup-banner (concat (concat "/home/" user-login-name) "/emacs.d/enso.png"))
   (setq dashboard-set-heading-icons t)
