@@ -179,5 +179,14 @@
     "h 8" 'harpoon-go-to-8
     "h 9" 'harpoon-go-to-9))
 
+(use-package sops
+  :straight t
+  :general
+  ("C-c C-c" 'sops-save-file
+   "C-c C-k" 'sops-cancel
+   "C-c C-d" 'sops-edit-file)
+  :config
+  (global-sops-mode 1))
+
 (provide 'jpdl/system)
 ;;; system.el ends here
