@@ -30,11 +30,11 @@
         (progn (setq flymake-show-diagnostics-at-end-of-line nil)
                (flymake-mode -1)
                (flymake-mode +1)
-               (print "No more fancy diagnostics!"))
+               (message "No more fancy diagnostics!"))
       (setq flymake-show-diagnostics-at-end-of-line 'fancy)
       (flymake-mode -1)
       (flymake-mode +1)
-      (print "Fancy diagnostics here we go!"))))
+      (message "Fancy diagnostics here we go!"))))
 
 (use-package sideline-flymake
   :straight t
