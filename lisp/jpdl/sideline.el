@@ -16,6 +16,26 @@
         sideline-order-right 'up                     ; or 'down
         ))
 
+(use-package flymake
+  :straight (:type built-in)
+  :hook (prog-mode . flymake-mode)
+  :general
+  (jpdl/spc-leader
+    "l l" 'jpdl/flymake-toggle-fancy-diagnostics)
+  :config
+  (defun jpdl/flymake-toggle-fancy-diagnostics ()
+    "Toggle flymake fancy diagnostics"
+    (interactive)
+    (if flymake-show-diagnostics-at-end-of-line
+        (progn (setq flymake-show-diagnostics-at-end-of-line nil)
+               (flymake-mode -1)
+               (flymake-mode +1)
+               (print "No more fancy diagnostics!"))
+      (setq flymake-show-diagnostics-at-end-of-line 'fancy)
+      (flymake-mode -1)
+      (flymake-mode +1)
+      (print "Fancy diagnostics here we go!"))))
+
 (use-package sideline-flymake
   :straight t
   :after (sideline-mode)
