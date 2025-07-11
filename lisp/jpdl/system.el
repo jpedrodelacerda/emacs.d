@@ -125,25 +125,46 @@
   :config
   (drag-stuff-global-mode 1))
 
-(use-package origami
-  :straight (origami :type git :host github :repo "elp-revive/origami.el")
-  :after (evil)
+(use-package treesit-fold
+  :straight t
   :general
-  ("M-<tab>" 'origami-toggle-node
-   "C-M-<tab>" 'origami-recursively-toggle-node
-   "C-M-<escape>" 'origami-reset)
-  (jpdl/spc-leader
-    "o t" 'origami-toggle-node
-    "o a" 'origami-toggle-all-nodes
-    "o r" 'origami-recursively-toggle-node
-    "o z" 'origami-reset)
+  ("M-<tab>" 'treesit-fold-toggle
+   "C-M-<tab>" 'treesit-fold-open-all
+   "C-M-<escape>" 'treesit-fold-close-all)
   (:states '(normal)
-           "zq" 'origami-toggle-node
-           "za" 'origami-toggle-all-nodes
-           "zw" 'origami-recursively-toggle-node
-           "zx" 'origami-reset)
-  :config
-  (global-origami-mode))
+           "zf" 'treesit-fold-toggle
+           "za" 'treesit-fold-toggle
+           "zo" 'treesit-fold-open
+           "zq" 'treesit-fold-open-recursively
+           "zO" 'treesit-fold-open-recursively
+           "zc" 'treesit-fold-close
+           "zM" 'treesit-fold-close-all
+           "zR" 'treesit-fold-open-all))
+
+(use-package treesit-fold-indicators
+  :straight (treesit-fold-indicators :type git :host github :repo "emacs-tree-sitter/treesit-fold")
+  :hook (after-init . global-treesit-fold-indicators-mode)
+  :custom (treesit-fold-indicators-priority -1))
+
+;; (use-package origami
+;;   :straight (origami :type git :host github :repo "elp-revive/origami.el")
+;;   :after (evil)
+;;   :general
+;;   ("M-<tab>" 'origami-toggle-node
+;;    "C-M-<tab>" 'origami-recursively-toggle-node
+;;    "C-M-<escape>" 'origami-reset)
+;;   (jpdl/spc-leader
+;;     "o t" 'origami-toggle-node
+;;     "o a" 'origami-toggle-all-nodes
+;;     "o r" 'origami-recursively-toggle-node
+;;     "o z" 'origami-reset)
+;;   (:states '(normal)
+;;            "zq" 'origami-toggle-node
+;;            "za" 'origami-toggle-all-nodes
+;;            "zw" 'origami-recursively-toggle-node
+;;            "zx" 'origami-reset)
+;;   :config
+;;   (global-origami-mode))
 
 (use-package harpoon
   :straight t

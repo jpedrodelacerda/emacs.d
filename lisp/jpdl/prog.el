@@ -295,5 +295,12 @@
     "f t" 'flutter-test-all
     "f p" 'flutter-test-at-point))
 
+(use-package just-ts-mode
+  :straight t
+  :mode ("\\justfile\\'"))
+
+(use-package emacs-lisp-ts-mode
+  :straight (:host github :repo "gabrielfrigo4/emacs-lisp-ts-mode"))
+
 (provide 'jpdl/prog)
 ;;; prog.el ends here
