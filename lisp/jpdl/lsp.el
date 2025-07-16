@@ -42,7 +42,8 @@
                                                                 t
                                                                 :includeInlayVariableTypeHintsWhenTypeMatchesName
                                                                 t)))
-                           ((rust-ts-mode rust-mode) "rust-analyzer")
+                           ((rust-ts-mode rust-mode) "rust-analyzer"
+                            :initializationOptions (:check (:command "clippy")))
                            ((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode)
                             "clangd")
                            (elm-mode "elm-language-server")
