@@ -137,6 +137,10 @@
   :custom
   (markdown-command '("pandoc" "--from=markdown" "--to=html5")))
 
+;; =markdown=
+(use-package markdown-ts-mode
+  :straight t)
+
 (use-package markdown-toc
   :straight (:host github :repo "jpedrodelacerda/markdown-toc")
   :general
