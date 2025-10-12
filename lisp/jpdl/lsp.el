@@ -96,6 +96,12 @@
   :config
   (eglot-booster-mode))
 
+(use-package eglot-x
+  :straight (:host github :repo "nemethf/eglot-x")
+  :after eglot
+  :config
+  (eglot-x-setup))
+
 (use-package xref
   :straight (:type built-in)
   :general
