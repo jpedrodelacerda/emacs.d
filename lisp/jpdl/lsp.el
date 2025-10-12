@@ -25,7 +25,7 @@
                            ((python python-ts-mode) "ruff" "server")
                            ((nix-mode nix-ts-mode) "nil" :initializationOptions
                             (:formatting (:command ["alejandra"])))
-                           ((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
+                           ((js-mode js-ts-mode tsx-ts-mode jtsx-tsx-mode typescript-ts-mode typescript-mode)
                             "typescript-language-server" "--stdio" :initializationOptions
                             (:preferences
                              (:includeInlayEnumMemberValueHints t

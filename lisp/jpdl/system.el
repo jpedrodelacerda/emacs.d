@@ -170,10 +170,10 @@
   :straight t
   :after (evil)
   :general
-  ("C-c a" 'harpoon-quick-menu-hydra
+  ("C-c h h" 'harpoon-quick-menu-hydra
    "C-c h <return>" 'harpoon-add-file
    "C-c h c" 'harpoon-clear
-   "C-c h h" 'harpoon-toggle-quick-menu
+   "C-c h q" 'harpoon-toggle-quick-menu
    "C-c h f" 'harpoon-toggle-file
    "C-c h 1" 'harpoon-go-to-1
    "C-c h 2" 'harpoon-go-to-2

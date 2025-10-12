@@ -114,9 +114,13 @@
   :straight (:type built-in)
   :hook
   (typescript-ts-mode . eglot-ensure)
-  (tsx-ts-mode . eglot-ensure)
-  :mode (("\\.ts\\'" . typescript-mode)
-         ("\\.tsx\\'" . tsx-ts-mode)))
+  :mode (("\\.ts\\'" . typescript-mode)))
+
+(use-package jtsx
+  :straight t
+  :mode (("\\.tsx\\'" . jtsx-tsx-mode))
+  :commands jtsx-install-treesit-language
+  :hook (jtsx-tsx-mode . eglot-ensure))
 
 ;; Astro
 (use-package astro-ts-mode
@@ -179,6 +183,20 @@
   :straight t
   :after python-mode
   :hook (python-mode . python-black-on-save-mode))
+
+(use-package code-cells
+  :straight t
+  :mode "\\.ipynb\\'"
+  :hook (python-mode . code-cells-mode-maybe)
+  :config
+  (with-eval-after-load 'code-cells
+    (let ((map code-cells-mode-map))
+      (define-key map [remap evil-search-next] (code-cells-speed-key 'code-cells-forward-cell)) ;; n
+      (define-key map [remap evil-paste-after] (code-cells-speed-key 'code-cells-backward-cell)) ;; p
+      (define-key map [remap evil-backward-word-begin] (code-cells-speed-key 'code-cells-eval-above)) ;; b
+      (define-key map [remap evil-forward-word-end] (code-cells-speed-key 'code-cells-eval)) ;; e
+      (define-key map [remap evil-jump-forward] (code-cells-speed-key 'outline-cycle)))) ;; TAB
+  )
 
 ;; TOML support.
 ;; (use-package toml-mode

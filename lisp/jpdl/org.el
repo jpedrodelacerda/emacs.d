@@ -195,8 +195,18 @@
     "a a" 'org-agenda
     "a l" 'org-agenda-list)
   :config
-  (setq org-agenda-files (list (file-truename (concat org-directory "/agenda"))))
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
+  (setq org-agenda-files (list
+                          (file-truename org-directory)
+                          (file-truename (concat org-directory "/agenda"))
+                          (file-truename (concat org-directory "/roam"))))
+  ;; (setq org-agenda-files (list (file-truename (concat org-directory "/agenda"))))
+  (setq org-agenda-prefix-format
+        '((agenda . " %i %-12:c%?-12t% s")
+          (timeline . "  % s")
+          (todo . " %i %-12:c")
+          (tags . " %i %-12:c")
+          (search . " %i %-12:c")))
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
   (setq
    ;; Edit settings
    org-auto-align-tags nil
