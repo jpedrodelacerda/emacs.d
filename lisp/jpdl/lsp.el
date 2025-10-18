@@ -6,7 +6,6 @@
 ;;; Code:
 (use-package eglot
   :straight (:type built-in)
-  :after cape
   :general
   (:keymaps 'eglot-mode-map
             "C-c f" 'eglot-format-buffer
@@ -26,22 +25,24 @@
                            ((nix-mode nix-ts-mode) "nil" :initializationOptions
                             (:formatting (:command ["alejandra"])))
                            ((js-mode js-ts-mode tsx-ts-mode jtsx-tsx-mode typescript-ts-mode typescript-mode)
-                            "typescript-language-server" "--stdio" :initializationOptions
-                            (:preferences
-                             (:includeInlayEnumMemberValueHints t
-                                                                :includeInlayFunctionLikeReturnTypeHints
-                                                                t
-                                                                :includeInlayFunctionParameterTypeHints
-                                                                t
-                                                                :includeInlayParameterNameHints
-                                                                "all"
-                                                                :includeInlayParameterNameHintsWhenArgumentMatchesName
-                                                                t
-                                                                :includeInlayPRopertyDeclarationTypeHints
-                                                                t :includeInlayVariableTypeHints
-                                                                t
-                                                                :includeInlayVariableTypeHintsWhenTypeMatchesName
-                                                                t)))
+                            "typescript-language-server" "--stdio" :initializationOptions)
+                           ;; ((js-mode js-ts-mode tsx-ts-mode jtsx-tsx-mode typescript-ts-mode typescript-mode)
+                           ;;  "deno" "lsp" :initializationOptions)
+                           ;; (:preferences
+                           ;;  (:includeInlayEnumMemberValueHints t
+                           ;;                                     :includeInlayFunctionLikeReturnTypeHints
+                           ;;                                     t
+                           ;;                                     :includeInlayFunctionParameterTypeHints
+                           ;;                                     t
+                           ;;                                     :includeInlayParameterNameHints
+                           ;;                                     "all"
+                           ;;                                     :includeInlayParameterNameHintsWhenArgumentMatchesName
+                           ;;                                     t
+                           ;;                                     :includeInlayPRopertyDeclarationTypeHints
+                           ;;                                     t :includeInlayVariableTypeHints
+                           ;;                                     t
+                           ;;                                     :includeInlayVariableTypeHintsWhenTypeMatchesName
+                           ;;                                     t)))
                            ((rust-ts-mode rust-mode) "rust-analyzer"
                             :initializationOptions (:check (:command "clippy")))
                            ((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode)
@@ -64,31 +65,31 @@
                          ((dockerfile-mode dockerfile-ts-mode) "docker-langserver" "--stdio"))
   :config
   (setq eglot-autoshutdown t
-        eglot-confirm-server-initiated-edits nil)
-  ;; Corfu: set Orderless + Eglot
-  ;; (add-to-list 'completion-category-overrides '(eglot (styles orderless))))
-  ;; (setq completion-category-overrides '((eglot (styles orderless))
-  ;;                                       (eglot-capf (styles orderless))))
-  ;; (setq completion-category-defaults nil)
-  ;; (add-to-list
-  ;;  'eglot-server-programs
-  ;;  '((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
-  ;;    "typescript-language-server" "--stdio"
-  ;;    ;; I totally came up with these myself
-  ;;    :initializationOptions
-  ;;    (:preferences
-  ;;     (
-  ;;      :includeInlayEnumMemberValueHints t
-  ;;      :includeInlayFunctionLikeReturnTypeHints t
-  ;;      :includeInlayFunctionParameterTypeHints t
-  ;;      :includeInlayParameterNameHints "all" ; "none" | "literals" | "all"
-  ;;      :includeInlayParameterNameHintsWhenArgumentMatchesName t
-  ;;      :includeInlayPRopertyDeclarationTypeHints t
-  ;;      :includeInlayVariableTypeHints t
-  ;;      :includeInlayVariableTypeHintsWhenTypeMatchesName t))))
-  ;; (add-to-list 'eglot-server-programs
-  ;;              '((terraform-mode) "tofu-ls serve"))
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+        eglot-confirm-server-initiated-edits nil))
+;; Corfu: set Orderless + Eglot
+;; (add-to-list 'completion-category-overrides '(eglot (styles orderless))))
+;; (setq completion-category-overrides '((eglot (styles orderless))
+;;                                       (eglot-capf (styles orderless))))
+;; (setq completion-category-defaults nil)
+;; (add-to-list
+;;  'eglot-server-programs
+;;  '((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
+;;    "typescript-language-server" "--stdio"
+;;    ;; I totally came up with these myself
+;;    :initializationOptions
+;;    (:preferences
+;;     (
+;;      :includeInlayEnumMemberValueHints t
+;;      :includeInlayFunctionLikeReturnTypeHints t
+;;      :includeInlayFunctionParameterTypeHints t
+;;      :includeInlayParameterNameHints "all" ; "none" | "literals" | "all"
+;;      :includeInlayParameterNameHintsWhenArgumentMatchesName t
+;;      :includeInlayPRopertyDeclarationTypeHints t
+;;      :includeInlayVariableTypeHints t
+;;      :includeInlayVariableTypeHintsWhenTypeMatchesName t))))
+;; (add-to-list 'eglot-server-programs
+;;              '((terraform-mode) "tofu-ls serve"))
+;; (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster")
@@ -96,11 +97,11 @@
   :config
   (eglot-booster-mode))
 
-(use-package eglot-x
-  :straight (:host github :repo "nemethf/eglot-x")
-  :after eglot
-  :config
-  (eglot-x-setup))
+;; (use-package eglot-x
+;;   :straight (:host github :repo "nemethf/eglot-x")
+;;   :after eglot
+;;   :config
+;;   (eglot-x-setup))
 
 (use-package xref
   :straight (:type built-in)

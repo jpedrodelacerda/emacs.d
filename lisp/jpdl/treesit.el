@@ -61,6 +61,28 @@
   (push '(yaml-mode . yaml-ts-mode) major-mode-remap-alist)
   (treesit-major-mode-setup))
 
+(use-package treesit-fold
+  :straight (treesit-fold :type git :host github :repo "emacs-tree-sitter/treesit-fold")
+  :general
+  ("M-<tab>" 'treesit-fold-toggle
+   "C-M-<tab>" 'treesit-fold-open-all
+   "C-M-<escape>" 'treesit-fold-close-all)
+  (:states '(normal)
+           "zf" 'treesit-fold-toggle
+           "za" 'treesit-fold-toggle
+           "zo" 'treesit-fold-open
+           "zq" 'treesit-fold-open-recursively
+           "zO" 'treesit-fold-open-recursively
+           "zc" 'treesit-fold-close
+           "zM" 'treesit-fold-close-all
+           "zR" 'treesit-fold-open-all))
+
+(use-package treesit-fold-indicators
+  :straight (treesit-fold-indicators :type git :host github :repo "emacs-tree-sitter/treesit-fold")
+  :after (treesit-fold)
+  :hook (after-init . global-treesit-fold-indicators-mode)
+  :custom (treesit-fold-indicators-priority -1))
+
 (provide 'jpdl/treesit)
 
 ;;; treesit.el ends here

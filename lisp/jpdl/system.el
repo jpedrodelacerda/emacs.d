@@ -114,6 +114,7 @@
 
 (use-package direnv
   :straight t
+  :ensure t
   :config
   (direnv-mode))
 
@@ -124,27 +125,6 @@
    "M-S-<down>" 'drag-stuff-down)
   :config
   (drag-stuff-global-mode 1))
-
-(use-package treesit-fold
-  :straight t
-  :general
-  ("M-<tab>" 'treesit-fold-toggle
-   "C-M-<tab>" 'treesit-fold-open-all
-   "C-M-<escape>" 'treesit-fold-close-all)
-  (:states '(normal)
-           "zf" 'treesit-fold-toggle
-           "za" 'treesit-fold-toggle
-           "zo" 'treesit-fold-open
-           "zq" 'treesit-fold-open-recursively
-           "zO" 'treesit-fold-open-recursively
-           "zc" 'treesit-fold-close
-           "zM" 'treesit-fold-close-all
-           "zR" 'treesit-fold-open-all))
-
-(use-package treesit-fold-indicators
-  :straight (treesit-fold-indicators :type git :host github :repo "emacs-tree-sitter/treesit-fold")
-  :hook (after-init . global-treesit-fold-indicators-mode)
-  :custom (treesit-fold-indicators-priority -1))
 
 ;; (use-package origami
 ;;   :straight (origami :type git :host github :repo "elp-revive/origami.el")

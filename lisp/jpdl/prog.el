@@ -119,8 +119,16 @@
 (use-package jtsx
   :straight t
   :mode (("\\.tsx\\'" . jtsx-tsx-mode))
+  :hook
+  (jtsx-tsx-mode . eglot-ensure)
   :commands jtsx-install-treesit-language
-  :hook (jtsx-tsx-mode . eglot-ensure))
+  :custom
+  (js-ident-level 2)
+  (jtsx-enable-jsx-electric-closing-element t)
+  (jtsx-enable-electric-open-newline-between-jsx-element-tags t)
+  (jtsx-enable-jsx-element-tags-auto-sync t)
+  (jtsx-enable-all-syntax-highlighting-features t))
+
 
 ;; Astro
 (use-package astro-ts-mode
@@ -212,11 +220,11 @@
   :mode "\\.toml\\'")
 
 ;;  =rust-mode=
-(use-package rust-mode
+(use-package rust-ts-mode
   :straight t
   :mode "\\.rs\\'"
-  :hook (rust-ts-mode . eglot-ensure)
-  :init (setq rust-mode-treesitter-derive t))
+  :hook (rust-ts-mode . eglot-ensure))
+;; :init (setq rust-mode-treesitter-derive t))
 
 (use-package cargo
   :straight t
