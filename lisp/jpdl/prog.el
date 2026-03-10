@@ -223,8 +223,8 @@
 (use-package rust-ts-mode
   :straight t
   :mode "\\.rs\\'"
-  :hook (rust-ts-mode . eglot-ensure))
-;; :init (setq rust-mode-treesitter-derive t))
+  :hook (rust-ts-mode . eglot-ensure)
+  :init (setq rust-mode-treesitter-derive t))
 
 (use-package cargo
   :straight t

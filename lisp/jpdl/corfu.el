@@ -9,7 +9,8 @@
   :straight t
   :hook
   ;; (lsp-completion-mode . jpdl/lsp-mode-setup-completion)
-  (minibuffer-setup . corfu-enable-always-in-minibuffer)
+  ((prog-mode text-mode tex-mode ielm-mode) . corfu-mode)
+  (minibuffer-setup . jpdl/corfu-enable-always-in-minibuffer)
   (corfu-mode . corfu-popupinfo-mode)
   (corfu--done . corfu-popupinfo-hide)
   (org-mode . (lambda () (setq-local corfu-auto nil)))
@@ -18,7 +19,7 @@
   (:keymaps 'corfu-map
             "DEL" 'corfu-quit
             "<backspace>" 'corfu-quit
-            "C-y" 'cofru-insert
+            "C-y" 'corfu-insert
             "C-n" 'corfu-next
             "<tab>" 'corfu-next
             "C-p" 'corfu-previous
@@ -26,35 +27,40 @@
             "M-d" 'corfu-popupinfo-toggle
             "M-p" 'corfu-popupinfo-scroll-down
             "M-n" 'corfu-popupinfo-scroll-up
-            "M-l" 'corfu-show-location)
+            "M-." 'corfu-show-location
+            "M-h" 'corfu-info-documentation
+            "M-." 'corfu-info-location)
   :custom
   (tab-always-indent 'complete)
   (text-mode-ispell-word-completion nil)
   (completion-cycle-threshold nil)
   (corfu-separator ?\s)
   (corfu-quit-no-match t)
-  (corfu-preview-current nil)
+  ;; (corfu-preview-current nil)
   (corfu-auto t)
   (corfu-auto-prefix 2)
   (corfu-auto-delay 0.25)
-  (corfu-min-width 80)
-  (corfu-max-width corfu-min-width)
+  ;; (corfu-min-width 80)
+  ;; (corfu-max-width corfu-min-width)
   (corfu-count 14)
   (corfu-cycle t)
   :init
   (defun jpdl/orderless-dispatch-flex-first (_pattern index _total)
     (and (eq index 0) 'orderless-flex))
-  (global-corfu-mode)
+  ;; (global-corfu-mode)
   :config
   (corfu-history-mode 1)
   (savehist-mode 1)
   (add-to-list 'savehist-additional-variables 'corfu-history)
-  (defun corfu-enable-always-in-minibuffer ()
+  (defun jpdl/corfu-enable-always-in-minibuffer ()
     "Enable Corfu in the minibuffer if Vertico/Mct are not active."
     (unless (or (bound-and-true-p mct--active) ; Useful if I ever use MCT
                 (bound-and-true-p vertico--input))
-      (setq-local corfu-auto nil)       ; Ensure auto completion is disabled
-      (corfu-mode 1))))
+      ;; (setq-local corfu-auto nil)       ; Ensure auto completion is disabled
+      (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
+                  corfu-popupinfo-delay nil)
+      (corfu-mode 1))
+    (corfu-popupinfo-mode 1)))
 
 (use-package cape
   :straight t

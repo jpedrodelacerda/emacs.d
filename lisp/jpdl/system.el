@@ -83,9 +83,13 @@
   :config
   (yas-global-mode 1))
 
+(use-package auto-yasnippet
+  :straight t
+  :after yasnippet)
+
+
 (use-package yasnippet-snippets
   :straight t)
-
 
 (use-package minions
   :straight t
@@ -186,6 +190,10 @@
   ("C-c C-c" 'sops-save-file
    "C-c C-k" 'sops-cancel
    "C-c C-d" 'sops-edit-file)
+  (:keymap '(yaml-ts-mode-map yaml-pro-ts-mode-map)
+           "C-c C-c" 'sops-save-file
+           "C-c C-k" 'sops-cancel
+           "C-c C-d" 'sops-edit-file)
   :config
   (global-sops-mode 1))
 

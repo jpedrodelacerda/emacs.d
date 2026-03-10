@@ -10,7 +10,8 @@
   :straight t
   :hook
   (after-init . apheleia-global-mode)
-  (before-save . jpdl/format-buffer)
+  ;; (before-save . jpdl/format-buffer)
+  (before-save . apheleia-format-buffer)
   :general
   ("C-c C-f" 'jpdl/format-buffer)
   (jpdl/spc-leader
@@ -82,8 +83,8 @@ the file.
         ('apheleia (apheleia-fmt))
         ('eglot    (eglot-fmt))
         ('treesit  (treesit-fmt))
-        ('indent   (indent-fmt))
-        (delete-trailing-whitespace (point-min) (point-max))))))
+        ('indent   (indent-fmt)))))
+  (delete-trailing-whitespace (point-min) (point-max)))
 
 (provide 'jpdl/format)
 ;;; format.el ends here

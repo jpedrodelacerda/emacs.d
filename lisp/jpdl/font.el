@@ -14,9 +14,10 @@
   ("C-)" 'default-text-scale-reset)
   ("C-+" 'default-text-scale-increase)
   ("C-_" 'default-text-scale-decrease)
+  ("C-c C-=" 'global-text-scale-adjust)
   :config
   (default-text-scale-mode 1)
-  (setq default-text-scale-amount 10))
+  (setq default-text-scale-amount 5))
 
 ;; Enable the www ligature in every possible major mode
 (use-package ligature

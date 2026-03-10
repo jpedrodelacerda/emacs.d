@@ -57,7 +57,8 @@
                            ((latex-mode plain-tex-mode context-mode texinfo-mode bibtex-mode
                                         tex-mode) "texlab")
                            (erlang-mode "erlang_ls" "--transport" "stdio")
-                           ((yaml-ts-mode yaml-mode) "yaml-language-server" "--stdio")
+                           ((yaml-ts-mode yaml-mode) "yaml-language-server" "--stdio"
+                            :initializationOptions (:preferences (:documentOnTypeFormattingProvider nil)))
                            ((nix-mode nix-ts-mode) "nil")
                            ((nushell-mode nushell-ts-mode) "nu" "--lsp")
                            ((lua-mode lua-ts-mode) "lua-lsp")
