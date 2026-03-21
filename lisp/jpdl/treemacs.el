@@ -96,6 +96,9 @@
 ;;   :straight t
 ;;   :after (treemacs projectile))
 
+(use-package treemacs-nerd-icons
+             :config (treemacs-nerd-icons-config))
+
 (use-package treemacs-icons-dired
   :straight t
   :after (all-the-icons)

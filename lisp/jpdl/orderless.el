@@ -7,8 +7,8 @@
   :straight t
   :general
   (:keymaps 'minibuffer-local-completion-map
-            "C-l" 'jpdl/match-components-literally
-            "C-f" 'jpdl/match-components-flex)
+            "C-c c l" 'jpdl/match-components-literally
+            "C-c c f" 'jpdl/match-components-flex)
   :config
   (defun jpdl/match-components-literally ()
     "Components match literally for the rest of the session."

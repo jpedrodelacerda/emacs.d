@@ -5,17 +5,22 @@
 
 ;;; Code:
 (use-package eglot
-  :straight (:type built-in)
+  ;; :straight (:type built-in)
+  :straight t
   :general
-  (:keymaps 'eglot-mode-map
-            "C-c f" 'eglot-format-buffer
-            "C-c r" 'eglot-rename
-            "C-c a" 'eglot-code-actions
-            "C-c q" 'eglot-code-action-quickfix
-            "C-c o" 'eglot-code-action-organize-imports)
-  (jpdl/spc-leader :keymaps 'eglot-mode-map
-    "l f" 'eglot-format-buffer
+  (:keymaps
+   "C-c f" 'eglot-format
+   "C-c F" 'eglot-format-buffer
+   "C-c r" 'eglot-rename
+   "C-c R" 'eglot-reconnect
+   "C-c a" 'eglot-code-actions
+   "C-c q" 'eglot-code-action-quickfix
+   "C-c o" 'eglot-code-action-organize-imports)
+  (jpdl/spc-leader
+    "l f" 'eglot-format
+    "l F" 'eglot-format-buffer
     "l r" 'eglot-rename
+    "l R" 'eglot-reconnect
     "l a" 'eglot-code-actions
     "l q" 'eglot-code-action-quickfix
     "l o" 'eglot-code-action-organize-imports)
@@ -24,25 +29,14 @@
                            ((python python-ts-mode) "ruff" "server")
                            ((nix-mode nix-ts-mode) "nil" :initializationOptions
                             (:formatting (:command ["alejandra"])))
-                           ((js-mode js-ts-mode tsx-ts-mode jtsx-tsx-mode typescript-ts-mode typescript-mode)
+                           ((jtsx-tsx-mode tsx-ts-mode)
+	                        . ("rass"
+		                       "--"
+		                       "typescript-language-server" "--stdio"
+		                       "--"
+		                       "tailwindcss-language-server" "--stdio"))
+                           ((js-mode js-ts-mode typescript-ts-mode typescript-mode)
                             "typescript-language-server" "--stdio" :initializationOptions)
-                           ;; ((js-mode js-ts-mode tsx-ts-mode jtsx-tsx-mode typescript-ts-mode typescript-mode)
-                           ;;  "deno" "lsp" :initializationOptions)
-                           ;; (:preferences
-                           ;;  (:includeInlayEnumMemberValueHints t
-                           ;;                                     :includeInlayFunctionLikeReturnTypeHints
-                           ;;                                     t
-                           ;;                                     :includeInlayFunctionParameterTypeHints
-                           ;;                                     t
-                           ;;                                     :includeInlayParameterNameHints
-                           ;;                                     "all"
-                           ;;                                     :includeInlayParameterNameHintsWhenArgumentMatchesName
-                           ;;                                     t
-                           ;;                                     :includeInlayPRopertyDeclarationTypeHints
-                           ;;                                     t :includeInlayVariableTypeHints
-                           ;;                                     t
-                           ;;                                     :includeInlayVariableTypeHintsWhenTypeMatchesName
-                           ;;                                     t)))
                            ((rust-ts-mode rust-mode) "rust-analyzer"
                             :initializationOptions (:check (:command "clippy")))
                            ((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode)
@@ -67,42 +61,12 @@
   :config
   (setq eglot-autoshutdown t
         eglot-confirm-server-initiated-edits nil))
-;; Corfu: set Orderless + Eglot
-;; (add-to-list 'completion-category-overrides '(eglot (styles orderless))))
-;; (setq completion-category-overrides '((eglot (styles orderless))
-;;                                       (eglot-capf (styles orderless))))
-;; (setq completion-category-defaults nil)
-;; (add-to-list
-;;  'eglot-server-programs
-;;  '((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
-;;    "typescript-language-server" "--stdio"
-;;    ;; I totally came up with these myself
-;;    :initializationOptions
-;;    (:preferences
-;;     (
-;;      :includeInlayEnumMemberValueHints t
-;;      :includeInlayFunctionLikeReturnTypeHints t
-;;      :includeInlayFunctionParameterTypeHints t
-;;      :includeInlayParameterNameHints "all" ; "none" | "literals" | "all"
-;;      :includeInlayParameterNameHintsWhenArgumentMatchesName t
-;;      :includeInlayPRopertyDeclarationTypeHints t
-;;      :includeInlayVariableTypeHints t
-;;      :includeInlayVariableTypeHintsWhenTypeMatchesName t))))
-;; (add-to-list 'eglot-server-programs
-;;              '((terraform-mode) "tofu-ls serve"))
-;; (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster")
   :after eglot
   :config
   (eglot-booster-mode))
-
-;; (use-package eglot-x
-;;   :straight (:host github :repo "nemethf/eglot-x")
-;;   :after eglot
-;;   :config
-;;   (eglot-x-setup))
 
 (use-package xref
   :straight (:type built-in)
@@ -126,8 +90,8 @@
 (use-package eldoc-box
   :straight t
   :general
-  (:keymaps 'eglot-mode-map
-            "M-1" 'jpdl/eldoc-box-toggle)
+  (:keymaps
+   "M-1" 'jpdl/eldoc-box-toggle)
   (jpdl/spc-leader
     "d t" 'jpdl/eldoc-box-toggle)
   :preface

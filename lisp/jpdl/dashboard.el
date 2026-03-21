@@ -4,6 +4,7 @@
 ;;; Code:
 (use-package dashboard
   :straight t
+  :after (project org)
   :hook (server-after-make-frame . dashboard-refresh-buffer)
   :init (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   :config
@@ -15,7 +16,7 @@
   (setq dashboard-projects-backend 'project-el)
   (setq dashboard-projects-switch-function 'project-switch-project)
   (setq show-week-agenda-p t)
-                                        ;(setq recentf-exclude (org-agenda-files))
+  (setq recentf-exclude (org-agenda-files))
   (setq dashboard-items '(
                           (recents  . 5)
                           (projects . 5)

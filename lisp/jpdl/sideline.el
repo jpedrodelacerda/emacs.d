@@ -17,11 +17,12 @@
         ))
 
 (use-package flymake
-  :straight (:type built-in)
+  :straight t
   :hook (prog-mode . flymake-mode)
   :general
   (jpdl/spc-leader
-    "l l" 'jpdl/flymake-toggle-fancy-diagnostics)
+    "l P" 'flymake-show-project-diagnostics
+    "d f" 'jpdl/flymake-toggle-fancy-diagnostics)
   :config
   (defun jpdl/flymake-toggle-fancy-diagnostics ()
     "Toggle flymake fancy diagnostics"

@@ -10,14 +10,15 @@
   :straight t
   :hook
   (after-init . apheleia-global-mode)
-  ;; (before-save . jpdl/format-buffer)
-  (before-save . apheleia-format-buffer)
   :general
   ("C-c C-f" 'jpdl/format-buffer)
   (jpdl/spc-leader
     "f f" 'jpdl/format-buffer
     "l f" 'jpdl/format-buffer)
   :config
+  (setf (alist-get 'rustfmt apheleia-formatters)
+        '("rustfmt" "--edition" (or (bound-and-true-p rust-edition) "2024")
+          "--quiet" "--emit" "stdout"))
   (defun jpdl/get-formatter-backend ()
     "Returns an appropriate backend for formatting the current buffer.
 

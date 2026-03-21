@@ -184,7 +184,6 @@
 ;;   :straight (:type built-in)
 (use-package python-mode
   :straight t
-  :mode "\\.py\\'"
   :hook (python-ts-mode . eglot-ensure)
   :config
   (jpdl/append-to-path "~/.local/bin")
@@ -198,8 +197,13 @@
 
 (use-package code-cells
   :straight t
-  :mode "\\.ipynb\\'"
-  :hook (python-mode . code-cells-mode-maybe)
+  :commands (code-cells-mode)
+  :hook (python-mode . code-cells-mode)
+  :custom
+  '(
+    ("pandoc" "--to" "ipynb" "--from" "org")
+    ("pandoc" "--to" "org" "--from" "ipynb")
+    org-mode)
   :config
   (with-eval-after-load 'code-cells
     (let ((map code-cells-mode-map))
@@ -224,15 +228,14 @@
   :straight t
   :mode "\\.rs\\'"
   :hook (rust-ts-mode . eglot-ensure)
-  :init (setq rust-mode-treesitter-derive t))
+  :custom
+  (rust-mode-treesitter-derive (and (fboundp 'treesit-available-p)
+                                    (treesit-available-p)))
+  (rust-ts-flymake-command '("cargo" "clippy")))
 
 (use-package cargo
   :straight t
   :hook (rust-ts-mode . cargo-minor-mode))
-
-(use-package flycheck-rust
-  :straight t
-  :hook (flycheck-mode . flycheck-rust-setup))
 
 ;; sh
 (add-hook 'sh-mode-hook
@@ -293,10 +296,6 @@
   :straight t
   :mode ("\\.elm")
   :hook (elm-mode . eglot-ensure))
-
-(use-package gren-mode
-  :straight (:host github :repo "MaeBrooks/gren-mode")
-  :mode ("\\.gren\\'" . gren-ts-mode))
 
 (use-package yuck-mode
   :straight t

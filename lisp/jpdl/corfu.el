@@ -49,6 +49,8 @@
     (and (eq index 0) 'orderless-flex))
   ;; (global-corfu-mode)
   :config
+  (global-corfu-mode)
+  (setq global-corfu-minibuffer t)
   (corfu-history-mode 1)
   (savehist-mode 1)
   (add-to-list 'savehist-additional-variables 'corfu-history)

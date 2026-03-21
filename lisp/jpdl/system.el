@@ -118,7 +118,6 @@
 
 (use-package direnv
   :straight t
-  :ensure t
   :config
   (direnv-mode))
 
