@@ -24,17 +24,42 @@
   (jpdl/spc-leader :keymaps 'org-mode-map
     "o t" 'org-todo
     "RET" 'org-open-at-point
-    "g f" 'org-open-at-point)
+    "g f" 'org-open-at-point
+    "c c" 'org-ctrl-c-ctrl-c
+    "c e" 'org-edit-special
+    "c p" 'org-babel-previous-src-block
+    "c k" 'org-babel-previous-src-block
+    "c n" 'org-babel-next-src-block
+    "c j" 'org-babel-next-src-block
+    "o i" 'org-toggle-inline-images)
+  (jpdl/spc-leader :keymaps 'org-src-mode-map
+    "c c" 'org-edit-src-quit
+    "c k" 'org-edit-src-abort)
   :config
   (setq org-directory (file-truename (concat (getenv "HOME") "/org"))
         org-ellipsis " ..."
         org-src-tab-acts-natively t
         org-id-track-globally t
         org-support-shift-select 'always
-        org-export-with-sub-superscripts nil)
+        org-export-with-sub-superscripts nil
+        org-confirm-babel-evaluate nil
+        org-src-preserve-indentation t
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t)
   (unless (file-exists-p org-directory)
     make-directory org-directory)
   (setq org-default-notes-file (concat org-directory "/refile.org")))
+
+(use-package ob-async
+  :straight t
+  :after org)
+;; (use-package ob-shell
+;;   :straight nil)
+
+;; (use-package inheritenv
+;;   :straight t
+;;   :config
+;;   (advice-add 'org-babel-execute-src-block :around #'inheritenv-apply))
 
 ;; Prettify UI
 (use-package org-modern

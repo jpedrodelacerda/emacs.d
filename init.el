@@ -47,11 +47,11 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (require 'jpdl/general)
+(require 'jpdl/evil)
 (require 'jpdl/font)
 (require 'jpdl/system)
 (require 'jpdl/theme)
 (require 'jpdl/dashboard)
-(require 'jpdl/evil)
 (require 'jpdl/pairs)
 (require 'jpdl/org)
 (require 'jpdl/user)

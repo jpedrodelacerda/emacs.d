@@ -5,11 +5,11 @@
 
 ;;; Code:
 (use-package eglot
-  ;; :straight (:type built-in)
-  :straight t
+  :straight (:type built-in)
+  :after (general)
+  :ensure t
   :general
-  (:keymaps
-   "C-c f" 'eglot-format
+  ("C-c f" 'eglot-format
    "C-c F" 'eglot-format-buffer
    "C-c r" 'eglot-rename
    "C-c R" 'eglot-reconnect
@@ -90,8 +90,7 @@
 (use-package eldoc-box
   :straight t
   :general
-  (:keymaps
-   "M-1" 'jpdl/eldoc-box-toggle)
+  ("M-1" 'jpdl/eldoc-box-toggle)
   (jpdl/spc-leader
     "d t" 'jpdl/eldoc-box-toggle)
   :preface

@@ -87,10 +87,6 @@
   :straight t
   :after yasnippet)
 
-
-(use-package yasnippet-snippets
-  :straight t)
-
 (use-package minions
   :straight t
   :config
@@ -116,10 +112,15 @@
   :config
   (editorconfig-mode 1))
 
-(use-package direnv
+(use-package envrc
+  :straight t
+  :hook (after-init . envrc-global-mode))
+
+(use-package inheritenv
   :straight t
   :config
-  (direnv-mode))
+  (advice-add 'org-babel-execute-src-block :around #'inheritenv-apply)
+  (advice-add 'process-file :around #'inheritenv-apply))
 
 (use-package drag-stuff
   :straight t

@@ -185,10 +185,19 @@
 (use-package python-mode
   :straight t
   :hook (python-ts-mode . eglot-ensure)
+  :custom
+  (python-indent-guess-indent-offset nil)
   :config
   (jpdl/append-to-path "~/.local/bin")
   (add-to-list 'eglot-server-programs
                '((python python-ts-mode) . ("ruff" "server"))))
+
+(use-package pyvenv
+  :straight t
+  :init
+  (setopt pyvenv-mode-line-indicator '(pyvenv-virtual-env-name ("[" pyvenv-virtual-env-name "] ")))
+  :config
+  (pyvenv-mode 1))
 
 (use-package python-black
   :straight t
@@ -197,13 +206,22 @@
 
 (use-package code-cells
   :straight t
-  :commands (code-cells-mode)
-  :hook (python-mode . code-cells-mode)
+  :hook (python-mode . code-cells-mode-maybe)
+  :general
+  ;; (:keymaps 'code-cells-mode-map
+  ;;           ("M-p" . code-cells-backward-cell)
+  ;;           ("M-n" . code-cells-forward-cell)
+  ;;           ("C-c C-c" . code-cells-eval))
+  (jpdl/spc-leader :keymaps 'code-cells-mode-map
+    "c n" 'code-cells-forward-cell
+    "c p" 'code-cells-backward-cell
+    "c e" 'code-cells-eval
+    "c E" 'code-cells-eval-whole-buffer
+    "c d" 'code-cells-duplicate)
   :custom
-  '(
-    ("pandoc" "--to" "ipynb" "--from" "org")
-    ("pandoc" "--to" "org" "--from" "ipynb")
-    org-mode)
+  (code-cells-convert-ipynb-style '(("pandoc" "--to" "ipynb" "--from" "org")
+                                    ("pandoc" "--to" "org" "--from" "ipynb")
+                                    (lambda () #'org-mode)))
   :config
   (with-eval-after-load 'code-cells
     (let ((map code-cells-mode-map))
@@ -212,12 +230,138 @@
       (define-key map [remap evil-backward-word-begin] (code-cells-speed-key 'code-cells-eval-above)) ;; b
       (define-key map [remap evil-forward-word-end] (code-cells-speed-key 'code-cells-eval)) ;; e
       (define-key map [remap evil-jump-forward] (code-cells-speed-key 'outline-cycle)))) ;; TAB
+  (defun jpdl/code-cells-insert ()
+    (interactive)
+    (when (not (bolp))
+      (newline 2))
+    (insert (substring code-cells-boundary-regexp 1))
+    (newline 2))
   )
 
-;; TOML support.
-;; (use-package toml-mode
+;; (use-package ein
 ;;   :straight t
-;;   :mode "\\.toml\\'")
+;;   :commands (ein:run ein:login)
+;;   ;; :mode ("\\.ipynb\\'" . ein:ipynb-mode)
+;;   :general
+;;   (jpdl/spc-leader :keymaps 'ein:notebook-mode-map
+;;     "C-c C-c" 'ein:worksheet-execute-cell
+;;     "C-c C-a" 'ein:worksheet-execute-all-cells
+;;     "C-c C-n" 'ein:worksheet-goto-next-input
+;;     "C-c C-p" 'ein:worksheet-goto-prev-input
+;;     "C-c C-k" 'ein:worksheet-kill-cell
+;;     "C-c C-y" 'ein:worksheet-yank-cell
+;;     "C-c C-o" 'ein:worksheet-clear-output)
+;;   (jpdl/spc-leader :keymaps 'ein:notebook-mode-map
+;;     "c c" 'ein:worksheet-execute-cell
+;;     "c a" 'ein:worksheet-execute-all-cells
+;;     "c n" 'ein:worksheet-goto-next-input
+;;     "c p" 'ein:worksheet-goto-prev-input
+;;     "c k" 'ein:worksheet-kill-cell
+;;     "c y" 'ein:worksheet-yank-cell
+;;     "c o" 'ein:worksheet-clear-output))
+;; ;; :custom
+;; ;; (ein:jupyter-default-server-command 'jupyter)
+;; ;; (ein:jupyter-server-use-subcommand 'notebook))
+
+(defun jpdl/new-notebook (notebook-name &optional kernel)
+  "Creates an empty notebook in the current directory with an associated kernel."
+  (interactive "sEnter the notebook name: ")
+  (when (file-name-extension notebook-name)
+    (setq notebook-name (file-name-sans-extension notebook-name)))
+  (unless kernel
+    (setq kernel
+          (jupyter-kernelspec-name
+           (jupyter-completing-read-kernelspec))))
+  (unless (executable-find "jupytext")
+    (error "Can't find \"jupytext\""))
+  (let ((notebook-py (concat notebook-name ".py")))
+    (shell-command (concat "touch " notebook-py))
+    (shell-command
+     (concat "jupytext --set-kernel " kernel " " notebook-py))
+    (shell-command (concat "jupytext --to notebook " notebook-py))
+    (shell-command (concat "rm " notebook-py))
+    (message
+     (concat
+      "Notebook successfully created at " notebook-name ".ipynb"))))
+
+(use-package jupyter
+  :straight t
+  :general
+  (jpdl/spc-leader :keymaps 'jupyter-org-interaction-mode-map
+    "c ?" 'jupyter-org-inspect-src-block
+    "c r" 'jpdl/jupyter-org-restart-kernel)
+  :custom
+  (jupyter-long-timeout 100)
+  :config
+  (setq jupyter-use-zmq t)
+  (inheritenv-add-advice 'jupyter-command)
+  (setq org-babel-default-header-args:jupyter-python
+        '((:results . "both")
+	      ;; This seems to lead to buffer specific sessions!
+	      (:session . (lambda () (buffer-file-name)))
+	      (:kernel . "python3")
+	      (:pandoc . "t")
+	      (:exports . "both")
+	      (:cache .   "no")
+	      (:noweb . "no")
+	      (:hlines . "no")
+	      ;; (:tangle . "no")
+	      (:eval . "never-export")))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (julia . t)
+     (python . t)
+     (jupyter . t)))
+  (require 'org-src)
+  (require 'ob-async)
+  (require 'ob-jupyter)
+  (require 'jupyter)
+  (require 'jupyter-org-client)
+
+  (org-babel-jupyter-aliases-from-kernelspecs)
+
+  (defun jpdl/jupyter-org-restart-kernel ()
+    "Restart the kernel of the source block where point is."
+    (interactive)
+    (jupyter-org-with-src-block-client
+     (jupyter-repl-restart-kernel)))
+
+  (defun jupyter-repl-sync-execution-state-1 (timeout)
+    (jupyter-run-with-client jupyter-current-client
+      (jupyter-mlet* ((_msg (jupyter-reply
+                             (jupyter-execute-request
+                              :code ""
+                              :silent t
+                              :handlers nil)
+                             timeout)))
+        (jupyter-return nil))))
+
+  (defun jupyter-repl-sync-execution-state ()
+    "Synchronize the `jupyter-current-client's kernel state.
+  Also update the cell count of the current REPL input prompt using
+  the updated state."
+    (let* ((deadline (+ (float-time) jupyter-long-timeout))
+           (timeout 0.05))
+      (while
+          (condition-case nil
+              (jupyter-repl-sync-execution-state-1 timeout)
+            (jupyter-timeout-before-idle
+             (let ((remaining (- deadline (float-time))))
+               (when (< remaining 0)
+                 (signal 'jupyter-timeout-before-idle '("connect timeout")))
+               (setf timeout
+                     (min remaining
+                          (max (expt timeout 1.5) 1.0))))))))
+    (let ((client jupyter-current-client))
+      (unless (equal (jupyter-execution-state client) "busy")
+        ;; Set the cell count and update the prompt
+        (jupyter-with-repl-buffer client
+          (save-excursion
+            (goto-char (point-max))
+            (jupyter-repl-update-cell-count
+             (oref client execution-count))))))
+    nil))
 
 (use-package toml-ts-mode
   :straight (:type built-in)
