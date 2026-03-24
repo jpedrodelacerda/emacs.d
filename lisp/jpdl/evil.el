@@ -56,6 +56,7 @@
   :straight t
   :after (evil)
   :config
+  (setq forge-add-default-bindings nil)
   (evil-collection-init))
 
 (use-package evil-org
