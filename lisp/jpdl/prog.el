@@ -220,7 +220,7 @@
     "c d" 'code-cells-duplicate)
   :custom
   (code-cells-convert-ipynb-style '(("pandoc" "--to" "ipynb" "--from" "org")
-                                    ("pandoc" "--to" "org" "--from" "ipynb")
+                                    ("pandoc" "--to" "org" "--from" "ipynb" "--ipynb-output=none")
                                     (lambda () #'org-mode)))
   :config
   (with-eval-after-load 'code-cells
@@ -236,6 +236,41 @@
       (newline 2))
     (insert (substring code-cells-boundary-regexp 1))
     (newline 2))
+
+  ;;   (defun jpdl/code-cells-write-ipynb (&optional file)
+  ;;     "Convert buffer to ipynb format and write to FILE.
+  ;; Interactively, asks for the file name.  When called from Lisp,
+  ;; FILE defaults to the current buffer file name."
+  ;;     (interactive "F")
+  ;;     (let* ((file (or file buffer-file-name))
+  ;;            (ox-ipynb-export-to-ipynb-file))
+  ;;       ;; (exit (code-cells--call-process temp (ox-ipynb-export-org-file-to-ipynb-file))))
+  ;;       ;; (exit (code-cells--call-process temp (car code-cells-convert-ipynb-style))))
+  ;;       ;; (with-current-buffer temp
+  ;;       ;;   (write-region nil nil file)
+  ;;       ;;   (kill-buffer))
+  ;;       (when (eq file buffer-file-name)
+  ;;         (set-buffer-modified-p nil)
+  ;;         (set-visited-file-modtime))
+  ;;       'job-done))
+
+  ;;   (defun code-cells-convert-ipynb ()
+  ;;     "Convert buffer from ipynb format to a regular script."
+  ;;     (let* ((mode (funcall (caddr code-cells-convert-ipynb-style)))
+  ;;            (exit (progn
+  ;;                    (goto-char (point-min))
+  ;;                    (code-cells--call-process t (cadr code-cells-convert-ipynb-style)))))
+  ;;       (unless (zerop exit)
+  ;;         (delete-region (point-min) (point))
+  ;;         (error "Error converting notebook (exit code %s)" exit))
+  ;;       (delete-region (point) (point-max))
+  ;;       (goto-char (point-min))
+  ;;       (set-buffer-modified-p nil)
+  ;;       (add-hook 'write-file-functions #'jpdl/code-cells-write-ipynb 80 t)
+  ;;       (when (fboundp mode)
+  ;;         (funcall mode)
+  ;;         (run-hooks (cadddr code-cells-convert-ipynb-style)))))
+  ;; (add-hook 'write-file-functions #'jpdl/code-cells-write-ipynb 80 t)
   )
 
 ;; (use-package ein
@@ -295,6 +330,7 @@
   :config
   (setq jupyter-use-zmq t)
   (inheritenv-add-advice 'jupyter-command)
+  (advice-add 'jupyter-command :around #'envrc-propagate-environment)
   (setq org-babel-default-header-args:jupyter-python
         '((:results . "both")
 	      ;; This seems to lead to buffer specific sessions!
@@ -307,6 +343,7 @@
 	      (:hlines . "no")
 	      ;; (:tangle . "no")
 	      (:eval . "never-export")))
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
@@ -339,8 +376,8 @@
 
   (defun jupyter-repl-sync-execution-state ()
     "Synchronize the `jupyter-current-client's kernel state.
-  Also update the cell count of the current REPL input prompt using
-  the updated state."
+    Also update the cell count of the current REPL input prompt using
+    the updated state."
     (let* ((deadline (+ (float-time) jupyter-long-timeout))
            (timeout 0.05))
       (while

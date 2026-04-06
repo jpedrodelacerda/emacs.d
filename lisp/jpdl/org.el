@@ -10,6 +10,8 @@
   (org-shiftleft-final . windmove-left)
   (org-shiftdown-final . windmove-down)
   (org-shiftright-final . windmove-right)
+  (org-mode . auto-insert)
+  (before-save . auto-insert)
   :general
   (:keymaps 'org-mode-map :states '(normal visual emacs)
             "RET" 'org-open-at-point)
@@ -31,7 +33,9 @@
     "c k" 'org-babel-previous-src-block
     "c n" 'org-babel-next-src-block
     "c j" 'org-babel-next-src-block
-    "o i" 'org-toggle-inline-images)
+    "o i" 'org-toggle-inline-images
+    "o p" 'org-toggle-pretty-entities
+    "o l" 'org-latex-preview)
   (jpdl/spc-leader :keymaps 'org-src-mode-map
     "c c" 'org-edit-src-quit
     "c k" 'org-edit-src-abort)
@@ -45,10 +49,28 @@
         org-confirm-babel-evaluate nil
         org-src-preserve-indentation t
         org-src-fontify-natively t
-        org-src-tab-acts-natively t)
+        org-src-tab-acts-natively t
+        org-pretty-entities t
+        org-pretty-entities-include-sub-superscripts t
+        org-startup-with-latex-preview t
+        org-use-sub-superscripts "{}"
+        org-export-with-sub-superscripts "{}")
   (unless (file-exists-p org-directory)
     make-directory org-directory)
   (setq org-default-notes-file (concat org-directory "/refile.org")))
+
+(use-package autoinsert
+  :straight (:type built-in)
+  :hook (after-init . auto-insert-mode)
+  :general
+  (jpdl/spc-leader
+    "a i" 'auto-insert)
+  :custom
+  (auto-insert t)
+  :config
+  (define-auto-insert 'org-mode
+    '(nil
+      "#+OPTIONS: ^:{}")))
 
 (use-package ob-async
   :straight t
