@@ -17,6 +17,8 @@
   ;;   (set-face-attribute 'bold nil :weight 'extra-bold))
   ;;  ((find-font (font-spec :name "Hack FC Ligatured"))
   ;;   (set-face-attribute 'default nil :font "Hack FC Ligatured" :height 116)))
+  (set-face-attribute 'default nil
+                      :height 160)
   (custom-set-faces
    '(tab-bar ((t (:height 0.9))))
    '(mode-line ((t (:height 0.9))))

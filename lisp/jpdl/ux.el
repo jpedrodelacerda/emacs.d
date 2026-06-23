@@ -4,6 +4,10 @@
 
 ;;; Code:
 
+;; Scroll
+(setq pixel-scroll-precision-use-momentum t)
+(pixel-scroll-precision-mode 1)
+
 ;; Themes
 (use-package emojify
   :straight t

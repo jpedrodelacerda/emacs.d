@@ -61,12 +61,9 @@
 
 (use-package autoinsert
   :straight (:type built-in)
-  :hook (after-init . auto-insert-mode)
   :general
   (jpdl/spc-leader
     "a i" 'auto-insert)
-  :custom
-  (auto-insert t)
   :config
   (define-auto-insert 'org-mode
     '(nil

@@ -25,6 +25,7 @@
     "l q" 'eglot-code-action-quickfix
     "l o" 'eglot-code-action-organize-imports)
   :custom
+  (eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
   (eglot-server-programs '(
                            ((python python-ts-mode) "ruff" "server")
                            ((nix-mode nix-ts-mode) "nil" :initializationOptions

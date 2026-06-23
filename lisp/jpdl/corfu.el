@@ -13,7 +13,10 @@
   (minibuffer-setup . jpdl/corfu-enable-always-in-minibuffer)
   (corfu-mode . corfu-popupinfo-mode)
   (corfu--done . corfu-popupinfo-hide)
-  (org-mode . (lambda () (setq-local corfu-auto nil)))
+  (org-mode . (lambda () ((corfu-mode -1)
+                          (setq-local corfu-auto nil)
+                          (corfu--on)
+                          )))
   :general
   ("C-`" 'completion-at-point)
   (:keymaps 'corfu-map
