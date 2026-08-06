@@ -25,13 +25,13 @@
   (enable-recursive-minibuffers t)
   (read-extended-command-predicate #'command-completion-default-include-p)
   ;; :custom
-  ;; (vertico-multiform-commands
-  ;;  '((consult-imenu buffer indexed)
-  ;;    (consult-ripgrep buffer indexed)))
-  ;; (vertico-multiform-categories
-  ;;  '((file grid)
-  ;;    (consult-grep vertical)
-  ;;    (consult-ripgrep vertical)))
+  (vertico-multiform-commands
+   '((consult-imenu buffer)
+     (consult-ripgrep buffer)))
+  (vertico-multiform-categories
+   '((file grid)
+     (consult-grep vertical)
+     (consult-ripgrep vertical)))
   :init
   (vertico-mode)
   (vertico-multiform-mode)

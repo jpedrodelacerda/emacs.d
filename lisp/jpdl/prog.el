@@ -147,7 +147,7 @@
 
 ;; =markdown=
 (use-package markdown-ts-mode
-  :straight t)
+  :straight (:type built-in))
 
 (use-package markdown-toc
   :straight (:host github :repo "jpedrodelacerda/markdown-toc")

@@ -57,9 +57,12 @@
   (add-to-list 'consult-buffer-sources persp-consult-source)
   (setq consult-narrow-key "<"
         consult-preview-key "M-.")
-  (add-to-list 'vertico-multiform-commands '(consult-ripgrep buffer indexed))
-  (add-to-list 'vertico-multiform-commands '(consult-grep buffer indexed))
-  (add-to-list 'vertico-multiform-commands '(consult-git-grep buffer indexed)))
+  (add-to-list 'vertico-multiform-commands '(consult-ripgrep buffer))
+  (add-to-list 'vertico-multiform-commands '(consult-grep buffer))
+  (add-to-list 'vertico-multiform-commands '(consult-git-grep buffer)))
+;; (add-to-list 'vertico-multiform-commands '(consult-ripgrep buffer indexed))
+;; (add-to-list 'vertico-multiform-commands '(consult-grep buffer indexed))
+;; (add-to-list 'vertico-multiform-commands '(consult-git-grep buffer indexed)))
 
 (use-package consult-project-extra
   :straight t

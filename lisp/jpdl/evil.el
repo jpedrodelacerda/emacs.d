@@ -30,7 +30,11 @@
     "," 'evil-jump-backward
     "]" 'evil-jump-forward
     "/" 'evil-jump-forward
-    "x s" 'evil-write)
+    "x s" 'evil-write
+    "Z Q" 'evil-delete-buffer
+    "z q" 'evil-delete-buffer
+    "Z Z" 'jpdl/save-and-kill-buffer
+    "z z" 'jpdl/save-and-kill-buffer)
   :config
   (evil-mode 1)
   (setq evil-emacs-state-mode nil)
@@ -38,6 +42,15 @@
   (general-def :states '(normal motion insert) "M-." 'nil)
                                         ;(general-def :states '(normal motion insert) "C-o" 'nil)
                                         ;(general-def :states '(normal insert) "C-p" 'nil)
+  (defun jpdl/save-and-kill-buffer ()
+    "Save buffer contents and kill buffer."
+    (interactive)
+    (save-buffer)
+    (set (make-local-variable 'kill-buffer-query-functions) nil)
+    (kill-buffer (current-buffer)))
+
+  (evil-ex-define-cmd "q" 'evil-delete-buffer)
+  (evil-ex-define-cmd "wq" 'jpdl/save-and-kill-buffer)
   (setq evil-want-fine-undo t)
   (evil-set-undo-system 'undo-fu)
   (setq evil-want-abbrev-expand-on-insert-exit nil))
