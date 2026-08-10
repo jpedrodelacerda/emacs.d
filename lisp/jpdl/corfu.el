@@ -13,10 +13,8 @@
   (minibuffer-setup . jpdl/corfu-enable-always-in-minibuffer)
   (corfu-mode . corfu-popupinfo-mode)
   (corfu--done . corfu-popupinfo-hide)
-  (org-mode . (lambda () ((corfu-mode -1)
-                          (setq-local corfu-auto nil)
-                          (corfu--on)
-                          )))
+  (prog-mode . (lambda ()
+                 (setq-local corfu-auto t)))
   :general
   ("C-`" 'completion-at-point)
   (:keymaps 'corfu-map
@@ -40,7 +38,7 @@
   (corfu-separator ?\s)
   (corfu-quit-no-match t)
   ;; (corfu-preview-current nil)
-  (corfu-auto t)
+  (corfu-auto nil)
   (corfu-auto-prefix 2)
   (corfu-auto-delay 0.25)
   ;; (corfu-min-width 80)
@@ -57,6 +55,10 @@
   (corfu-history-mode 1)
   (savehist-mode 1)
   (add-to-list 'savehist-additional-variables 'corfu-history)
+  (defun jpdl/corfu-auto-local-toggle ()
+    (interactive)
+    "Toggle corfu-auto on current buffer"
+    (setq-local corfu-auto (not corfu-auto)))
   (defun jpdl/corfu-enable-always-in-minibuffer ()
     "Enable Corfu in the minibuffer if Vertico/Mct are not active."
     (unless (or (bound-and-true-p mct--active) ; Useful if I ever use MCT

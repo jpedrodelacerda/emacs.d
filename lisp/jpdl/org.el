@@ -52,7 +52,6 @@
         org-src-tab-acts-natively t
         org-pretty-entities t
         org-pretty-entities-include-sub-superscripts t
-        org-startup-with-latex-preview t
         org-use-sub-superscripts "{}"
         org-export-with-sub-superscripts "{}")
   (unless (file-exists-p org-directory)
@@ -211,6 +210,19 @@
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start nil))
+
+(use-package citar
+  :straight t
+  :custom
+  (citar-bibliography '("~/org/research/references.bib"))
+  :hook
+  (LaTeX-mode . citar-capf-setup)
+  (org-mode . citar-capf-setup))
+
+(use-package citar-org-roam
+  :straight t
+  :after (citar org-roam)
+  :config (citar-org-roam-mode))
 
 (use-package org-timeline
   :straight t

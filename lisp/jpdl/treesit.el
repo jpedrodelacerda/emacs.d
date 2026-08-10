@@ -18,6 +18,7 @@
           (elisp . ("https://github.com/Wilfred/tree-sitter-elisp"))
           (elixir . ("https://github.com/elixir-lang/tree-sitter-elixir"))
           (erlang . ("https://github.com/WhatsApp/tree-sitter-erlang"))
+          (gleam . ("https://github.com/gleam-lang/tree-sitter-gleam"))
           (go . ("https://github.com/tree-sitter/tree-sitter-go"))
           (hcl . ("https://github.com/tree-sitter-grammars/tree-sitter-hcl"))
           (html . ("https://github.com/tree-sitter/tree-sitter-html"))
@@ -68,11 +69,11 @@
 (use-package treesit-fold
   :straight (treesit-fold :type git :host github :repo "emacs-tree-sitter/treesit-fold")
   :general
-  ("M-<tab>" 'treesit-fold-toggle
-   "C-M-<tab>" 'treesit-fold-open-all
-   "C-M-<escape>" 'treesit-fold-close-all)
+  ;; ("M-<tab>" 'treesit-fold-toggle
+  ;;  "C-M-<tab>" 'treesit-fold-open-all
+  ;;  "C-M-<escape>" 'treesit-fold-close-all)
   (:states '(normal)
-           "zf" 'treesit-fold-toggle
+           "zz" 'treesit-fold-toggle
            "za" 'treesit-fold-toggle
            "zo" 'treesit-fold-open
            "zq" 'treesit-fold-open-recursively

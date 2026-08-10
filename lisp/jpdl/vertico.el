@@ -24,17 +24,8 @@
   (vertico-cycle t)
   (enable-recursive-minibuffers t)
   (read-extended-command-predicate #'command-completion-default-include-p)
-  ;; :custom
-  (vertico-multiform-commands
-   '((consult-imenu buffer)
-     (consult-ripgrep buffer)))
-  (vertico-multiform-categories
-   '((file grid)
-     (consult-grep vertical)
-     (consult-ripgrep vertical)))
   :init
   (vertico-mode)
-  (vertico-multiform-mode)
   :config
   (defvar +vertico-transform-functions nil)
   (cl-defmethod vertico--format-candidate :around
@@ -89,7 +80,7 @@
         vertico-posframe-parameters '(
                                       (left-fringe . 8)
                                       (right-fringe . 8)))
-  (vertico-posframe-mode 1))
+  (vertico-multiform-mode 1))
 
 (provide 'jpdl/vertico)
 ;;; vertico.el ends here

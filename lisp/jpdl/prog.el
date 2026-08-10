@@ -71,6 +71,11 @@
     "C-c a o"   "macroexpand"
     "C-c a f"   "info"))
 
+;; gleam
+(use-package gleam-ts-mode
+  :straight t
+  :mode (rx ".gleam" eos))
+
 ;; Lua
 (use-package lua-mode
   :straight t
@@ -206,7 +211,9 @@
 
 (use-package code-cells
   :straight t
-  :hook (python-mode . code-cells-mode-maybe)
+  :hook
+  (python-mode . code-cells-mode-maybe)
+  (after-revert . code-cells-convert-ipynb)
   :general
   ;; (:keymaps 'code-cells-mode-map
   ;;           ("M-p" . code-cells-backward-cell)
@@ -220,7 +227,8 @@
     "c d" 'code-cells-duplicate)
   :custom
   (code-cells-convert-ipynb-style '(("pandoc" "--to" "ipynb" "--from" "org")
-                                    ("pandoc" "--to" "org" "--from" "ipynb" "--ipynb-output=none")
+                                    ("pandoc" "--to" "org" "--from" "ipynb")
+                                    ;; ("pandoc" "--to" "org" "--from" "ipynb" "--ipynb-output=none")
                                     (lambda () #'org-mode)))
   :config
   (with-eval-after-load 'code-cells
@@ -230,6 +238,9 @@
       (define-key map [remap evil-backward-word-begin] (code-cells-speed-key 'code-cells-eval-above)) ;; b
       (define-key map [remap evil-forward-word-end] (code-cells-speed-key 'code-cells-eval)) ;; e
       (define-key map [remap evil-jump-forward] (code-cells-speed-key 'outline-cycle)))) ;; TAB
+  (defun jpdl/code-cells-revert
+      (interactive)
+    (code-cells-convert-ipynb))
   (defun jpdl/code-cells-insert ()
     (interactive)
     (when (not (bolp))

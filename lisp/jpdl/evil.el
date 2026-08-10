@@ -22,9 +22,11 @@
             "C-s" 'evil-write
             "C--" 'evil-jump-backward
             "C-=" 'evil-jump-forward
-            "M-2" 'evilmi-jump-items)
+            "M-2" 'evil-jump-items
+            [remap evil-quit] 'evil-delete-buffer)
   (:keymaps 'org-mode-map
-            [remap evil-find-file-at-point] 'org-open-at-point)
+            [remap evil-find-file-at-point] 'org-open-at-point
+            )
   (jpdl/spc-leader
     "[" 'evil-jump-backward
     "," 'evil-jump-backward
@@ -49,6 +51,11 @@
     (set (make-local-variable 'kill-buffer-query-functions) nil)
     (kill-buffer (current-buffer)))
 
+  (defun jpdl/kill-buffer ()
+    "Save buffer contents and kill buffer."
+    (interactive)
+    (set (make-local-variable 'kill-buffer-query-functions) nil)
+    (kill-buffer (current-buffer)))
   (evil-ex-define-cmd "q" 'evil-delete-buffer)
   (evil-ex-define-cmd "wq" 'jpdl/save-and-kill-buffer)
   (setq evil-want-fine-undo t)

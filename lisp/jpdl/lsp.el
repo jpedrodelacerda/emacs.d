@@ -9,14 +9,15 @@
   :after (general)
   :ensure t
   :general
-  ("C-c f" 'eglot-format
-   "C-c F" 'eglot-format-buffer
-   "C-c r" 'eglot-rename
-   "C-c R" 'eglot-reconnect
-   "C-c a" 'eglot-code-actions
-   "C-c q" 'eglot-code-action-quickfix
-   "C-c o" 'eglot-code-action-organize-imports)
-  (jpdl/spc-leader
+  (:keymaps '(eglot-mode-map)
+            "C-c f" 'eglot-format
+            "C-c F" 'eglot-format-buffer
+            "C-c r" 'eglot-rename
+            "C-c R" 'eglot-reconnect
+            "C-c a" 'eglot-code-actions
+            "C-c q" 'eglot-code-action-quickfix
+            "C-c o" 'eglot-code-action-organize-imports)
+  (jpdl/spc-leader :keymaps '(eglot-mode-map)
     "l f" 'eglot-format
     "l F" 'eglot-format-buffer
     "l r" 'eglot-rename
@@ -49,6 +50,7 @@
                            ((dart-mode dart-ts-mode) "dart" "language-server" "--client-id"
                             "emacs.eglot-dart")
                            ((elixir-mode elixir-ts-mode heex-ts-mode) "elixir-ls")
+                           ((gleam-ts-mode) "gleam" "lsp")
                            ((latex-mode plain-tex-mode context-mode texinfo-mode bibtex-mode
                                         tex-mode) "texlab")
                            (erlang-mode "erlang_ls" "--transport" "stdio")
