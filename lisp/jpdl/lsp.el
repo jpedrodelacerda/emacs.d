@@ -65,12 +65,6 @@
   (setq eglot-autoshutdown t
         eglot-confirm-server-initiated-edits nil))
 
-(use-package eglot-booster
-  :straight (:host github :repo "jdtsmith/eglot-booster")
-  :after eglot
-  :config
-  (eglot-booster-mode))
-
 (use-package xref
   :straight (:type built-in)
   :general
