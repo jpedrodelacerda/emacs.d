@@ -154,35 +154,84 @@
   :straight t
   :after (evil)
   :general
-  ("C-c h h" 'harpoon-quick-menu-hydra
-   "C-c h <return>" 'harpoon-add-file
+  ("C-c h m" 'harpoon-quick-menu-hydra
+   "C-c h <return>" 'harpoon-toggle-quick-menu
+   "C-c h h" 'harpoon-add-file
    "C-c h c" 'harpoon-clear
-   "C-c h q" 'harpoon-toggle-quick-menu
-   "C-c h f" 'harpoon-toggle-file
-   "C-c h 1" 'harpoon-go-to-1
-   "C-c h 2" 'harpoon-go-to-2
-   "C-c h 3" 'harpoon-go-to-3
-   "C-c h 4" 'harpoon-go-to-4
-   "C-c h 5" 'harpoon-go-to-5
-   "C-c h 6" 'harpoon-go-to-6
-   "C-c h 7" 'harpoon-go-to-7
-   "C-c h 8" 'harpoon-go-to-8
-   "C-c h 9" 'harpoon-go-to-9)
+   "C-c h p" 'harpoon-toggle-file
+   "C-c TAB" 'harpoon-go-to-next
+   "C-c <backtab>" 'harpoon-go-to-prev
+   "C-c h q" 'harpoon-go-to-1
+   "C-c h w" 'harpoon-go-to-2
+   "C-c h e" 'harpoon-go-to-3
+   "C-c h r" 'harpoon-go-to-4
+   "C-c h t" 'harpoon-go-to-5
+   "C-c h y" 'harpoon-go-to-6
+   "C-c h u" 'harpoon-go-to-7
+   "C-c h i" 'harpoon-go-to-8
+   "C-c h o" 'harpoon-go-to-9
+   "C-c h Q" 'harpoon-delete-1
+   "C-c h W" 'harpoon-delete-2
+   "C-c h E" 'harpoon-delete-3
+   "C-c h R" 'harpoon-delete-4
+   "C-c h T" 'harpoon-delete-5
+   "C-c h Y" 'harpoon-delete-6
+   "C-c h U" 'harpoon-delete-7
+   "C-c h I" 'harpoon-delete-8
+   "C-c h O" 'harpoon-delete-9)
   (jpdl/spc-leader
-    "h m" 'harpoon-quick-menu-hydra
+    "h m"        'harpoon-quick-menu-hydra
     "h <return>" 'harpoon-toggle-quick-menu
     "h h" 'harpoon-add-file
     "h c" 'harpoon-clear
-    "h f" 'harpoon-toggle-file
-    "h 1" 'harpoon-go-to-1
-    "h 2" 'harpoon-go-to-2
-    "h 3" 'harpoon-go-to-3
-    "h 4" 'harpoon-go-to-4
-    "h 5" 'harpoon-go-to-5
-    "h 6" 'harpoon-go-to-6
-    "h 7" 'harpoon-go-to-7
-    "h 8" 'harpoon-go-to-8
-    "h 9" 'harpoon-go-to-9))
+    "h p" 'harpoon-toggle-file
+    "h TAB" 'harpoon-go-to-next
+    "h <backtab>" 'harpoon-go-to-next
+    "h q" 'harpoon-go-to-1
+    "h w" 'harpoon-go-to-2
+    "h e" 'harpoon-go-to-3
+    "h r" 'harpoon-go-to-4
+    "h t" 'harpoon-go-to-5
+    "h y" 'harpoon-go-to-6
+    "h u" 'harpoon-go-to-7
+    "h i" 'harpoon-go-to-8
+    "h o" 'harpoon-go-to-9
+    "h Q" 'harpoon-delete-1
+    "h W" 'harpoon-delete-2
+    "h E" 'harpoon-delete-3
+    "h R" 'harpoon-delete-4
+    "h T" 'harpoon-delete-5
+    "h Y" 'harpoon-delete-6
+    "h U" 'harpoon-delete-7
+    "h I" 'harpoon-delete-8
+    "h O" 'harpoon-delete-9)
+  (:states '(normal)
+           "f <return>" 'harpoon-toggle-quick-menu
+           "f m" 'harpoon-quick-menu-hydra
+           "f p" 'harpoon-toggle-file
+           "f f" 'harpoon-add-file
+           "f c" 'harpoon-clear
+           "f TAB" 'harpoon-go-to-next
+           "f <backtab>" 'harpoon-go-to-prev
+           "f q" 'harpoon-go-to-1
+           "f w" 'harpoon-go-to-2
+           "f e" 'harpoon-go-to-3
+           "f r" 'harpoon-go-to-4
+           "f t" 'harpoon-go-to-5
+           "f y" 'harpoon-go-to-6
+           "f u" 'harpoon-go-to-7
+           "f i" 'harpoon-go-to-8
+           "f o" 'harpoon-go-to-9
+           "f Q" 'harpoon-delete-1
+           "f W" 'harpoon-delete-2
+           "f E" 'harpoon-delete-3
+           "f R" 'harpoon-delete-4
+           "f T" 'harpoon-delete-5
+           "f Y" 'harpoon-delete-6
+           "f U" 'harpoon-delete-7
+           "f I" 'harpoon-delete-8
+           "f O" 'harpoon-delete-9
+           ))
 
 (use-package sops
   :straight t
