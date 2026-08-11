@@ -11,19 +11,25 @@
             [remap project-find-regexp] 'consult-ripgrep)
   ("C-x C-n" 'consult-project-buffer
    "C-x C-b" 'consult-buffer
+   "C-x 4 C-b" 'jpdl/consult-buffer-other-window
    "M-y" 'consult-yank-pop
    "C-/" 'jpdl/consult-toggle-preview
    "C-x C-l" 'consult-flymake)
   (jpdl/spc-leader
     "s h" 'consult-outline
+    "4 s n" 'jpdl/consult-outline-other-window
     "s n" 'consult-project-buffer
+    "4 s n" 'jpdl/consult-project-buffer-other-window
     "s b" 'consult-buffer
+    "4 s b" 'jpdl/consult-buffer-other-window
     "s l" 'consult-line
+    "4 s l" 'jpdl/consult-line-other-window
     "l l" 'consult-line
-    "4 s n" '(lambda () (interactive) (other-window-prefix) (consult-project-buffer))
-    "4 s b" '(lambda () (interactive) (other-window-prefix) (consult-buffer))
+    "4 l l" 'jpdl/consult-buffer-other-window
     "r g" 'consult-ripgrep
-    "l d" 'consult-flymake)
+    "4 r g" 'jpdl/consult-ripgrep-other-window
+    "l d" 'consult-flymake
+    "4 r g" 'jpdl/consult-flymake-other-window)
   :init
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format)
@@ -39,14 +45,43 @@
           :default  t
           :items    #'persp-get-buffer-names))
   (defvar-local consult-toggle-preview-orig nil)
+  (defun jpdl/consult-buffer-other-window ()
+    "Open consult-buffer buffer on other window"
+    (interactive)
+    (other-window-prefix)
+    (consult-buffer))
+  (defun jpdl/consult-outline-other-window ()
+    "Open consult-outline buffer on other window"
+    (interactive)
+    (other-window-prefix)
+    (consult-outline))
+  (defun jpdl/consult-line-other-window ()
+    "Open consult-line buffer on other window"
+    (interactive)
+    (other-window-prefix)
+    (consult-line))
+  (defun jpdl/consult-flymake-other-window ()
+    "Open consult-flymake buffer on other window"
+    (interactive)
+    (other-window-prefix)
+    (consult-flymake))
+  (defun jpdl/consult-ripgrep-other-window ()
+    "Open consult-ripgrep buffer on other window"
+    (interactive)
+    (other-window-prefix)
+    (consult-ripgrep))
   (defun jpdl/consult-toggle-preview ()
     "Command to enable/disable preview."
     (interactive)
     (if consult-toggle-preview-orig
-        (setq consult--preview-function consult-toggle-preview-orig
-              consult-toggle-preview-orig nil)
-      (setq consult-toggle-preview-orig consult--preview-function
-            consult--preview-function #'ignore)))
+        (progn
+          (setq consult--preview-function consult-toggle-preview-orig
+                consult-toggle-preview-orig nil)
+          (message "Consult toggle enabled!"))
+      (progn
+        (setq consult-toggle-preview-orig consult--preview-function
+              consult--preview-function #'ignore)
+        (message "Consult toggle disabled!"))))
   ;; (push consult--source-perspective consult-buffer-sources)
   (consult-customize consult-theme :preview-key '(:debounce 0.2 any)
                      consult-ripgrep consult-git-grep consult-grep

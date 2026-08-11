@@ -9,7 +9,8 @@
    "C-x C-f" 'counsel-find-file
    "C-x 4 C-f" '((lambda)  (interactive) other-window-prefix counsel-find-file)
    "C-x C-b" 'counsel-switch-buffer
-   "C-x 4 C-b" 'counsel-switch-buffer-other-window
+   ;; "C-x 4 C-b" 'counsel-switch-buffer-other-window
+   "C-x 4 C-f" '((lambda)  (interactive) other-window-prefix counsel-switch-buffer)
    "C-x C-x" 'counsel-buffer-or-recentf)
   (jpdl/spc-leader
     "s f" 'counsel-find-file
