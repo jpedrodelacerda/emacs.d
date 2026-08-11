@@ -28,7 +28,11 @@
   :config
   (windswap-default-keybindings 'meta 'control))
 
-(global-set-key (kbd "M-e") 'toggle-window-split)
+
+(use-package emacs
+  :straight (:type built-in)
+  :general
+  ("M-q" 'toggle-window-split))
 
 (use-package ace-window
   :straight t

@@ -30,7 +30,6 @@
   (evil-define-key 'insert vterm-mode-map (kbd "C-t")      #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-g")      #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-c")      #'vterm--self-insert)
-  (evil-define-key 'insert vterm-mode-map (kbd "C-SPC")    #'vterm--self-insert)
   (evil-define-key 'normal vterm-mode-map (kbd "C-d")      #'vterm--self-insert)
   (evil-define-key 'normal vterm-mode-map (kbd ",c")       #'multi-vterm)
   (evil-define-key 'normal vterm-mode-map (kbd ",n")       #'multi-vterm-next)
@@ -42,8 +41,8 @@
   (:keymaps 'global-map
             [remap project-shell] 'multi-vterm-project)
   ("C-M-<return>" 'multi-vterm-dedicated-toggle
-   "M-t" 'multi-vterm
-   "M-p" 'multi-vterm-project
+   "C-M-t" 'multi-vterm
+   "M-t" 'multi-vterm-project
    "C-." 'multi-vterm-prev
    "C-;" 'multi-vterm-next))
 
@@ -51,11 +50,7 @@
   :straight t
   :general
   (:keymaps 'vterm-mode-map
-            "M-p" 'vterm-toggle)
-  (:keymaps 'vterm-mode-map :states '(normal motion)
-            "`" 'vterm-toggle)
-  (jpdl/spc-leader
-    "`" 'multi-vterm-project)
+            "M-t" 'vterm-toggle)
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
