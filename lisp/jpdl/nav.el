@@ -34,10 +34,16 @@
   :general
   ("M-q" 'toggle-window-split))
 
+(use-package winner-mode
+  :straight (:type built-in)
+  :general
+  ("M-w" 'winner-undo
+   "M-W" 'winner-redo))
+
 (use-package ace-window
   :straight t
   :general
-  ("M-w" 'ace-swap-window))
+  ("M-Q" 'ace-swap-window))
 
 (global-set-key (kbd "C-x 2") 'split-window-below-and-switch)
 (global-set-key (kbd "C-x 3") 'split-window-right-and-switch)
