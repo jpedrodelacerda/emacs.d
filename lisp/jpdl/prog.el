@@ -6,6 +6,23 @@
 
 (require 'jpdl/utils)
 
+(use-package smart-semicolon
+  :straight t
+  :hook
+  (rust-ts-mode . jpdl/setup-smart-semicolon)
+  (nix-ts-mode . jpdl/setup-smart-semicolon-nix)
+  :config
+  (defun jpdl/setup-smart-semicolon ()
+    "Configure `smart-semicolon'"
+    (interactive)
+    (setq-local smart-semicolon-block-chars '(?, ?\; ?\( ?{))
+    (smart-semicolon-mode t))
+  (defun jpdl/setup-smart-semicolon-nix ()
+    "Configure `smart-semicolon' for `nix-ts-mode'"
+    (interactive)
+    (setq-local smart-semicolon-block-chars '(?, ?\; ?\( ?{))
+    (smart-semicolon-mode t)))
+
 (use-package typst-ts-mode
   :straight (:host sourcehut :repo "meow_king/typst-ts-mode")
   :mode ("\\.typ\\'" . typst-ts-mode)
