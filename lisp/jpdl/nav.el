@@ -36,6 +36,7 @@
 
 (use-package winner-mode
   :straight (:type built-in)
+  :hook (after-init . winner-mode)
   :general
   ("M-w" 'winner-undo
    "M-W" 'winner-redo))
