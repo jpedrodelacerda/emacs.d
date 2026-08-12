@@ -23,7 +23,7 @@
             "C--" 'evil-jump-backward
             "C-=" 'evil-jump-forward
             "M-2" 'evil-jump-items
-            [remap evil-quit] 'evil-delete-buffer)
+            [remap evil-quit] 'delete-window)
   (:keymaps 'org-mode-map
             [remap evil-find-file-at-point] 'org-open-at-point
             )
@@ -34,7 +34,7 @@
     "/" 'evil-jump-forward
     "x s" 'evil-write
     "Z Q" 'evil-delete-buffer
-    "z q" 'evil-delete-buffer
+    "z q" 'delete-window
     "Z Z" 'jpdl/save-and-kill-buffer
     "z z" 'jpdl/save-and-kill-buffer)
   :config
@@ -42,8 +42,13 @@
   (setq evil-emacs-state-mode nil)
   ;; Disable abbrev expansion when hit escape
   (general-def :states '(normal motion insert) "M-." 'nil)
-                                        ;(general-def :states '(normal motion insert) "C-o" 'nil)
-                                        ;(general-def :states '(normal insert) "C-p" 'nil)
+
+  (defun jpdl/save-and-delete-window ()
+    "Save buffer contents and quit window."
+    (interactive)
+    (save-buffer)
+    (set (make-local-variable 'kill-buffer-query-functions) nil)
+    (kill-buffer (current-buffer)))
   (defun jpdl/save-and-kill-buffer ()
     "Save buffer contents and kill buffer."
     (interactive)
@@ -56,8 +61,13 @@
     (interactive)
     (set (make-local-variable 'kill-buffer-query-functions) nil)
     (kill-buffer (current-buffer)))
-  (evil-ex-define-cmd "q" 'evil-delete-buffer)
-  (evil-ex-define-cmd "wq" 'jpdl/save-and-kill-buffer)
+
+  (evil-ex-define-cmd "q" 'delete-window)
+  (evil-ex-define-cmd "wq" 'jpdl/save-and-delete-window)
+  (evil-ex-define-cmd "Q" 'evil-delete-buffer)
+  (evil-ex-define-cmd "k" 'evil-delete-buffer)
+  (evil-ex-define-cmd "wk" 'jpdl/save-and-kill-buffer)
+  (evil-ex-define-cmd "wQ" 'jpdl/save-and-kill-buffer)
   (setq evil-want-fine-undo t)
   (evil-set-undo-system 'undo-fu)
   (setq evil-want-abbrev-expand-on-insert-exit nil))
