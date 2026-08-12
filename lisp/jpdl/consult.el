@@ -16,8 +16,8 @@
    "C-/" 'jpdl/consult-toggle-preview
    "C-x C-l" 'consult-flymake)
   (jpdl/spc-leader
-    "s h" 'consult-outline
-    "4 s n" 'jpdl/consult-outline-other-window
+    "s o" 'consult-outline
+    "4 s o" 'jpdl/consult-outline-other-window
     "s n" 'consult-project-buffer
     "4 s n" 'jpdl/consult-project-buffer-other-window
     "s b" 'consult-buffer
