@@ -10,8 +10,7 @@
   (org-shiftleft-final . windmove-left)
   (org-shiftdown-final . windmove-down)
   (org-shiftright-final . windmove-right)
-  (org-mode . auto-insert)
-  (before-save . auto-insert)
+  (org-mode . jpdl/setup-electric-pair-org-mode)
   :general
   (:keymaps 'org-mode-map :states '(normal visual emacs)
             "RET" 'org-open-at-point)
@@ -56,7 +55,14 @@
         org-export-with-sub-superscripts "{}")
   (unless (file-exists-p org-directory)
     make-directory org-directory)
-  (setq org-default-notes-file (concat org-directory "/refile.org")))
+  (setq org-default-notes-file (concat org-directory "/refile.org"))
+  (defun jpdl/setup-electric-pair-org-mode ()
+    "Configure `electric-pair' for `org-mode'. Mainly to ignore `<' for snippets"
+    (interactive)
+    (setq-local electric-pair-inhibit-predicate
+                `(lambda (c)
+                   (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+
 
 (use-package autoinsert
   :straight (:type built-in)
