@@ -34,7 +34,9 @@
 
 (use-package project
   :straight (:type built-in)
-  :hook (kill-emacs . project-forget-zombie-projects)
+  :hook
+  (kill-emacs . project-forget-zombie-projects)
+  (after-init . jpdl/setup-projects)
   :general
   (jpdl/spc-leader
     "s p" 'project-switch-project
@@ -42,7 +44,10 @@
     "p s" 'project-switch-project
     "4 p s" '(lambda () (interactive) (other-window-prefix) (project-switch-project)))
   :config
-  (project-remember-projects-under (concat (getenv "HOME") "/projetos")))
+  (defun jpdl/setup-projects ()
+    "Search for projects on default folder"
+    (interactive)
+    (project-remember-projects-under (concat (getenv "HOME") "/projetos"))))
 
 (provide 'jpdl/project)
 ;;; project.el ends here
