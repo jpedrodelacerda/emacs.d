@@ -162,9 +162,12 @@
      "n l" 'org-roam-buffer-toggle
      "n i" 'org-roam-node-insert
      "n I" 'org-roam-node-insert-immediate
-     "n <return>" 'org-roam-insert-immediate
+     "n <return>" 'org-roam-node-insert-immediate
      "n p" 'org-roam-preview-visit
-     "n t" 'org-roam-tag-add))
+     "n t" 'org-roam-tag-add
+     "n T" 'org-roam-tag-remove
+     "n a" 'org-roam-alias-add
+     "n A" 'org-roam-alias-remove))
   :config
   (setq org-roam-directory (file-truename (concat org-directory "/roam")))
   (setq org-roam-db-location (file-truename (concat org-roam-directory "/org-roam.db")))
