@@ -1,0 +1,7 @@
+# key: <opt
+# name: optimization
+# --
+\begin{aligned}
+$1 \quad & $2\\\
+\textrm{s.t.} \quad & $0\\\
+\end{aligned}

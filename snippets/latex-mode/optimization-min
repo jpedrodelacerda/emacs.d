@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: optimization (min)
+# key: <optmin
+# --
+
+\begin{aligned}
+\min \quad & $1\\\
+\textrm{s.t.} \quad & $0\\\
+\end{aligned}

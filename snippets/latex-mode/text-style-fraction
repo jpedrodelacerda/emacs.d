@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: text-style fraction
+# key: tfr
+# --
+\tfrac{$1}{$0}

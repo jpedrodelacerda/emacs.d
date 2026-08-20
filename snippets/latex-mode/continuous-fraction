@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: continuous fraction
+# key: cfr
+# --
+\cfrac{$1}{$0}

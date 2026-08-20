@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: display-style frac
+# key: dfr
+# --
+\dfrac{$1}{$0}

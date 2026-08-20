@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: optimization (max)
+# key: <optmax
+# --
+
+\begin{aligned}
+\max \quad & $1\\\
+\textrm{s.t.} \quad & $0\\\
+\end{aligned}

@@ -2,6 +2,6 @@
 # name: jupyter-python source
 # key: <jps
 # --
-#+BEGIN_SRC
+#+BEGIN_SRC jupyter
 $0
 #+END_SRC
