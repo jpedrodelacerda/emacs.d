@@ -59,8 +59,8 @@
                            ((nix-mode nix-ts-mode) "nil")
                            ((nushell-mode nushell-ts-mode) "nu" "--lsp")
                            ((lua-mode lua-ts-mode) "lua-lsp")
-                           ((terraform-mode) "tofu-ls" "serve"))
-                         ((dockerfile-mode dockerfile-ts-mode) "docker-langserver" "--stdio"))
+                           ((terraform-mode) "tofu-ls" "serve")
+                           ((dockerfile-mode dockerfile-ts-mode) "docker-langserver" "--stdio")))
   :config
   (setq eglot-autoshutdown t
         eglot-confirm-server-initiated-edits nil))

@@ -30,14 +30,7 @@
   (jpdl/spc-leader :keymaps '(typst-ts-mode-map)
     "t c" 'typst-ts-compile)
   :custom
-  (typst-ts-mode-watch-options "--open")
-  :config
-  (add-to-list 'lsp-language-id-configuration '(typst-ts-mode . "tinymist"))
-  (lsp-register-client
-   (make-lsp-client
-    :new-connection (lsp-stdio-connection "tinymist")
-    :major-modes '(typst-ts-mode)
-    :server-id 'tinymist)))
+  (typst-ts-mode-watch-options "--open"))
 
 (use-package websocket
   :straight t)
