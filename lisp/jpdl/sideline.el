@@ -17,7 +17,7 @@
         ))
 
 (use-package flymake
-  :straight t
+  :straight (:type built-in)
   :hook (prog-mode . flymake-mode)
   :general
   (jpdl/spc-leader
