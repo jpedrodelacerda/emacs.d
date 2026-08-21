@@ -23,6 +23,8 @@
     "a s" 'consult-org-agenda
     "s o" 'consult-outline
     "4 s o" 'jpdl/consult-outline-other-window
+    "o o" 'consult-outline
+    "4 o o" 'jpdl/consult-outline-other-window
     "s n" 'consult-project-buffer
     "4 s n" 'jpdl/consult-project-buffer-other-window
     "s b" 'consult-buffer
@@ -116,8 +118,6 @@
 (use-package consult-eglot
   :straight t
   :general
-  (:keymaps 'eglot-mode-map
-            "M-b" 'consult-eglot-symbols)
   (jpdl/spc-leader 'eglot-mode-map
     "l b" 'consult-eglot-symbols)
   :config
