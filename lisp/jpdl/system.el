@@ -239,27 +239,5 @@
   :config
   (global-sops-mode 1))
 
-
-(use-package easysession
-  :straight t
-  :hook
-  (after-init . easysession-setup)
-  (after-init . easysession-scratch-mode)
-  (after-init . easysession-magit-mode)
-  :general
-  (jpdl/spc-leader
-    "e s" 'easysession-save
-    "e l" 'easysession-switch-to
-    "e L" 'easysession-switch-to-and-restore-geometry
-    "e r" 'easysession-rename
-    "e R" 'easysession-reset
-    "e u" 'easysession-unload
-    "e d" 'easysession-delete)
-  :config
-  (setq easysession-save-interval (* 10 60)
-        easysession-switch-to-save-session t
-        easysession-mode-line-misc-info t
-        easysession-switch-to-exclude-current nil))
-
 (provide 'jpdl/system)
 ;;; system.el ends here
