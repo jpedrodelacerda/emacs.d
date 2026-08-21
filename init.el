@@ -56,6 +56,7 @@
 (require 'jpdl/dashboard)
 (require 'jpdl/pairs)
 (require 'jpdl/org)
+(require 'jpdl/tex)
 (require 'jpdl/user)
 (require 'jpdl/project)
 (require 'jpdl/treemacs)
