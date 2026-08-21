@@ -28,13 +28,12 @@
   :config
   (windswap-default-keybindings 'meta 'control))
 
-
 (use-package emacs
   :straight (:type built-in)
   :general
   ("M-q" 'toggle-window-split))
 
-(use-package winner-mode
+(use-package winner
   :straight (:type built-in)
   :hook (after-init . winner-mode)
   :general
