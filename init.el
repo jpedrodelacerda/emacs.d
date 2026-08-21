@@ -72,6 +72,7 @@
 (require 'jpdl/nav)
 (require 'jpdl/magit)
 (require 'jpdl/treesit)
+(require 'jpdl/template)
 (require 'jpdl/corfu)
 ;; (require 'jpdl/tempel)
 (require 'jpdl/format)

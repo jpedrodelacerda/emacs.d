@@ -76,21 +76,14 @@
 ;; no scroll bars
 (set-window-scroll-bars (minibuffer-window) nil nil)
 
-(use-package yasnippet
-  :straight t
-  :custom
-  (yas-snippet-dirs '("~/.emacs.d/snippets"))
-  :config
-  (yas-global-mode 1))
-
-(use-package auto-yasnippet
-  :straight t
-  :after yasnippet)
-
 (use-package minions
   :straight t
   :config
   (minions-mode 1))
+
+(use-package outline
+  :straight (:type built-in)
+  :diminish (outline-minor-mode . " ֍"))
 
 (use-package centered-cursor-mode
   :straight t
@@ -98,8 +91,8 @@
   :diminish centered-cursor-mode
   :commands (centered-cursor-mode
              global-centered-cursor-mode)
-  :general (:states '(normal)
-                    "zz" 'global-centered-cursor-mode))
+  :general ("C-M-z" 'global-centered-cursor-mode))
+
 
 (use-package rg
   :straight t)
