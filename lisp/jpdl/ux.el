@@ -50,12 +50,9 @@
   :straight (:type built-in)
   :hook (prog-mode . display-line-numbers-mode))
 
-;; (use-package dimmer
-;; :straight t
-;; :config
-;; (setq dimmer-fraction           0.1
-;; dimmer-adjustment-mode    :both)
-;; (dimmer-mode t))
+(use-package breadcrumb
+  :straight (:type git :host github :repo "joaotavora/breadcrumb")
+  :hook (prog-mode . breadcrumb-local-mode))
 
 (use-package rainbow-delimiters
   :straight t

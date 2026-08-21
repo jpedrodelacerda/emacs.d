@@ -25,8 +25,6 @@
   (require 'use-package))
 
 ;; Bootstrap straight
-(setq straight-use-package-by-default t)
-(setq use-package-always-demand t)
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
@@ -43,11 +41,15 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(setq straight-use-package-by-default t)
+(setq use-package-always-demand t)
+
 ;; Booting
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (require 'jpdl/general)
 (require 'jpdl/evil)
+(require 'jpdl/ux)
 (require 'jpdl/font)
 (require 'jpdl/system)
 (require 'jpdl/theme)
@@ -74,7 +76,6 @@
 ;; (require 'jpdl/tempel)
 (require 'jpdl/format)
 (require 'jpdl/debug)
-(require 'jpdl/ux)
 (require 'jpdl/prog)
 ;; (require 'jpdl/calibre)
 
