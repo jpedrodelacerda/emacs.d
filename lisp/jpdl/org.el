@@ -4,7 +4,32 @@
 
 ;;; Code:
 (use-package org
+  :defer
   :straight (:type built-in)
+  ;; :straight `(org
+  ;;             :fork (:host nil
+  ;;                          :repo "https://git.tecosaur.net/tec/org-mode.git"
+  ;;                          :branch "dev"
+  ;;                          :remote "tecosaur")
+  ;;             :files (:defaults "etc")
+  ;;             :build t
+  ;;             :pre-build
+  ;;             (with-temp-file "org-version.el"
+  ;;               (require 'lisp-mnt)
+  ;;               (let ((version
+  ;;                      (with-temp-buffer
+  ;;                        (insert-file-contents "lisp/org.el")
+  ;;                        (lm-header "version")))
+  ;;                     (git-version
+  ;;                      (string-trim
+  ;;                       (with-temp-buffer
+  ;;                         (call-process "git" nil t nil "rev-parse" "--short" "HEAD")
+  ;;                         (buffer-string)))))
+  ;;                 (insert
+  ;;                  (format "(defun org-release () \"The release version of Org.\" %S)\n" version)
+  ;;                  (format "(defun org-git-version () \"The truncate git commit hash of Org mode.\" %S)\n" git-version)
+  ;;                  "(provide 'org-version)\n"))))
+  ;; :straight (:type built-in)
   :hook
   (org-shiftup-final . windmove-up)
   (org-shiftleft-final . windmove-left)
@@ -49,7 +74,7 @@
         org-src-preserve-indentation t
         org-src-fontify-natively t
         org-src-tab-acts-natively t
-        org-pretty-entities t
+        org-pretty-entities nil
         org-pretty-entities-include-sub-superscripts t
         org-use-sub-superscripts "{}"
         org-export-with-sub-superscripts "{}")
@@ -62,6 +87,39 @@
     (setq-local electric-pair-inhibit-predicate
                 `(lambda (c)
                    (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+
+;; (use-package org-latex-preview
+;;   :straight (:type built-in)
+;;   ;; Turn on `org-latex-preview-mode', it's built into Org and much faster/more
+;;   ;; featured than org-fragtog. (Remember to turn off/uninstall org-fragtog.)
+;;   ;; (add-hook 'org-mode-hook 'org-latex-preview-mode)
+;;   :hook (org-mode . org-latex-preview-mode)
+;;   :config
+;;   ;; Increase preview width
+;;   (plist-put org-latex-preview-appearance-options
+;;              :page-width 0.8)
+
+;;   ;; ;; Use dvisvgm to generate previews
+;;   ;; ;; You don't need this, it's the default:
+;;   (setq org-latex-preview-process-default 'dvisvgm)
+
+
+;;   ;; ;; Block C-n, C-p etc from opening up previews when using `org-latex-preview-mode'
+;;   ;; (setq org-latex-preview-mode-ignored-commands
+;;   ;;       '(next-line previous-line mwheel-scroll
+;;   ;;         scroll-up-command scroll-down-command))
+
+;;   ;; ;; Enable consistent equation numbering
+;;   ;; (setq org-latex-preview-numbered t)
+
+;;   ;; Bonus: Turn on live previews.  This shows you a live preview of a LaTeX
+;;   ;; fragment and updates the preview in real-time as you edit it.
+;;   ;; To preview only environments, set it to '(block edit-special) instead
+;;   (setq org-latex-preview-mode-display-live t)
+
+;;   ;; More immediate live-previews -- the default delay is 1 second
+;;   (setq org-latex-preview-mode-update-delay 0.25))
+
 
 
 (use-package autoinsert
@@ -89,7 +147,15 @@
 (use-package org-modern
   :straight t
   :after (org org-agenda)
-  :hook (after-init . global-org-modern-mode))
+  :hook (after-init . global-org-modern-mode)
+  :config
+  (setq org-modern-todo t
+        org-modern-hide-stars nil
+        org-modern-horizontal-rule t
+        org-modern-star 'replace
+        org-modern-keyword "‣ "
+        ;; org-modern-block-fringe 0
+        org-modern-table nil))
 ;; :hook ((org-mode . org-modern-mode)
 ;;        (org-agenda-finalize . org-modern-agenda))
 ;; (org-modern-mode . (lambda ()
@@ -98,10 +164,10 @@
 ;;                      (setq prettify-symbols-alist nil)
 ;;                      (prettify-symbols-mode -1)))))
 
-(use-package org-superstar
-  :straight t
-  :after (org)
-  :hook (org-mode . org-superstar-mode))
+;; (use-package org-superstar
+;;   :straight t
+;;   :after (org)
+;;   :hook (org-mode . org-superstar-mode))
 
 ;; (use-package ox-reveal
 ;;   :straight t
