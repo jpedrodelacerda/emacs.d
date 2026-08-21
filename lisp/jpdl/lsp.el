@@ -4,6 +4,8 @@
 ;; lsp and lsp-ui config
 
 ;;; Code:
+(straight-use-package '(flymake :type built-in))
+(straight-use-package '(xref :type built-in))
 (use-package eglot
   :straight (:type built-in)
   :after (general)

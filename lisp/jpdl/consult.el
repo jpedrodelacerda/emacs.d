@@ -3,8 +3,12 @@
 
 ;;; Code:
 
+(straight-use-package '(flymake :type built-in))
+(straight-use-package '(xref :type built-in))
+
 (use-package consult
   :straight t
+  :after flymake
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :general
   ('keymaps 'global-map
