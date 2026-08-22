@@ -154,10 +154,9 @@
 ;; [optional: :profile "<profile>"]))
 ;; (setq overleaf-cookies
 ;;       (overleaf-read-cookies-from-firefox "~/.zen/bf9v8sth.default/cookies.sqlite")))
+
 (use-package citar
   :straight t
-  ;; :custom
-  ;; (citar-bibliography '("~/bib/references.bib"))
   :hook
   (LaTeX-mode . citar-capf-setup)
   (org-mode . citar-capf-setup))

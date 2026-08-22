@@ -79,7 +79,7 @@
 (require 'jpdl/format)
 (require 'jpdl/debug)
 (require 'jpdl/prog)
-;; (require 'jpdl/calibre)
+(require 'jpdl/read)
 
 (provide 'init.el)
 ;;; init.el ends here

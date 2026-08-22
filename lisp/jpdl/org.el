@@ -299,6 +299,14 @@
   :after (citar org-roam)
   :config (citar-org-roam-mode))
 
+(use-package org-ref
+  :straight t)
+
+(use-package org-roam-bibtex
+  :after org-roam
+  :config
+  (require 'org-ref))
+
 (use-package org-timeline
   :straight t
   :after (org-agenda)
@@ -360,12 +368,49 @@
    org-agenda-current-time-string
    "◀── now ─────────────────────────────────────────────────"))
 
-(use-package org-noter
-  :straight t)
 
 (use-package pdf-tools
-  :straight t
-  :mode ("\\.pdf\\'" . pdf-view-mode))
+  :straight t)
+
+(use-package org-noter
+  :init
+  (setq org-noter-default-notes-file-names '("booknotes.org" "notes.org")
+	    org-noter-notes-search-path '("~/org/booknotes")
+	    org-noter-default-heading-title  "page $p$"
+	    org-noter-auto-save-last-location t
+        org-noter-always-create-frame nil
+	    org-noter-insert-selected-text-inside-note t
+        org-noter-kill-frame-at-session-end t)
+  :general
+  (:keymaps '(org-noter-doc-mode-map)
+            :states '(motion)
+            "q" 'org-noter-kill-session)
+  (jpdl/spc-leader
+    :keymaps '(pdf-view-mode-map nov-mode-map)
+    "o n" 'org-noter)
+  (jpdl/spc-leader
+    :keymaps '(org-noter-doc-mode-map)
+    "o p" 'org-noter-insert-precise-note
+    "o i" 'org-noter-insert-note
+    "o I" 'org-noter-insert-note-no-questions
+    "o s" 'org-noter-sync-current-note
+    "o S" 'org-noter-sync-current-page-or-chapter)
+  (jpdl/spc-leader
+    :keymaps '(org-noter-doc-mode-map)
+    "q" 'org-noter-kill-session)
+  (:keymaps '(pdf-view-mode-map nov-mode-)
+            :states '(normal)
+            "o n" 'org-noter)
+  (:keymaps '(org-noter-doc-mode-map)
+            :states '(normal)
+            "o p" 'org-noter-insert-precise-note
+            "o i" 'org-noter-insert-note
+            "o I" 'org-noter-insert-note-no-questions
+            "o s" 'org-noter-sync-current-note
+            "o S" 'org-noter-sync-current-page-or-chapter
+            "q" 'org-noter-kill-session)
+  :config
+  (org-noter-enable-org-roam-integration))
 
 (use-package org-excalidraw
   ;; Excalidraw in Org.
