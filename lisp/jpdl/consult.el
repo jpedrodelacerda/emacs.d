@@ -99,7 +99,7 @@
   (add-to-list 'consult-buffer-sources persp-consult-source)
   (setq consult-narrow-key "<"
         consult-preview-key "M-.")
-  (setq consult-ripgrep-args (concat consult-ripgrep-args " -g" " -i"))
+  ;; (setq consult-ripgrep-args (concat consult-ripgrep-args " -g" " -i"))
   (add-to-list 'vertico-multiform-commands '(consult-ripgrep buffer indexed))
   (add-to-list 'vertico-multiform-commands '(consult-grep buffer indexed))
   (add-to-list 'vertico-multiform-commands '(consult-git-grep buffer indexed)))
