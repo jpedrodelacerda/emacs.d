@@ -36,6 +36,7 @@
   (org-shiftdown-final . windmove-down)
   (org-shiftright-final . windmove-right)
   (org-mode . jpdl/setup-electric-pair-org-mode)
+  (org-mode . visual-line-mode)
   :general
   (:keymaps 'org-mode-map :states '(normal visual emacs)
             "RET" 'org-open-at-point)
