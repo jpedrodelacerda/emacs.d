@@ -32,6 +32,10 @@
 (use-package nov
   :straight t
   :mode ("\\.epub\\'" . jpdl/setup-novel)
+  :general (
+            :keymaps '(nov-mode-map)
+            "i" 'evil-insert)
+  ;; "i" . '(:ignore t))
   :config
   (defun jpdl/setup-novel ()
     "Configure nov.el mode"
@@ -49,6 +53,7 @@
   (:keymaps '(calibredb-search-mode-map)
             :states '(normal insert visual emacs)
             "<return>" 'calibredb-find-file
+            "/" 'calibredb-search-live-filter
             "q" 'calibredb-search-quit
             "?" 'calibredb-dispatch
             "a" 'calibredb-add

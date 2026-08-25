@@ -109,7 +109,8 @@
 
 (use-package nix-update
   :straight t
-  :general ("C-c C-n u" 'nix-update-fetch))
+  :general (:keymaps '(nix-ts-mode-map nix-mode-map)
+                     "C-c C-n u" 'nix-update-fetch))
 
 ;; Jinja2
 (use-package jinja2-mode
