@@ -143,17 +143,7 @@
     (setq overleaf-save-cookies
           (overleaf-save-cookies-to-file cookie-file))
     (setq overleaf-cookies
-          (overleaf-read-cookies-from-file cookie-file)))
-  ;; )
-  ;; ;; Example: load cookies from firefox
-  (setq overleaf-cookies
-        (overleaf-read-cookies-from-firefox
-         [optional: :firefox-folder "~/.zen/"]
-         [optional: :profile "bf9v8sth"])))
-;; [optional: :firefox-folder "<firefox-folder>"]
-;; [optional: :profile "<profile>"]))
-;; (setq overleaf-cookies
-;;       (overleaf-read-cookies-from-firefox "~/.zen/bf9v8sth.default/cookies.sqlite")))
+          (overleaf-read-cookies-from-file cookie-file))))
 
 (use-package citar
   :straight t
