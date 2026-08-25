@@ -76,6 +76,7 @@
         org-src-fontify-natively t
         org-src-tab-acts-natively t
         org-pretty-entities nil
+        org-startup-with-inline-images t
         org-pretty-entities-include-sub-superscripts t
         org-use-sub-superscripts "{}"
         org-export-with-sub-superscripts "{}")
@@ -399,9 +400,9 @@
   (jpdl/spc-leader
     :keymaps '(org-noter-doc-mode-map)
     "q" 'org-noter-kill-session)
-  (:keymaps '(pdf-view-mode-map nov-mode-)
-            :states '(normal)
-            "o n" 'org-noter)
+  ;; (:keymaps '(pdf-view-mode-map nov-mode-)
+  ;;           :states '(normal)
+  ;;           "o n" 'org-noter)
   (:keymaps '(org-noter-doc-mode-map)
             :states '(normal)
             "o p" 'org-noter-insert-precise-note
@@ -412,6 +413,31 @@
             "q" 'org-noter-kill-session)
   :config
   (org-noter-enable-org-roam-integration))
+
+;; (use-package org-remark-global-tracking
+;;   ;; It is recommended that `org-remark-global-tracking-mode' be
+;;   ;; enabled when Emacs initializes. You can set it in
+;;   ;; `after-init-hook'.
+;;   :hook after-init
+;;   :config
+;;   ;; Selectively keep or comment out the following if you want to use
+;;   ;; extensions for Info-mode, EWW, and NOV.el (EPUB) respectively.
+;;   (use-package org-remark-info :straight t :after info :config (org-remark-info-mode +1))
+;;   (use-package org-remark-eww :straight t :after eww  :config (org-remark-eww-mode +1))
+;;   (use-package org-remark-nov :straight t :after nov  :config (org-remark-nov-mode +1)))
+
+;; (use-package org-remark
+;;   :bind (;; :bind keyword also implicitly defers org-remark itself.
+;;          ;; Keybindings before :map is set for global-map. Adjust the keybinds
+;;          ;; as you see fit.
+;;          ("C-c n m" . org-remark-mark)
+;;          ("C-c n l" . org-remark-mark-line)
+;;          :map org-remark-mode-map
+;;          ("C-c n o" . org-remark-open)
+;;          ("C-c n ]" . org-remark-view-next)
+;;          ("C-c n [" . org-remark-view-prev)
+;;          ("C-c n r" . org-remark-remove)
+;;          ("C-c n d" . org-remark-delete)))
 
 (use-package org-excalidraw
   ;; Excalidraw in Org.

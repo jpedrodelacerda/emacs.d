@@ -367,10 +367,11 @@
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((emacs-lisp . t)
-     (julia . t)
-     (python . t)
-     (jupyter . t)))
+   (append org-babel-load-languages
+           '((emacs-lisp . t)
+             (julia . t)
+             (python . t)
+             (jupyter . t))))
   (require 'org-src)
   (require 'ob-async)
   (require 'ob-jupyter)
