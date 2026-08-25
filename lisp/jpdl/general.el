@@ -15,7 +15,7 @@
     "h k" 'describe-key
     "h v" 'describe-variable
     "h m" 'describe-keymap)
-  (general-auto-unbind-keys t))
+  (general-auto-unbind-keys))
 
 (provide 'jpdl/general)
 ;;; general.el ends here
