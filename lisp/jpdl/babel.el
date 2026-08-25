@@ -16,11 +16,9 @@
    (append org-babel-load-languages
            '((mermaid . t)))))
 
-(use-package d2-mode
+(use-package ob-d2
   :straight t
-  :mode "\\.d2\\'"
-  :custom
-  (d2-flags '("-s" "-t" "6"))
+  :after org
   :config
   (add-to-list 'org-src-lang-modes '("d2" . d2))
   (org-babel-do-load-languages
@@ -28,15 +26,11 @@
    (append org-babel-load-languages
            '((d2 . t)))))
 
-;; (use-package ob-d2
-;;   :straight t
-;;   :after org
-;;   :config
-;;   (add-to-list 'org-src-lang-modes '("d2" . d2))
-;;   (org-babel-do-load-languages
-;;    'org-babel-load-languages
-;;    (append org-babel-load-languages
-;;            '((d2 . t)))))
+(use-package d2-mode
+  :straight t
+  :mode "\\.d2\\'"
+  :custom
+  (d2-flags '("-s" "-t" "6")))
 
 (provide 'jpdl/babel)
 
