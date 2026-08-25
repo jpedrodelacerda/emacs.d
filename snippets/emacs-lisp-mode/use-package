@@ -3,4 +3,4 @@
 # key: up
 # --
 (use-package ${1:package-name}
-:ensure t$0)
+  :straight t$0)
