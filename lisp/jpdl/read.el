@@ -4,15 +4,19 @@
 
 ;;; Code:
 
+(defun jpdl/no-blinking-cursor ()
+  "Removes distracting blinking cursor"
+  (interactive)
+  (blink-cursor-mode -1))
 
 (use-package pdf-tools
   :straight t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :hook
+  (pdf-view-mode . jpdl/no-blinking-cursor)
   :init
   (evil-set-initial-state 'pdf-view-mode 'normal)
   (pdf-tools-install)
-  ;; :hook
-  ;; (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
-  :mode ("\\.pdf\\'" . pdf-view-mode)
   :general
   (:keymaps '(pdf-view-mode-map)
             :states '(normal)
@@ -32,6 +36,8 @@
 (use-package nov
   :straight t
   :mode ("\\.epub\\'" . jpdl/setup-novel)
+  :hook
+  (pdf-view-mode . jpdl/no-blinking-cursor)
   :general (
             :keymaps '(nov-mode-map)
             "i" 'evil-insert)
