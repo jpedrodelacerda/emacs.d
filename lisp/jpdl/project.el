@@ -49,5 +49,10 @@
     (interactive)
     (project-remember-projects-under (concat (getenv "HOME") "/projetos"))))
 
+;; (use-package project-rootfile
+;;   :straight t
+;;   :config
+;;   (add-to-list 'project-find-functions #'project-rootfile-try-detect))
+
 (provide 'jpdl/project)
 ;;; project.el ends here

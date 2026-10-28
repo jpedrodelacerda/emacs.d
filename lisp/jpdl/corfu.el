@@ -55,6 +55,11 @@
   (corfu-history-mode 1)
   (savehist-mode 1)
   (add-to-list 'savehist-additional-variables 'corfu-history)
+  ;; See https://github.com/minad/corfu/discussions/577#discussioncomment-13360817
+  ;; (advice-add #'corfu--setup :around (lambda (orig beg end table pred)
+  ;;                                      (when (> end (point))
+  ;;                                        (setq end (point-marker)))
+  ;;                                      (funcall orig beg end table pred)))
   (defun jpdl/corfu-auto-local-toggle ()
     (interactive)
     "Toggle corfu-auto on current buffer"

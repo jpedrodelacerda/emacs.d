@@ -18,6 +18,12 @@
          (evil-insert-state-entry . (lambda () (jpdl/line-number-absolute)))
          (evil-insert-state-exit . (lambda () (jpdl/line-number-relative))))
   :general
+  (:keymaps '(evil-normal-state-map evil-insert-state-map evil-motion-state-map)
+            :states '(motion visual insert)
+            "C-n" 'next-logical-line
+            "C-p" 'previous-logical-line
+            "C-f" 'forward-char
+            "C-b" 'backward-char)
   (:keymaps 'global-map
             "C-s" 'evil-write
             "C--" 'evil-jump-backward

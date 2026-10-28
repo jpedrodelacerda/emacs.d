@@ -9,6 +9,21 @@
   :no-require
   :hook (after-init . electric-pair-mode))
 
+;; :config
+
+;; (setq electric-pair-org-mode '((?~ . ?~) (?= . ?=)))
+;; (defun jpdl/setup-org-pairs ()
+;;   "Configure pairs for org-mode"
+;;   (interactive)
+;;   (setq-local electric-pair-pairs '())))
+
+(use-package wrap-region
+  :straight t
+  :hook (after-init . wrap-region-global-mode)
+  :config
+  (wrap-region-add-wrapper "~" "~" nil '(org-mode))
+  (wrap-region-add-wrapper "=" "=" nil '(org-mode)))
+
 (use-package puni
   :straight t
   :general

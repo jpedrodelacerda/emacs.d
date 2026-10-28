@@ -30,7 +30,14 @@
   :custom
   (eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
   (eglot-server-programs '(
-                           ((python python-ts-mode) "ruff" "server")
+                           ((python python-ts-mode)
+                            . ("rass"
+                               "--"
+                               "ty"
+                               "server"
+                               "--"
+                               "ruff"
+                               "server"))
                            ((nix-mode nix-ts-mode) "nil" :initializationOptions
                             (:formatting (:command ["alejandra"])))
                            ((jtsx-tsx-mode tsx-ts-mode)

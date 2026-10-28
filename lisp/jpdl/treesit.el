@@ -73,9 +73,9 @@
 (use-package treesit-fold
   :straight (treesit-fold :type git :host github :repo "emacs-tree-sitter/treesit-fold")
   :general
-  ;; ("M-<tab>" 'treesit-fold-toggle
-  ;;  "C-M-<tab>" 'treesit-fold-open-all
-  ;;  "C-M-<escape>" 'treesit-fold-close-all)
+  ("M-<tab>" 'treesit-fold-toggle
+   "C-M-<tab>" 'treesit-fold-open-all
+   "C-M-<escape>" 'treesit-fold-close-all)
   (:states '(normal)
            "zz" 'treesit-fold-toggle
            "za" 'treesit-fold-toggle
