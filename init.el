@@ -15,12 +15,10 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 (package-initialize)
 
 ;; Ensure that use-package is installed.
-
 (eval-when-compile
   (require 'use-package))
 
@@ -40,6 +38,8 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'org)
 
 (setq straight-use-package-by-default t)
 (setq use-package-always-demand t)

@@ -99,6 +99,9 @@
                                     (?B "\\mathbb" "\\textbf" t nil nil)
                                     (?t "\\text" nil t nil nil)))
   (setq cdlatex-paired-parens "$[{(")
+  ;; (setq cdlatex-sub-super-scripts-outside-math-mode t)
+  (setq cdlatex-sub-super-scripts-outside-math-mode nil)
+  (setq cdlatex-use-dollar-to-ensure-math t)
   (cdlatex-reset-mode)
   )
 

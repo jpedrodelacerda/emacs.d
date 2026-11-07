@@ -255,5 +255,11 @@
   :config
   (global-sops-mode 1))
 
+(use-package justl
+  :straight t
+  :general
+  (jpdl/spc-leader
+    "j <return>" 'justl))
+
 (provide 'jpdl/system)
 ;;; system.el ends here

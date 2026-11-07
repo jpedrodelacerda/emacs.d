@@ -5,31 +5,7 @@
 ;;; Code:
 (use-package org
   :defer
-  :straight (:type built-in)
-  ;; :straight `(org
-  ;;             :fork (:host nil
-  ;;                          :repo "https://git.tecosaur.net/tec/org-mode.git"
-  ;;                          :branch "dev"
-  ;;                          :remote "tecosaur")
-  ;;             :files (:defaults "etc")
-  ;;             :build t
-  ;;             :pre-build
-  ;;             (with-temp-file "org-version.el"
-  ;;               (require 'lisp-mnt)
-  ;;               (let ((version
-  ;;                      (with-temp-buffer
-  ;;                        (insert-file-contents "lisp/org.el")
-  ;;                        (lm-header "version")))
-  ;;                     (git-version
-  ;;                      (string-trim
-  ;;                       (with-temp-buffer
-  ;;                         (call-process "git" nil t nil "rev-parse" "--short" "HEAD")
-  ;;                         (buffer-string)))))
-  ;;                 (insert
-  ;;                  (format "(defun org-release () \"The release version of Org.\" %S)\n" version)
-  ;;                  (format "(defun org-git-version () \"The truncate git commit hash of Org mode.\" %S)\n" git-version)
-  ;;                  "(provide 'org-version)\n"))))
-  ;; :straight (:type built-in)
+  :straight t
   :hook
   (org-shiftup-final . windmove-up)
   (org-shiftleft-final . windmove-left)
@@ -37,6 +13,7 @@
   (org-shiftright-final . windmove-right)
   (org-mode . jpdl/setup-electric-pair-org-mode)
   (org-mode . visual-line-mode)
+  (org-mode . org-latex-preview-mode)
   :general
   (:keymaps 'org-mode-map :states '(normal visual emacs)
             "RET" 'org-open-at-point)
@@ -76,6 +53,7 @@
         org-src-fontify-natively t
         org-src-tab-acts-natively t
         org-pretty-entities nil
+        org-startup-with-latex-preview t
         org-startup-with-inline-images t
         org-pretty-entities-include-sub-superscripts t
         org-use-sub-superscripts "{}"
@@ -88,10 +66,26 @@
     (interactive)
     (setq-local electric-pair-inhibit-predicate
                 `(lambda (c)
-                   (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+                   (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
+  (defun jpdl/toggle-org-latex-preview-mode ()
+    "Toggle `org-latex-preview-mode' on current buffer"
+    (interactive)
+    (if org-latex-preview-mode
+        (progn (setq-local org-latex-preview-mode nil)
+               (message "`org-latex-preview-mode' is off!"))
+      (setq-local org-latex-preview-mode t)
+      (org-latex-preview)
+      (message "`org-latex-preview-mode' is on!"))))
 
-;; (use-package org-latex-preview
-;;   :straight (:type built-in)
+(use-package org-latex-preview
+  :straight (:type built-in)
+  :config
+  ;; (setq org-latex-preview-process-default 'dvisvgm)
+  ;;   ;; Bonus: Turn on live previews.  This shows you a live preview of a LaTeX
+  ;;   ;; fragment and updates the preview in real-time as you edit it.
+  ;;   ;; To preview only environments, set it to '(block edit-special) instead
+  (setq org-latex-preview-mode-display-live '(inline block edit-special))
+  )
 ;;   ;; Turn on `org-latex-preview-mode', it's built into Org and much faster/more
 ;;   ;; featured than org-fragtog. (Remember to turn off/uninstall org-fragtog.)
 ;;   ;; (add-hook 'org-mode-hook 'org-latex-preview-mode)
@@ -114,10 +108,6 @@
 ;;   ;; ;; Enable consistent equation numbering
 ;;   ;; (setq org-latex-preview-numbered t)
 
-;;   ;; Bonus: Turn on live previews.  This shows you a live preview of a LaTeX
-;;   ;; fragment and updates the preview in real-time as you edit it.
-;;   ;; To preview only environments, set it to '(block edit-special) instead
-;;   (setq org-latex-preview-mode-display-live t)
 
 ;;   ;; More immediate live-previews -- the default delay is 1 second
 ;;   (setq org-latex-preview-mode-update-delay 0.25))
@@ -207,11 +197,11 @@
     "o s" 'org-sidebar-toggle
     "o d" 'org-sidebar-tree-toggle))
 
-(use-package org-fragtog
-  :straight t
-  :after (org)
-  :diminish
-  :hook (org-mode . org-fragtog-mode))
+;; (use-package org-fragtog
+;;   :straight nil
+;;   :after (org)
+;;   :diminish
+;;   :hook (org-mode . org-fragtog-mode))
 
 (use-package org-roam
   :straight t
@@ -358,7 +348,7 @@
 
    ;; Org styling, hide markup etc.
    org-hide-emphasis-markers t
-   org-pretty-entities t
+   org-pretty-entities nil
 
    ;; Agenda styling
    org-agenda-tags-column 0
