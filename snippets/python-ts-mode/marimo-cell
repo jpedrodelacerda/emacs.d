@@ -1,0 +1,8 @@
+# key: <c
+# name: marimo-cell
+# --
+@app.cell
+def _():
+    $0
+
+    return
