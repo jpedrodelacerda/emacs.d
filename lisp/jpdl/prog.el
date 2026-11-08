@@ -206,7 +206,7 @@
   :config
   (jpdl/append-to-path "~/.local/bin")
   (add-to-list 'eglot-server-programs
-               '((python python-ts-mode) . ("ruff" "server"))))
+               '((python python-ts-mode) . ("rass" "python"))))
 
 (use-package pyvenv
   :straight t
