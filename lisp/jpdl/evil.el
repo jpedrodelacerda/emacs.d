@@ -18,13 +18,14 @@
          (evil-insert-state-entry . (lambda () (jpdl/line-number-absolute)))
          (evil-insert-state-exit . (lambda () (jpdl/line-number-relative))))
   :general
-  (:keymaps '(evil-normal-state-map evil-insert-state-map evil-motion-state-map)
-            :states '(motion visual insert)
+  (:keymaps 'override
             "C-n" 'next-logical-line
             "C-p" 'previous-logical-line
             "C-f" 'forward-char
             "C-b" 'backward-char)
-  (:keymaps 'global-map
+  (:keymaps 'override
+            "C-n" 'next-line
+            "C-p" 'previous-line
             "C-s" 'evil-write
             "C--" 'evil-jump-backward
             "C-=" 'evil-jump-forward
@@ -116,6 +117,12 @@
   :after evil
   :config
   (global-evil-matchit-mode 1))
+
+(use-package evil-lion
+  :straight t
+  :config
+  (evil-lion-mode))
+
 
 (provide 'jpdl/evil)
 ;;; evil.el ends here
