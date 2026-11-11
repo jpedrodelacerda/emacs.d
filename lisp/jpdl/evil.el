@@ -19,11 +19,13 @@
          (evil-insert-state-exit . (lambda () (jpdl/line-number-relative))))
   :general
   (:keymaps 'override
+            :states '(visual insert normal)
             "C-n" 'next-logical-line
             "C-p" 'previous-logical-line
             "C-f" 'forward-char
             "C-b" 'backward-char)
   (:keymaps 'override
+            :states '(visual insert normal)
             "C-n" 'next-line
             "C-p" 'previous-line
             "C-s" 'evil-write
