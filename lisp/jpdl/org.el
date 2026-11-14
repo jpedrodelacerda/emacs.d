@@ -80,11 +80,39 @@
 (use-package org-latex-preview
   :straight (:type built-in)
   :config
-  ;; (setq org-latex-preview-process-default 'dvisvgm)
+  (setq org-latex-preview-process-default 'dvisvgm)
   ;;   ;; Bonus: Turn on live previews.  This shows you a live preview of a LaTeX
   ;;   ;; fragment and updates the preview in real-time as you edit it.
   ;;   ;; To preview only environments, set it to '(block edit-special) instead
   (setq org-latex-preview-mode-display-live '(inline block edit-special))
+  ;; Use tectonic
+  ;; (setq
+  ;;  org-latex-pdf-process
+  ;;  '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f"))
+  ;; (add-to-list 'org-latex-preview-process-alist
+  ;;              '(tectonic :programs ("tectonic" "convert")
+  ;;   		              :description "pdf > png"
+  ;;   		              :message "you need install the programs: tectonic and imagemagick."
+  ;;   		              :image-input-type "pdf"
+  ;;   		              :image-output-type "png"
+  ;;   		              :image-size-adjust (2 . 2)
+  ;;   		              :latex-compiler
+  ;;   		              ("tectonic -Z shell-escape-cwd=%o --outfmt pdf --outdir %o %f")
+  ;;   		              :image-converter
+  ;;   		              ("magick convert -density %D -trim -antialias %f -quality 300 %O")))
+  ;; (setq org-latex-preview-process-default 'tectonic)
+  ;; (add-to-list 'org-preview-latex-process-alist
+  ;;              '(tectonic :programs ("tectonic" "convert")
+  ;;   		              :description "pdf > png"
+  ;;   		              :message "you need install the programs: tectonic and imagemagick."
+  ;;   		              :image-input-type "pdf"
+  ;;   		              :image-output-type "png"
+  ;;   		              :image-size-adjust (1.0 . 1.0)
+  ;;   		              :latex-compiler
+  ;;   		              ("tectonic -Z shell-escape-cwd=%o --outfmt pdf --outdir %o %f")
+  ;;   		              :image-converter
+  ;;   		              ("convert -density %D -trim -antialias %f -quality 300 %O")))
+  ;; (setq org-preview-latex-default-process 'tectonic)
   )
 ;;   ;; Turn on `org-latex-preview-mode', it's built into Org and much faster/more
 ;;   ;; featured than org-fragtog. (Remember to turn off/uninstall org-fragtog.)

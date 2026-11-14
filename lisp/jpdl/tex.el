@@ -157,18 +157,9 @@
 (use-package tex
   :straight auctex
   :config
-  ;; (add-to-list 'TeX-command-list
-  ;;              '("LaTeX (shell escape)"
-  ;;                "%`%l%(mode)%' -shell-escape %T"
-  ;;                TeX-run-TeX
-  ;;                nil
-  ;;                (latex-mode doctex-mode)
-  ;;                :help "Run LaTeX with shell-escape enabled"))
-  ;; (setq-default TeX-engine 'xetex)
   (setq TeX-engine-alist '((default
                             "Tectonic"
                             "tectonic -X compile -f plain %T"
-                            "tectonic -X compile -f latex %T -Z search-path=/home/pfournier/Projets/TeX-packages/"
                             nil)))
   (setq LaTeX-command-style '(("" "%(latex)")))
   (setq TeX-process-asynchronous t
