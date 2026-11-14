@@ -404,6 +404,22 @@
   :config
   (org-noter-enable-org-roam-integration))
 
+(use-package org-timegrid
+  :straight t
+  :bind ("C-c a c" . org-timegrid-week)
+  :init
+  (setq org-timegrid-org-capture-file "~/org/calendar.org"
+        org-timegrid-org-tag-color-alist
+        '(("work" . indigo) ("personal" . green)))
+  :config
+  (require 'org-timegrid-org))
+
+(use-package org-timegrid-agenda
+  :straight nil
+  :after org-agenda
+  :config
+  (org-timegrid-agenda-mode 1))
+
 ;; (use-package org-remark-global-tracking
 ;;   ;; It is recommended that `org-remark-global-tracking-mode' be
 ;;   ;; enabled when Emacs initializes. You can set it in
