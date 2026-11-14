@@ -102,7 +102,15 @@
   :preface
   (defun jpdl/eldoc-box-visible-p ()
     "Return whether the `eldoc-box' popup is visible."
-    (and eldoc-box--frame (frame-visible-p eldoc-box--frame)))
+    (if (and eldoc-box--frame (not (frame-live-p eldoc-box--frame)))
+        ;; When the frame is dead, we must do two things:
+        ;; 1. Clear the variable, 2. Return nil.
+        ;; `progn` lets us execute both sequentially inside this 'if' branch.
+        (progn
+          (setq eldoc-box--frame nil)
+          nil)
+      ;; Otherwise, evaluate visibility normally
+      (and eldoc-box--frame (frame-visible-p eldoc-box--frame))))
 
   (defun jpdl/eldoc-box-toggle ()
     "Toggle the `eldoc-box-help-at-point' popup."
