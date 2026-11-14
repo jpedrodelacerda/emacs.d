@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: external FFI binding
+# key: ext
+# --
+@external(${1:erlang}, "${2:module}", "${3:function}")
+pub fn ${4:name}(${5:args}) -> ${6:Type}

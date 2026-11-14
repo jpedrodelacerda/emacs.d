@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: case expression
+# key: case
+# --
+case ${1:expr} {
+  Ok(${2:val}) -> $3
+  Error(${4:err}) -> $0
+}

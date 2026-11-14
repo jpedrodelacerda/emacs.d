@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: private custom type record
+# key: type
+# --
+type ${1:Name} {
+  ${1:Name}(
+    ${2:field}: ${3:String},
+  )
+}

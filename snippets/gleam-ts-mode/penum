@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: public custom type enum
+# key: penum
+# --
+pub type ${1:Name} {
+  ${2:VariantA}
+  ${3:VariantB}
+}

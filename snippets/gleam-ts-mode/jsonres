@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: wisp JSON response
+# key: jsonres
+# --
+json.object([
+  #("${1:data}", ${2:json.string("${3:ok}")}),
+])
+|> json.to_string
+|> wisp.json_response(${4:200})

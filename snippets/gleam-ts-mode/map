@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: result map
+# key: map
+# --
+result.map(${1:result}, fn(${2:val}) {
+  $0
+})

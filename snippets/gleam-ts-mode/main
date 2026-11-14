@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: main function
+# key: main
+# --
+pub fn main() {
+  $0
+}

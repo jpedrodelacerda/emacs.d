@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: decoder function
+# key: decoder
+# --
+pub fn ${1:model}_decoder() -> decode.Decoder(${2:Type}) {
+  use ${3:field1} <- decode.field("${3:field1}", ${4:decode.string})
+  use ${5:field2} <- decode.field("${5:field2}", ${6:decode.int})
+  decode.success($2($3:, $5:))
+}

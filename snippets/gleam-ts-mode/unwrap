@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: result unwrap
+# key: unwrap
+# --
+result.unwrap(${1:result}, ${2:default_value})

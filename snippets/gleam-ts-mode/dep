@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: deprecated attribute
+# key: dep
+# --
+@deprecated("${1:Use new_function instead}")

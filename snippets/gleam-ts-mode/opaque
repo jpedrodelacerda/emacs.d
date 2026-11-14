@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: opaque type
+# key: opaque
+# --
+pub opaque type ${1:Name} {
+  ${1:Name}(${2:inner}: ${3:String})
+}
+
+pub type ${1:Name}Error {
+  Invalid${1:Name}
+}
+
+pub fn parse(input: $3) -> Result(${1:Name}, ${1:Name}Error) {
+  $0
+}
+
+pub fn to_${2:inner}(val: ${1:Name}) -> $3 {
+  val.$2
+}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: list fold
+# key: fold
+# --
+list.fold(${1:list}, ${2:initial}, fn(${3:acc}, ${4:item}) {
+  $0
+})

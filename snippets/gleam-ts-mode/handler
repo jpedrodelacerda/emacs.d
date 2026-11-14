@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: wisp HTTP handler
+# key: handler
+# --
+pub fn ${1:handle}(req: Request, ctx: ${2:Context}) -> Response {
+  use req <- web.middleware(req)
+
+  case req.method, wisp.path_segments(req) {
+    Get, ["${3:path}"] -> {
+      $0
+    }
+    _, _ -> wisp.not_found()
+  }
+}

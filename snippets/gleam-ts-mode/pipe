@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: pipe expression
+# key: pipe
+# --
+${1:subject}
+|> ${2:function}
+$0

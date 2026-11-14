@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: private custom type enum
+# key: enum
+# --
+type ${1:Name} {
+  ${2:VariantA}
+  ${3:VariantB}
+}

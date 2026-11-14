@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: decode field
+# key: decf
+# --
+use ${1:field_name} <- decode.field("${1:field_name}", ${2:decode.string})
+$0

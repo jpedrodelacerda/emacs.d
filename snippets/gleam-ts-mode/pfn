@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: public function definition
+# key: pfn
+# --
+pub fn ${1:name}(${2:params}) -> ${3:Result(${4:Nil}, ${5:Nil})} {
+  $0
+}

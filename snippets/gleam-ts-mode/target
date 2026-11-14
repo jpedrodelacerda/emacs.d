@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: target attribute
+# key: target
+# --
+@target(${1:erlang})

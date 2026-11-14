@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: wisp require JSON body
+# key: reqjson
+# --
+use body_string <- wisp.require_string_body(req)
+use ${1:payload} <- result.try(
+  json.parse(body_string, ${2:decoder()})
+  |> result.replace_error(wisp.bad_request())
+)
+$0

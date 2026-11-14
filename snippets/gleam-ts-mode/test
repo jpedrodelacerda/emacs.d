@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: gleeunit test
+# key: test
+# --
+pub fn ${1:name}_test() {
+  ${2:subject}
+  |> should.equal(${3:expected})
+}

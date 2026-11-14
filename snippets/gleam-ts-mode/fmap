@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: list filter map
+# key: fmap
+# --
+list.filter_map(${1:list}, fn(${2:item}) {
+  $0
+})

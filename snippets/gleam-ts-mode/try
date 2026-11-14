@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: result try
+# key: try
+# --
+use ${1:val} <- result.try(${2:result_expr})
+$0

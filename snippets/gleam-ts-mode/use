@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: use callback
+# key: use
+# --
+use ${1:val} <- ${2:result.try}(${3:expr})
+$0
