@@ -3,17 +3,17 @@
 # key: opaque
 # --
 pub opaque type ${1:Name} {
-  ${1:Name}(${2:inner}: ${3:String})
+  $1(${2:inner}: ${3:String})
 }
 
-pub type ${1:Name}Error {
-  Invalid${1:Name}
+pub type $1Error {
+  Invalid$1
 }
 
-pub fn parse(input: $3) -> Result(${1:Name}, ${1:Name}Error) {
+pub fn new(input: $3) -> Result($1, $1Error) {
   $0
 }
 
-pub fn to_${2:inner}(val: ${1:Name}) -> $3 {
+pub fn to_$2(val: $1) -> $3 {
   val.$2
 }

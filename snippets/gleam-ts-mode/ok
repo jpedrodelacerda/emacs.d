@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Ok
+# key: ok
+# --
+Ok($0)

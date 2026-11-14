@@ -2,7 +2,7 @@
 # name: case expression
 # key: case
 # --
-case ${1:expr} {
-  Ok(${2:val}) -> $3
-  Error(${4:err}) -> $0
+case $0 {
+  $1 -> $2
+  _ -> $3
 }

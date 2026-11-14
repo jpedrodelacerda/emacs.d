@@ -2,6 +2,6 @@
 # name: pipe expression
 # key: pipe
 # --
-${1:subject}
-|> ${2:function}
+$1
+|> $2
 $0

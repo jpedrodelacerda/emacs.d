@@ -2,5 +2,4 @@
 # name: let assert
 # key: assert
 # --
-let assert Ok(${1:val}) = ${2:expr}
-$0
+let assert Ok(${1:val}) = ${0:expr}
