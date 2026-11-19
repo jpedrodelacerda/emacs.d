@@ -2,7 +2,6 @@
 # name: case expression
 # key: case
 # --
-case $0 {
-  $1 -> $2
-  _ -> $3
+case $1 {
+  _ -> $0
 }
