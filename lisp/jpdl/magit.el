@@ -8,6 +8,9 @@
 (use-package magit
   :straight t
   :general
+  (:keymaps 'project-prefix-map
+            "g" 'magit-status
+            "r" 'project-find-regexp)
   (:keymaps 'global-map
             [remap project-vc-dir] 'magit-project-status)
   ("C-x g" 'magit-status)
@@ -21,6 +24,7 @@
   (use-package with-editor)
   (setq magit-push-always-verify nil)
   (setq git-commit-summary-max-length 50)
+  (add-to-list 'project-switch-commands '(magit-status "Magit") t)
   (require 'magit-extras))
 
 (use-package forge
