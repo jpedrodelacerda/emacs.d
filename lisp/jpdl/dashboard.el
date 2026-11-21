@@ -9,7 +9,7 @@
   :init (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   :general
   (jpdl/spc-leader
-    "<escape>" 'dashboard-open)
+    "<f1>" 'dashboard-open)
   :config
   (setq dashboard-startup-banner (concat (concat "/home/" user-login-name) "/emacs.d/enso.png"))
   (setq dashboard-set-heading-icons t)
