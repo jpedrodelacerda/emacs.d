@@ -46,6 +46,10 @@
     "z q" 'delete-window
     "Z Z" 'jpdl/save-and-kill-buffer
     "z z" 'jpdl/save-and-kill-buffer)
+  (:states 'insert
+           "j" (general-key-dispatch 'self-insert-command
+                 :timeout 0.1
+                 "k" 'evil-normal-state))
   :config
   (evil-mode 1)
   (setq evil-emacs-state-mode nil)
@@ -124,7 +128,6 @@
   :straight t
   :config
   (evil-lion-mode))
-
 
 (provide 'jpdl/evil)
 ;;; evil.el ends here
